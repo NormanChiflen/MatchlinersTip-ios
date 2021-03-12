@@ -1,0 +1,6 @@
+framework module Pods_UnderDog_Prototype__macOS_ {
+  umbrella header "Pods-UnderDog Prototype (macOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}
