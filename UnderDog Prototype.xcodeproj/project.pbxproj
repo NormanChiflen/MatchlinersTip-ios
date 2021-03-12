@@ -21,6 +21,14 @@
 		EB822D9D25F6FD6D00018FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */; };
 		EB822DAE25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
 		EB822DAF25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
+		EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
+		EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
+		EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB3625FAEE90007C2291 /* SessionStore.swift */; };
+		EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB3625FAEE90007C2291 /* SessionStore.swift */; };
+		EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */; };
+		EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */; };
+		EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB4425FAF3E1007C2291 /* AuthView.swift */; };
+		EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB4425FAF3E1007C2291 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +71,10 @@
 		EB822D5825EB1B8B00018FB2 /* UnderDog Prototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UnderDog Prototype.entitlements"; sourceTree = "<group>"; };
 		EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EBE6DB3625FAEE90007C2291 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EBE6DB4425FAF3E1007C2291 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F418BB0C09A9ADDD08F2B18F /* Pods-UnderDog Prototype (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +155,10 @@
 				EB822D1925EB1A5700018FB2 /* Assets.xcassets */,
 				EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */,
 				EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */,
+				EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */,
+				EBE6DB3625FAEE90007C2291 /* SessionStore.swift */,
+				EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */,
+				EBE6DB4425FAF3E1007C2291 /* AuthView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -421,7 +437,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
+				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
+				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EB822D4025EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +450,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
+				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
+				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EB822D4125EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
