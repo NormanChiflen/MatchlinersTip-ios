@@ -8,6 +8,7 @@
 import iLineChart
 import SwiftUI
 import Firebase
+import UIKit
 
 struct ContentView: View {
     @EnvironmentObject var session: SessionStore
@@ -33,14 +34,53 @@ struct ContentView_Previews: PreviewProvider {
 
 struct LoggedInView : View {
     @EnvironmentObject var session: SessionStore
+    @State private var selection = 0
     
+    //Home Screen//
+    var body: some View{
+        TabView(selection: $selection) {
+            HomeTabView()
+                .tabItem {
+                    Image(systemName: "house.fill")
+                }
+                .tag(0)
+         
+            Text("Bookmark Tab")
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                }
+                .tag(1)
+         
+            Text("Video Tab")
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                }
+                .tag(2)
+         
+            ProfileTabView()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                }
+                .tag(3)
+        }.onAppear() {
+            UITabBar.appearance().barTintColor = .white
+        }
+        .accentColor(.neonGreen)
+    }
+}
+
+struct HomeTabView : View {
+    @EnvironmentObject var session: SessionStore
     var body: some View{
         VStack{
             iLineChart(
                 data: [8,32,11,23,40,28,15,20,30,25],
                 title: "Betting Amount",
                 subtitle: "$1XX,XXX.00",
-                chartBackgroundGradient: GradientColor.bluPurpl,
+                lineGradient: GradientColor.bluPurpl,
+                chartBackgroundGradient: nil,
                 displayChartStats: true
             )
                 .frame(height: 400)
@@ -70,10 +110,18 @@ struct LoggedInView : View {
                         .stroke(Color("Button Color"), lineWidth: 4))
                 .font(.custom("NotoSans-Medium", size: 18))
                 .padding()
-            Button(action: session.signOut){
-                Text("Sign Out")
-            }
         }
         .padding()
+
+    }
+}
+
+struct ProfileTabView: View {
+    @EnvironmentObject var session: SessionStore
+    var body: some View {
+//         Sign out button
+        Button(action: session.signOut){
+            Text("Sign Out")
+        }
     }
 }
