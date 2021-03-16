@@ -76,12 +76,17 @@ struct loginView : View {
     var body: some View{
         
         Image("Logo")
-        VStack(alignment: .center, spacing:20){
+        VStack(alignment: .leading, spacing:20){
             TextField("Email Address", text: $email)
                 .padding()
             SecureField("Password", text: $password)
                 .padding()
-            Text("Forget Password?")
+            NavigationLink(
+                destination: resetPasswordView(),
+                label: {
+                    Text("Forget passowrd?")
+                })
+                .padding(.horizontal)
                 
         }
         .padding(.horizontal)
@@ -119,6 +124,37 @@ struct LaunchView: View {
         }
             .buttonStyle(largeButton() )
             .padding()
+    }
+}
+
+struct resetPasswordView : View {
+    @State private var emailSent = false
+    @State var email: String = ""
+    @EnvironmentObject var session: SessionStore
+    func resetPassword() {
+        session.resetPassword(email: email)
+        emailSent = true
+    }
+    var body: some View {
+        if emailSent != false {
+            VStack {
+                Text("Check Your Email! If you haven't recieved a message from us, click the reset button again.")
+                    .font(.custom("NotoSans-Medium", size: 18))
+                    .foregroundColor(Color("Custom Color 1"))
+                    .padding(.horizontal)
+                    .padding()
+            }
+        }
+        VStack (alignment: .center, spacing: 30){
+            TextField("Email Address", text: $email)
+                .padding(.horizontal)
+                .padding()
+            Button(action: resetPassword, label: {
+                Text("Reset")
+                    .padding()
+            })
+            .buttonStyle(largeButton())
+        }
     }
 }
 

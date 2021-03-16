@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		EB822D9D25F6FD6D00018FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */; };
 		EB822DAE25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
 		EB822DAF25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
+		EBD50A7C26015232005B740E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A7B26015232005B740E /* SwiftUICharts */; };
+		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
 		EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
 		EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB3625FAEE90007C2291 /* SessionStore.swift */; };
@@ -84,6 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				549B8FA4C128D1C09933CEA1 /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */,
+				EBD50A8326015498005B740E /* iLineChart in Frameworks */,
+				EBD50A7C26015232005B740E /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +231,10 @@
 			dependencies = (
 			);
 			name = "UnderDog Prototype (iOS)";
+			packageProductDependencies = (
+				EBD50A7B26015232005B740E /* SwiftUICharts */,
+				EBD50A8226015498005B740E /* iLineChart */,
+			);
 			productName = "UnderDog Prototype (iOS)";
 			productReference = EB822D1E25EB1A5700018FB2 /* UnderDog Prototype.app */;
 			productType = "com.apple.product-type.application";
@@ -319,6 +327,10 @@
 				Base,
 			);
 			mainGroup = EB822D1125EB1A5600018FB2;
+			packageReferences = (
+				EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */,
+				EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */,
+			);
 			productRefGroup = EB822D1F25EB1A5700018FB2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -832,6 +844,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+		EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AlexFine/iLineChart.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBD50A7B26015232005B740E /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+		EBD50A8226015498005B740E /* iLineChart */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */;
+			productName = iLineChart;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EB822D1225EB1A5600018FB2 /* Project object */;
 }

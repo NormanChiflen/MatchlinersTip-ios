@@ -28,6 +28,9 @@ class SessionStore: ObservableObject {
     func signIn(email: String, password: String, handler: @escaping AuthDataResultCallback){
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
+    func resetPassword(email: String){
+        Auth.auth().sendPasswordReset(withEmail: email)
+    }
     func signOut() {
         do {
             try Auth.auth().signOut()
