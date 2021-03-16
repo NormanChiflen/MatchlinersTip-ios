@@ -32,7 +32,7 @@ struct signUpView : View {
         VStack(alignment: .leading, spacing: 20){
             Text("Create Account")
                 .font(.custom("NotoSans-Medium", size: 22))
-                .foregroundColor(Color("Custom Color 1"))
+                .foregroundColor(Color.gray)
                 .padding()
             TextField("Email Address", text: $email)
                 .padding()
@@ -112,7 +112,7 @@ struct LaunchView: View {
             Image("BannerLogo")
                 .position(x: 190, y: 50.0)
             Text("Creating the under dog story one bet at a time")
-                .foregroundColor(Color("Custom Color 1"))
+                .foregroundColor(Color.gray)
                 .frame(width: 200, height: 50, alignment: .center)
                 .font(.custom("NotoSans-Medium", size: 18))
                 .multilineTextAlignment(.center)
@@ -140,7 +140,7 @@ struct resetPasswordView : View {
             VStack {
                 Text("Check Your Email! If you haven't recieved a message from us, click the reset button again.")
                     .font(.custom("NotoSans-Medium", size: 18))
-                    .foregroundColor(Color("Custom Color 1"))
+                    .foregroundColor(Color.gray)
                     .padding(.horizontal)
                     .padding()
             }
@@ -163,6 +163,7 @@ struct AuthView: View {
         NavigationView{
             LaunchView()
         }
+        
     }
 }
 

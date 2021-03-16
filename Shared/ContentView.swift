@@ -45,14 +45,14 @@ struct LoggedInView : View {
                 }
                 .tag(0)
          
-            Text("Bookmark Tab")
+            Text("Popular Events")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(1)
          
-            Text("Video Tab")
+            Text("Betting History")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     Image(systemName: "list.bullet")
@@ -81,7 +81,8 @@ struct HomeTabView : View {
                 subtitle: "$1XX,XXX.00",
                 lineGradient: GradientColor.bluPurpl,
                 chartBackgroundGradient: nil,
-                displayChartStats: true
+                displayChartStats: true,
+                titleFont: .system(size: 30, weight: .bold, design: .rounded)
             )
                 .frame(height: 400)
             HStack(spacing: 35){
