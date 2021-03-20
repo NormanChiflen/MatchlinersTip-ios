@@ -32,6 +32,8 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+//Emcompases all users functions
+//Navigate with TabView
 struct LoggedInView : View {
     @EnvironmentObject var session: SessionStore
     @State private var selection = 0
@@ -44,14 +46,14 @@ struct LoggedInView : View {
                     Image(systemName: "house.fill")
                 }
                 .tag(0)
-         
+
             Text("Popular Events")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(1)
-         
+
             Text("Betting History")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
@@ -71,49 +73,124 @@ struct LoggedInView : View {
     }
 }
 
+//
 struct HomeTabView : View {
     @EnvironmentObject var session: SessionStore
+    
+    @State var showTable = false;
+    //Example
+    @State var rows: [GridItem] =
+            Array(repeating: .init(.fixed(5)), count: 2)
+    ///
+    func displayTable() {
+        withAnimation{
+            self.showTable.toggle()
+        }
+        
+    }
     var body: some View{
+        
+        List{
         VStack{
             iLineChart(
-                data: [8,32,11,23,40,28,15,20,30,25],
+                data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                 title: "Betting Amount",
                 subtitle: "$1XX,XXX.00",
-                lineGradient: GradientColor.bluPurpl,
-                chartBackgroundGradient: nil,
+                lineGradient:  GradientColor.green,
                 displayChartStats: true,
                 titleFont: .system(size: 30, weight: .bold, design: .rounded)
             )
                 .frame(height: 400)
-            HStack(spacing: 35){
-                Button(action: {print("1D")} ){
-                    Text("1D")
+            HStack{
+                Group {
+                    Button(action: {print("1D")} ){
+                        Text("1D")
+                    }
+                    Button(action: {print("1W")} ){
+                        Text("1W")
+                    }
+                    Button(action: {print("1M")} ){
+                        Text("1M")
+                    }
+                    Button(action: {print("3M")} ){
+                        Text("3M")
+                    }
+                    Button(action: {print("1Y")} ){
+                        Text("1Y")
+                    }
+                    Button(action: {print("ALL")} ){
+                        Text("ALL")
+                    }
                 }
-                Button(action: {print("1W")} ){
-                    Text("1W")
-                }
-                Button(action: {print("1M")} ){
-                    Text("1M")
-                }
-                Button(action: {print("3M")} ){
-                    Text("3M")
-                }
-                Button(action: {print("1Y")} ){
-                    Text("1Y")
-                }
-                Button(action: {print("ALL")} ){
-                    Text("ALL")
-                }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
                 .foregroundColor(.black)
                 .background(Color("Button Color"))
                 .overlay(RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color("Button Color"), lineWidth: 4))
+                    .stroke(Color("Button Color"), lineWidth: 4))
                 .font(.custom("NotoSans-Medium", size: 18))
+                
+            //Ongoing Bets
+            VStack{
+                Button(action: displayTable, label: {
+                    HStack(){
+                        Text("Ongoing Bets")
+                            .font(.custom("NotoSans-Medium", size: 25))
+                        if(self.showTable == false){
+                        Text("▼")
+                        }else {
+                            Text("▲")
+                        }
+                    }
+                    .alignmentGuide(.leading){
+                        d in d[.trailing]
+                    }
+                    .offset(x: 98.0, y: 5.0)
+                    .padding()
+                })
+                    .foregroundColor(.black)
+                    .frame(width: .infinity, height: 50, alignment: .leading)
+                if self.showTable == true {
+                    OngoingBets()
+                        .transition(.scale)
+                }
+            }
                 .padding()
+            Spacer()
+            Divider()
+            //Upcoming Bets
+            VStack{
+                Text("Upcoming Bets")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .offset(x: -5.0, y: 5.0)
+                    .font(.custom("NotoSans-Medium", size: 25))
+            }
+            List {
+                VStack(spacing: 20) {
+                    ForEach(0..<10) {
+                        Text("Item \($0)")
+                            .foregroundColor(.white)
+                            .font(.largeTitle)
+                            .frame(width: 290, height: 150)
+                            .background(Color.gray)
+                    }
+                }
+            }
+            .frame(height: 350)
+            .padding()
+            Divider()
         }
         .padding()
+    }
+    
+    }
 
+}
+
+//Work on this once we have data
+struct OngoingBets: View {
+    var body: some View{
+        Text("SF Giants @ LA Dodgers")
     }
 }
 
@@ -121,8 +198,18 @@ struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View {
 //         Sign out button
-        Button(action: session.signOut){
-            Text("Sign Out")
+        VStack{
+        Text("Account")
+            .font(.system(size: 30, weight: .bold, design: .rounded))
+            List{
+                Text("Cashier")
+                Text("Settings")
+                Text("Help")
+                Button(action: session.signOut){
+                    Text("Sign Out")
+                }
+            }
         }
+
     }
 }
