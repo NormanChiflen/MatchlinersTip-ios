@@ -169,10 +169,11 @@ struct HomeTabView : View {
                 VStack(spacing: 20) {
                     ForEach(0..<10) {
                         Text("Item \($0)")
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .font(.largeTitle)
                             .frame(width: 290, height: 150)
-                            .background(Color.gray)
+                            .background(Color.white)
+                        .border(Color.black, width: 3)
                     }
                 }
             }

@@ -8,6 +8,7 @@ target 'UnderDog Prototype (iOS)' do
   # Pods for UnderDog Prototype (iOS)
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 end
 
