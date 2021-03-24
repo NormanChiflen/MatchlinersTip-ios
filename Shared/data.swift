@@ -27,7 +27,7 @@ class OddsApi {
         guard let url = URL(string: "https://api.the-odds-api.com/v3/sports?apiKey=fdddc894261e9b8b7252cef12463faec") else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             let posts = try! JSONDecoder().decode(Initial.self, from: data!)
-            print(posts)
+            print(posts.data)
         }
         .resume()
     }
