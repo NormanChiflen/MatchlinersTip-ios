@@ -7,27 +7,18 @@
 import Foundation
 import SwiftUI
 
-struct Initial: Codable {
-    let success: Bool
-    let data: [Datas]
-    struct Datas: Codable {
-        let key: String
-        let active: Bool
-        let group: String
-        let details: String
-        let title: String
-        let has_outrights: Bool
-    }
-}
-
-
+// As of right now, OddsApi pull data from Odds Api and only displays the sports they have
 
 class OddsApi {
-    func getPosts() {
+    func getPosts(completion: @escaping ([Initial.Datas]) -> () ) {
         guard let url = URL(string: "https://api.the-odds-api.com/v3/sports?apiKey=fdddc894261e9b8b7252cef12463faec") else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            let posts = try! JSONDecoder().decode(Initial.self, from: data!)
-            print(posts.data)
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let posts = try! JSONDecoder().decode(Initial.self, from: info!)
+            
+            DispatchQueue.main.async {
+//                print(posts.data)
+                completion(posts.data)
+            }
         }
         .resume()
     }
