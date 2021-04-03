@@ -1,5 +1,4 @@
 ![Group 74](https://user-images.githubusercontent.com/31326034/113467202-5f988100-93f6-11eb-94c5-e0a10b22efe3.png)
-# UndrDawg
 
 
 
@@ -25,9 +24,8 @@ Project is created with:
 
 ## Setup
 To run this project, 
-install [cocoapods](https://cocoapods.org/ "cocoapods")
-install [Firebase SDK](https://firebase.google.com/docs/ios/setup "Firebase_SDK")
-
+* first install [cocoapods](https://cocoapods.org/ "cocoapods")
+* then install [Firebase SDK](https://firebase.google.com/docs/ios/setup "Firebase_SDK")
 
 
 ## Features
@@ -38,5 +36,5 @@ Included this far:
 <img width="225" alt="Screen Shot 2021-03-17 at 6 47 59 PM" src="https://user-images.githubusercontent.com/31326034/111561431-a8dba600-8751-11eb-95c8-6430817f5836.png">
 
 
-### User Home Screen
+### User Home Screen (Tabs: Home, Search, Betting History, Setting)
 <img width="225" alt="Screen Shot 2021-04-02 at 7 35 55 PM" src="https://user-images.githubusercontent.com/31326034/113465782-9fa63680-93eb-11eb-9861-055e42adb807.png"><img width="225" alt="Screen Shot 2021-04-02 at 7 36 03 PM" src="https://user-images.githubusercontent.com/31326034/113465784-a2089080-93eb-11eb-9f07-658d604c898f.png"><img width="225" alt="Screen Shot 2021-04-02 at 7 36 10 PM" src="https://user-images.githubusercontent.com/31326034/113465788-a339bd80-93eb-11eb-91da-2a2dd42b3eed.png">
