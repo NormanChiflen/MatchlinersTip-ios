@@ -3,8 +3,8 @@
 
 
 ## Table of contents
-* [What Is_UndrDawg](#what-is-undrdawg)
-* [Our_Mission](#our-mission)
+* [What Is UndrDawg](#what-is-undrdawg)
+* [Our Mission](#our-mission)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
