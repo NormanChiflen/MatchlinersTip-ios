@@ -72,119 +72,150 @@ struct LoggedInView : View {
     }
 }
 
-//
 struct HomeTabView : View {
+    @State var games: [Datum] = []
     @EnvironmentObject var session: SessionStore
-    
-    @State var showTable = false;
+    @State var showTable = false
     //Example
-    @State var rows: [GridItem] =
-            Array(repeating: .init(.fixed(5)), count: 2)
-    ///
     func displayTable() {
         withAnimation{
             self.showTable.toggle()
         }
-        
     }
-    var body: some View{
-        
+    var body: some View {
         List{
-        VStack{
-            iLineChart(
-                data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                title: "Betting Amount",
-                subtitle: "$1XX,XXX.00",
-                lineGradient:  GradientColor.green,
-                displayChartStats: true,
-                titleFont: .system(size: 30, weight: .bold, design: .rounded)
-            )
-                .frame(height: 400)
-            HStack{
-                Group {
-                    Button(action: {print("1D")} ){
-                        Text("1D")
-                    }
-                    Button(action: {print("1W")} ){
-                        Text("1W")
-                    }
-                    Button(action: {print("1M")} ){
-                        Text("1M")
-                    }
-                    Button(action: {print("3M")} ){
-                        Text("3M")
-                    }
-                    Button(action: {print("1Y")} ){
-                        Text("1Y")
-                    }
-                    Button(action: {print("ALL")} ){
-                        Text("ALL")
-                    }
-                }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            }
-                .foregroundColor(.black)
-                .background(Color("Button Color"))
-                .overlay(RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color("Button Color"), lineWidth: 4))
-                .font(.custom("NotoSans-Medium", size: 18))
-                
-            //Ongoing Bets
             VStack{
-                Button(action: displayTable, label: {
-                    HStack(){
-                        Text("Ongoing Bets")
-                            .font(.custom("NotoSans-Medium", size: 25))
-                        if(self.showTable == false){
-                        Text("▼")
-                        }else {
-                            Text("▲")
+                iLineChart(
+                    data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
+                    title: "Betting Amount",
+                    subtitle: "$1XX,XXX.00",
+                    lineGradient:  GradientColor.green,
+                    displayChartStats: true,
+                    titleFont: .system(size: 30, weight: .bold, design: .rounded)
+                )
+                    .frame(height: 400)
+                HStack{
+                    Group {
+                        Button(action: {print("1D")} ){
+                            Text("1D")
+                        }
+                        Button(action: {print("1W")} ){
+                            Text("1W")
+                        }
+                        Button(action: {print("1M")} ){
+                            Text("1M")
+                        }
+                        Button(action: {print("3M")} ){
+                            Text("3M")
+                        }
+                        Button(action: {print("1Y")} ){
+                            Text("1Y")
+                        }
+                        Button(action: {print("ALL")} ){
+                            Text("ALL")
                         }
                     }
-                    .alignmentGuide(.leading){
-                        d in d[.trailing]
-                    }
-                    .offset(x: 98.0, y: 5.0)
-                    .padding()
-                })
-                    .foregroundColor(.black)
-                    .frame(width: .infinity, height: 50, alignment: .leading)
-                if self.showTable == true {
-                    OngoingBets()
-                        .transition(.scale)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30, maxHeight: 30)
                 }
-            }
+                    .foregroundColor(.black)
+                    .background(Color("Button Color"))
+                    .overlay(RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color("Button Color"), lineWidth: 4))
+                    .font(.custom("NotoSans-Medium", size: 18))
+                
+                //Ongoing Bets
+                VStack{
+                    Button(action: displayTable, label: {
+                        HStack(){
+                            Text("Ongoing Bets")
+                                .font(.custom("NotoSans-Medium", size: 25))
+                            if(self.showTable == false){
+                            Text("▼")
+                            }else {
+                                Text("▲")
+                            }
+                        }
+                        .alignmentGuide(.leading){
+                            d in d[.trailing]
+                        }
+                        .offset(x: 98.0, y: 5.0)
+                        .padding()
+                    })
+                        .foregroundColor(.black)
+                        .frame(width: .infinity, height: 50, alignment: .leading)
+                    if self.showTable == true {
+                        OngoingBets()
+                            .transition(.scale)
+                    }
+                }
                 .padding()
-            Spacer()
-            Divider()
-            //Upcoming Bets
-            VStack{
+                Spacer()
+                Divider()
+                //Upcoming Bets
+                
                 Text("Upcoming Bets")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .offset(x: -5.0, y: 5.0)
-                    .font(.custom("NotoSans-Medium", size: 25))
-            }
-            List {
-                VStack(spacing: 20) {
-                    ForEach(0..<10) {
-                        Text("Item \($0)")
-                            .foregroundColor(.black)
-                            .font(.largeTitle)
-                            .frame(width: 290, height: 150)
-                            .background(Color.white)
-                        .border(Color.black, width: 3)
+                            .offset(x: -5.0, y: 5.0)
+                            .font(.custom("NotoSans-Medium", size: 25))
+                    .padding()
+                ForEach(games) { game in
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            VStack{
+                                Text("Teams")
+                                Divider()
+                                Text(game.teams[0])
+                                    .font(.system(size: 15))
+                                Divider()
+                                Text(game.teams[1])
+                                    .font(.system(size: 15))
+                            }
+                            .background(Color("Custom Color 1"))
+                            Spacer()
+                            VStack{
+                                Text("Win")
+                                Divider()
+                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                Divider()
+                                Text("-\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
+                            }
+                            .background(Color("Button Color"))
+                            Spacer()
+                            VStack{
+                                Text("Lost")
+                                Divider()
+                                Text("-\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                Divider()
+                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
+                            }
+                            .background(Color("Custom Color 2"))
+                            Spacer()
+                            VStack{
+                                Text("Draw")
+                                Divider()
+                                Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
+                                Divider()
+                                Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
+                            }
+                            .background(Color("Text"))
+                            Spacer()
+                        }
+                        Spacer()
                     }
+//                    .background(RoundedRectangle(cornerRadius: 4).stroke(Color("Custom Color 3"), lineWidth: 5))
+                    .padding()
                 }
             }
-            .frame(height: 350)
-            .padding()
-            Divider()
+            .onAppear{
+                OddsApi().getUKSoccerOdds{
+                    (games) in
+                    self.games = games
+                }
+            }
         }
-        .padding()
     }
-    
-    }
-
 }
 
 //Work on this once we have data

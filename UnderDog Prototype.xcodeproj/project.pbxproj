@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1283BD55D6EC7C6D5B9776F6 /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787190BFF1D95F403C0C603F /* Pods_UnderDog_Prototype__macOS_.framework */; };
 		549B8FA4C128D1C09933CEA1 /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */; };
+		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
+		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
 		EB822D3E25EB1A5700018FB2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3D25EB1A5700018FB2 /* Tests_macOS.swift */; };
 		EB822D4025EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */; };
@@ -25,8 +27,8 @@
 		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBD50ACA26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
 		EBD50ACB26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
-		EBD50AD1260831AD005B740E /* allGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* allGames.swift */; };
-		EBD50AD2260831AD005B740E /* allGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* allGames.swift */; };
+		EBD50AD1260831AD005B740E /* EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* EPL.swift */; };
+		EBD50AD2260831AD005B740E /* EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* EPL.swift */; };
 		EBD50AD926083CD8005B740E /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD826083CD8005B740E /* Initial.swift */; };
 		EBD50ADA26083CD8005B740E /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD826083CD8005B740E /* Initial.swift */; };
 		EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
@@ -62,6 +64,7 @@
 		A8E9BD15063CDAA7C113B2D3 /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		BC730DC53A517A71F79F487F /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB822D1925EB1A5700018FB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +83,7 @@
 		EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBD50AC926082EF8005B740E /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
-		EBD50AD0260831AD005B740E /* allGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allGames.swift; sourceTree = "<group>"; };
+		EBD50AD0260831AD005B740E /* EPL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPL.swift; sourceTree = "<group>"; };
 		EBD50AD826083CD8005B740E /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
 		EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBE6DB3625FAEE90007C2291 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
@@ -167,13 +170,13 @@
 				EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */,
 				EB822D1825EB1A5600018FB2 /* ContentView.swift */,
 				EB822D1925EB1A5700018FB2 /* Assets.xcassets */,
+				EBD50AD0260831AD005B740E /* EPL.swift */,
 				EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */,
 				EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */,
 				EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */,
 				EBE6DB3625FAEE90007C2291 /* SessionStore.swift */,
-				EBD50AC926082EF8005B740E /* data.swift */,
-				EBD50AD0260831AD005B740E /* allGames.swift */,
 				EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */,
+				EBD50AC926082EF8005B740E /* data.swift */,
 				EBE6DB4425FAF3E1007C2291 /* AuthView.swift */,
 			);
 			path = Shared;
@@ -229,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD50AD826083CD8005B740E /* Initial.swift */,
+				EB47B8F1261559E00080725C /* odds.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -471,9 +475,10 @@
 			files = (
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
+				EB47B8F2261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBD50AD926083CD8005B740E /* Initial.swift in Sources */,
-				EBD50AD1260831AD005B740E /* allGames.swift in Sources */,
+				EBD50AD1260831AD005B740E /* EPL.swift in Sources */,
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* data.swift in Sources */,
@@ -487,9 +492,10 @@
 			files = (
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
+				EB47B8F3261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBD50ADA26083CD8005B740E /* Initial.swift in Sources */,
-				EBD50AD2260831AD005B740E /* allGames.swift in Sources */,
+				EBD50AD2260831AD005B740E /* EPL.swift in Sources */,
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* data.swift in Sources */,
