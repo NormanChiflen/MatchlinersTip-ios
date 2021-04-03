@@ -1,10 +1,33 @@
 # UndrDawg
+
+
+
+## Table of contents
+* [What Is_UndrDawg](#what-is-undrdawg)
+* [Our_Mission](#our-mission)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+
 ## What is UndrDawg
 UndrDawg is a sport-betting application that provides the learning gap often presented in current sports betting applications for newer users. We allow individuals to test the waters of sports betting with teams and leagues that they know well and cut out many of the things that make sports better difficult and confusing for a beginner sports-better. By providing them with a simple to use software we are attempting to level the sports betting playing field for many UndrDawgs.
 The product is still in production at this moment.
 
 ## Our Mission
 To change the mindset and give people the easy of understanding sports betting. All these nuance terms shouldn’t be something that someone has to search up, but understands when using the application and can do it on things they know. Then it comes to things they want to venture into. 
+
+## Technologies
+Project is created with:
+* Xcode v.12.4 or later
+* CocoaPods v1.10.0 or later
+* Firebase
+
+## Setup
+To run this project, 
+install [cocoapods](https://cocoapods.org/ "cocoapods")
+install [Firebase SDK](https://firebase.google.com/docs/ios/setup "Firebase_SDK")
+
+
 
 ## Features
 Included this far:
