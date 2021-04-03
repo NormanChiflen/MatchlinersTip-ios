@@ -22,6 +22,10 @@ Project is created with:
 * CocoaPods v1.10.0 or later
 * Firebase
 
+Packages used (API):
+* [iLineChart](https://iswiftui.com/charts.html "iLineChart")
+* [OddsApi](https://the-odds-api.com/ "OddsApi")
+
 ## Setup
 To run this project:
 * first install [cocoapods](https://cocoapods.org/ "cocoapods")
