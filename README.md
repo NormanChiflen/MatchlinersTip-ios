@@ -23,7 +23,7 @@ Project is created with:
 * Firebase
 
 ## Setup
-To run this project, 
+To run this project:
 * first install [cocoapods](https://cocoapods.org/ "cocoapods")
 * then install [Firebase SDK](https://firebase.google.com/docs/ios/setup "Firebase_SDK")
 
