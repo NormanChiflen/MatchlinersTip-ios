@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1283BD55D6EC7C6D5B9776F6 /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787190BFF1D95F403C0C603F /* Pods_UnderDog_Prototype__macOS_.framework */; };
+		3D71A30F2618AA7500E6B92C /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB4425FAF3E1007C2291 /* AuthView.swift */; };
 		549B8FA4C128D1C09933CEA1 /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
 		EB822D3E25EB1A5700018FB2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3D25EB1A5700018FB2 /* Tests_macOS.swift */; };
@@ -475,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D71A30F2618AA7500E6B92C /* AuthView.swift in Sources */,
 				EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
