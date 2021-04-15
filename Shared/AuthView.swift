@@ -4,25 +4,16 @@
 //
 //  Created by John Lee on 3/11/21.
 //
-
+import UIKit
 import SwiftUI
 
 struct signUpView : View {
     @State var email: String = ""
-    @State var password: String = ""
+    @State var displayName: String = ""
+    @State var state: String = ""
     @State var error: String = ""
-    @EnvironmentObject var session: SessionStore
-    func signUp() {
-        session.signUp(email: email, password: password) { (result,error) in
-            if let error = error {
-                self.error = error.localizedDescription
-            } else {
-                self.email = ""
-                self.password = ""
-            }
-        }
-    }
     
+    @EnvironmentObject var session: SessionStore
     
     var body: some View{
         
@@ -31,20 +22,22 @@ struct signUpView : View {
 
         VStack(alignment: .leading, spacing: 20){
             Text("Create Account")
-                .font(.custom("NotoSans-Medium", size: 22))
-                .foregroundColor(Color.gray)
+                .font(.custom("NotoSans-bold", size: 22))
+                .foregroundColor(.accentColor)
+                .padding()
+            TextField("Nickname", text: $displayName)
                 .padding()
             TextField("Email Address", text: $email)
                 .padding()
-            SecureField("Password", text: $password)
+            TextField("State", text: $state)
                 .padding()
         }
             .padding(.horizontal)
             .padding(.vertical, 34)
 
-        
-        Button(action: signUp) {Text( "Sign Up")}
-            .buttonStyle(largeButton())
+        NavigationLink(destination: ageVerifyView(email: email, displayName: displayName, state: state) ) {Text( "Next")}
+            .disabled(email.isEmpty || displayName.isEmpty || state.isEmpty)
+            .buttonStyle(largeButton() )
         
         if(error != "") {
             Text(error)
@@ -56,19 +49,121 @@ struct signUpView : View {
     }
 }
 
+struct ageVerifyView: View {
+    @State var age: Int = 0
+    @State var email: String = ""
+    @State var displayName: String = ""
+    @State var state: String = ""
+    @State private var color = Color.red
+    @State private var calcAge: DateComponents = DateComponents()
+
+    @EnvironmentObject var session: SessionStore
+
+    let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter
+        }()
+    
+    @State private var birthDate = Date()
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 20){
+            Text("Enter Your Birthday")
+                .font(.custom("NotoSans-Medium", size: 22))
+                .foregroundColor(Color.gray)
+            Text("Users must be at least 18 years old to play and in some states users are required to be older")
+                .font(.custom("NotoSans-Medium", size: 15))
+                .foregroundColor(Color.gray)
+                .padding()
+        }
+        VStack(alignment: .leading, spacing: 20){
+            DatePicker("Birthday", selection: $birthDate, displayedComponents: .date)
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .frame(maxHeight: 400)
+        }.onChange(of: birthDate, perform: { value in
+            calcAge = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
+            age = calcAge.year ?? 0
+        })
+        Text("Your Age: \(calcAge.year ?? 0)")
+            .bold()
+            .foregroundColor(Color.white)
+            .colorMultiply(self.color)
+            .padding()
+            .onTapGesture{
+                withAnimation(.easeInOut(duration: 1)) {
+                    self.color = Color.blue
+                }
+            }
+        NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age)) {
+                                Text("Next")
+        }.disabled(calcAge.year ?? 0 < 18)
+            .buttonStyle(largeButton() )
+    }
+}
+
+struct confirmPasswordView: View {
+    @State var password: String = ""
+    @State var rpassword: String = ""
+    @State var email: String = ""
+    @State var displayName: String = ""
+    @State var state: String = ""
+    @State var age: Int = 0
+    @State var error: String = ""
+    
+    @State var profile: UserProfile?
+    
+    @EnvironmentObject var session: SessionStore
+    
+    func signUp() {
+        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age) { (profile,error) in
+            if let error = error {
+                self.error = error.localizedDescription
+            } else {
+                self.profile = profile
+                print(profile!)
+                self.email = ""
+                self.password = ""
+            }
+        }
+    }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20){
+            SecureField("Password", text: $password)
+                .padding()
+            SecureField("Re-enter Password", text: $rpassword)
+                .padding()
+        }
+        .padding()
+        Button(action: signUp) {Text( "Sign Up")}
+            .disabled(password != rpassword)
+            .buttonStyle(largeButton() )
+        if(error != "") {
+            Text(error)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.red)
+                .padding()
+        }
+    }
+}
+
+
 struct loginView : View {
     @State var email: String = ""
     @State var password: String = ""
     @State var error: String = ""
+    @State var profile: UserProfile?
     @EnvironmentObject var session: SessionStore
     
     func login() {
-        session.signIn(email: email, password: password) { (result,error) in
+        session.signIn(email: email, password: password) { (profile,error) in
             if let error = error {
                 self.error = error.localizedDescription
+                print("Error when signing in: \(error)")
             } else {
                 self.email = ""
                 self.password = ""
+                self.profile = profile
             }
         }
     }
@@ -109,7 +204,7 @@ struct loginView : View {
 struct LaunchView: View {
     var body: some View {
         VStack{
-            Image("BannerLogo")
+            Image("UnderDogSBOfficial")
                 .position(x: 190, y: 50.0)
             Text("Creating the under dog story one bet at a time")
                 .foregroundColor(.accentColor)
@@ -163,7 +258,6 @@ struct AuthView: View {
         NavigationView{
             LaunchView()
         }
-        
     }
 }
 

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1283BD55D6EC7C6D5B9776F6 /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787190BFF1D95F403C0C603F /* Pods_UnderDog_Prototype__macOS_.framework */; };
-		549B8FA4C128D1C09933CEA1 /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */; };
+		4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */; };
+		9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */; };
+		EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
+		EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
@@ -23,7 +25,6 @@
 		EB822D9D25F6FD6D00018FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */; };
 		EB822DAE25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
 		EB822DAF25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
-		EBD50A7C26015232005B740E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A7B26015232005B740E /* SwiftUICharts */; };
 		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBD50ACA26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
 		EBD50ACB26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
@@ -59,11 +60,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		44D1B9615FD98C2A61364F2B /* Pods-UnderDog Prototype (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).debug.xcconfig"; sourceTree = "<group>"; };
-		787190BFF1D95F403C0C603F /* Pods_UnderDog_Prototype__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8E9BD15063CDAA7C113B2D3 /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
-		BC730DC53A517A71F79F487F /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		024A7A62F5BDA31F585EE0B5 /* Pods-UnderDog Prototype (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6302DD1A453DFE528FA37AEE /* Pods-UnderDog Prototype (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB07A46A2619634600A22529 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
 		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +92,6 @@
 		EBE6DB3625FAEE90007C2291 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EBE6DB4425FAF3E1007C2291 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		F418BB0C09A9ADDD08F2B18F /* Pods-UnderDog Prototype (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				549B8FA4C128D1C09933CEA1 /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */,
 				EBD50A8326015498005B740E /* iLineChart in Frameworks */,
-				EBD50A7C26015232005B740E /* SwiftUICharts in Frameworks */,
+				4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1283BD55D6EC7C6D5B9776F6 /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */,
+				9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,11 +129,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A84878DD5949E666C683F90 /* Frameworks */ = {
+		5081E37B0B1F86CE7143EE93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BD18FE45B5774E63617822B1 /* Pods_UnderDog_Prototype__iOS_.framework */,
-				787190BFF1D95F403C0C603F /* Pods_UnderDog_Prototype__macOS_.framework */,
+				325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */,
+				DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,12 +141,20 @@
 		DA31D357003A6948F872A2D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC730DC53A517A71F79F487F /* Pods-UnderDog Prototype (iOS).debug.xcconfig */,
-				F418BB0C09A9ADDD08F2B18F /* Pods-UnderDog Prototype (iOS).release.xcconfig */,
-				44D1B9615FD98C2A61364F2B /* Pods-UnderDog Prototype (macOS).debug.xcconfig */,
-				A8E9BD15063CDAA7C113B2D3 /* Pods-UnderDog Prototype (macOS).release.xcconfig */,
+				C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */,
+				6302DD1A453DFE528FA37AEE /* Pods-UnderDog Prototype (iOS).release.xcconfig */,
+				024A7A62F5BDA31F585EE0B5 /* Pods-UnderDog Prototype (macOS).debug.xcconfig */,
+				9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EB09027A2628F0BB00E7D7DA /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				EBD50AD0260831AD005B740E /* EPL.swift */,
+			);
+			path = Games;
 			sourceTree = "<group>";
 		};
 		EB822D1125EB1A5600018FB2 = {
@@ -159,18 +168,18 @@
 				EB822D3C25EB1A5700018FB2 /* Tests macOS */,
 				EB822D1F25EB1A5700018FB2 /* Products */,
 				DA31D357003A6948F872A2D3 /* Pods */,
-				1A84878DD5949E666C683F90 /* Frameworks */,
+				5081E37B0B1F86CE7143EE93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		EB822D1625EB1A5600018FB2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				EB09027A2628F0BB00E7D7DA /* Games */,
 				EBD50AD726083CB3005B740E /* Model */,
 				EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */,
 				EB822D1825EB1A5600018FB2 /* ContentView.swift */,
 				EB822D1925EB1A5700018FB2 /* Assets.xcassets */,
-				EBD50AD0260831AD005B740E /* EPL.swift */,
 				EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */,
 				EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */,
 				EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */,
@@ -178,6 +187,7 @@
 				EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */,
 				EBD50AC926082EF8005B740E /* data.swift */,
 				EBE6DB4425FAF3E1007C2291 /* AuthView.swift */,
+				EB07A46A2619634600A22529 /* UserProfileRepository.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -244,11 +254,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB822D4825EB1A5700018FB2 /* Build configuration list for PBXNativeTarget "UnderDog Prototype (iOS)" */;
 			buildPhases = (
-				F75B335B51BAE6E9533B8319 /* [CP] Check Pods Manifest.lock */,
+				2F3A20F1F566DDED75D5783E /* [CP] Check Pods Manifest.lock */,
 				EB822D1A25EB1A5700018FB2 /* Sources */,
 				EB822D1B25EB1A5700018FB2 /* Frameworks */,
 				EB822D1C25EB1A5700018FB2 /* Resources */,
-				267C07F694DDA8F660C1BFFB /* [CP] Embed Pods Frameworks */,
+				7FDE34737EBF4CDE1E8F2E78 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,7 +266,6 @@
 			);
 			name = "UnderDog Prototype (iOS)";
 			packageProductDependencies = (
-				EBD50A7B26015232005B740E /* SwiftUICharts */,
 				EBD50A8226015498005B740E /* iLineChart */,
 			);
 			productName = "UnderDog Prototype (iOS)";
@@ -267,7 +276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB822D4B25EB1A5700018FB2 /* Build configuration list for PBXNativeTarget "UnderDog Prototype (macOS)" */;
 			buildPhases = (
-				6253B596BC0F2FD1D08B612E /* [CP] Check Pods Manifest.lock */,
+				D7FAFC17463F2A56A45E592B /* [CP] Check Pods Manifest.lock */,
 				EB822D2225EB1A5700018FB2 /* Sources */,
 				EB822D2325EB1A5700018FB2 /* Frameworks */,
 				EB822D2425EB1A5700018FB2 /* Resources */,
@@ -352,7 +361,6 @@
 			);
 			mainGroup = EB822D1125EB1A5600018FB2;
 			packageReferences = (
-				EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */,
 				EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */,
 			);
 			productRefGroup = EB822D1F25EB1A5700018FB2 /* Products */;
@@ -405,46 +413,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		267C07F694DDA8F660C1BFFB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6253B596BC0F2FD1D08B612E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UnderDog Prototype (macOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F75B335B51BAE6E9533B8319 /* [CP] Check Pods Manifest.lock */ = {
+		2F3A20F1F566DDED75D5783E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,6 +435,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7FDE34737EBF4CDE1E8F2E78 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7FAFC17463F2A56A45E592B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UnderDog Prototype (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -478,6 +486,7 @@
 				EB47B8F2261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBD50AD926083CD8005B740E /* Initial.swift in Sources */,
+				EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */,
 				EBD50AD1260831AD005B740E /* EPL.swift in Sources */,
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
@@ -495,6 +504,7 @@
 				EB47B8F3261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBD50ADA26083CD8005B740E /* Initial.swift in Sources */,
+				EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */,
 				EBD50AD2260831AD005B740E /* EPL.swift in Sources */,
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
@@ -649,7 +659,7 @@
 		};
 		EB822D4925EB1A5700018FB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC730DC53A517A71F79F487F /* Pods-UnderDog Prototype (iOS).debug.xcconfig */;
+			baseConfigurationReference = C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -673,7 +683,7 @@
 		};
 		EB822D4A25EB1A5700018FB2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F418BB0C09A9ADDD08F2B18F /* Pods-UnderDog Prototype (iOS).release.xcconfig */;
+			baseConfigurationReference = 6302DD1A453DFE528FA37AEE /* Pods-UnderDog Prototype (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -698,7 +708,7 @@
 		};
 		EB822D4C25EB1A5700018FB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44D1B9615FD98C2A61364F2B /* Pods-UnderDog Prototype (macOS).debug.xcconfig */;
+			baseConfigurationReference = 024A7A62F5BDA31F585EE0B5 /* Pods-UnderDog Prototype (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -722,7 +732,7 @@
 		};
 		EB822D4D25EB1A5700018FB2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8E9BD15063CDAA7C113B2D3 /* Pods-UnderDog Prototype (macOS).release.xcconfig */;
+			baseConfigurationReference = 9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -880,14 +890,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
-			};
-		};
 		EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AlexFine/iLineChart.git";
@@ -899,11 +901,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EBD50A7B26015232005B740E /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EBD50A7A26015232005B740E /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
 		EBD50A8226015498005B740E /* iLineChart */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */;

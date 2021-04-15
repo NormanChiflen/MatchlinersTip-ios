@@ -158,61 +158,9 @@ struct HomeTabView : View {
                             .offset(x: -5.0, y: 5.0)
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
-                ForEach(games) { game in
-                    VStack{
-                        Spacer()
-                        HStack{
-                            Spacer()
-                            VStack{
-                                Text("Teams")
-                                Divider()
-                                Text(game.teams[0])
-                                    .font(.system(size: 15))
-                                Divider()
-                                Text(game.teams[1])
-                                    .font(.system(size: 15))
-                            }
-                            .background(Color("Custom Color 1"))
-                            Spacer()
-                            VStack{
-                                Text("Win")
-                                Divider()
-                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
-                                Divider()
-                                Text("-\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
-                            }
-                            .background(Color("Button Color"))
-                            Spacer()
-                            VStack{
-                                Text("Lost")
-                                Divider()
-                                Text("-\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
-                                Divider()
-                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
-                            }
-                            .background(Color("Custom Color 2"))
-                            Spacer()
-                            VStack{
-                                Text("Draw")
-                                Divider()
-                                Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
-                                Divider()
-                                Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
-                            }
-                            .background(Color("Text"))
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-//                    .background(RoundedRectangle(cornerRadius: 4).stroke(Color("Custom Color 3"), lineWidth: 5))
-                    .padding()
-                }
-            }
-            .onAppear{
-                OddsApi().getUKSoccerOdds{
-                    (games) in
-                    self.games = games
-                }
+                
+                    EPL()
+                
             }
         }
     }
