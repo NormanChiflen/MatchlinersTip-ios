@@ -158,9 +158,8 @@ struct HomeTabView : View {
                             .offset(x: -5.0, y: 5.0)
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
-                
-                    EPL()
-                
+                //Show all games that matches with preference
+                    UpComing()
             }
         }
     }
@@ -239,20 +238,29 @@ struct PopularEventsView: View {
 
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
-    var body: some View {
-//         Sign out button
-        VStack{
-        Text("Account")
-            .font(.system(size: 30, weight: .bold, design: .rounded))
-            List{
-                Text("Cashier")
-                Text("Settings")
-                Text("Help")
-                Button(action: session.signOut){
-                    Text("Sign Out")
+    var body: some View{
+//         Sign out butto
+        NavigationView{
+            VStack {
+                List{
+                    NavigationLink (destination: UpdatePasswordView())
+                        { Text("Update Password")}
+                    NavigationLink (destination: ContactSupportView())
+                        {Text("Contact Support")}
+                    NavigationLink (destination: SportsBetting101View())
+                        {Text("Sports Betting 101")}
+                    NavigationLink (destination: DarkModeView())
+                        {Text("Light/Dark Mode")}
+                    NavigationLink(
+                        destination: BettingView()){
+                        Text("Betting Calculator")
+                        }
+                    Button(action: session.signOut){
+                        Text("Sign Out")
+                            }
+                        }
+                    }
+            .navigationTitle("Account")
                 }
             }
         }
-
-    }
-}

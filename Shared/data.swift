@@ -26,15 +26,132 @@ class OddsApi {
         }
         .resume()
     }
+    //Football Data
+    func getUSFootballOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=americanfootball_ncaaf&region=us&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    func getAUFootballOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=aussierules_afl&region=au&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //Baseball Data
+    func getUSBaseballOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=baseball_mlb&region=us&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //BasketBall
+    func getUSBasketBallOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=basketball_nba&region=us&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    func getEUBasketBallOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=basketball_euroleague&region=eu&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //Ice Hockey
+    func getIceHockeyOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=icehockey_nhl&region=us&mkt=h2h") else { return }
+
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //MMA
+    func getMMAOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=mma_mixed_martial_arts&region=us&mkt=h2h") else { return }
+
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //Rugby
+    func getAURugbyOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=rugbyleague_nrl&region=au&mkt=h2h") else { return }
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    //Soccer Data
     func getUKSoccerOdds(completion: @escaping ([Datum]) -> () ) {
         
         guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=soccer_epl&region=uk&mkt=h2h") else { return }
-//        guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
             DispatchQueue.main.async {
 //                print(games.data)
+                completion(games.data)
+            }
+        }
+        .resume()
+    }
+    func getUSSoccerOdds(completion: @escaping ([Datum]) -> () ) {
+        
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=soccer_usa_mls&region=us&mkt=h2h") else { return }
+
+        URLSession.shared.dataTask(with: url) { (info, _, _) in
+            let games = try! JSONDecoder().decode(Welcome.self, from: info!)
+            
+            DispatchQueue.main.async {
                 completion(games.data)
             }
         }

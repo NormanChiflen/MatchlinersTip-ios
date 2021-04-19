@@ -11,6 +11,10 @@
 		9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */; };
 		EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
+		EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090283262A7D5D00E7D7DA /* profileItem.swift */; };
+		EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090283262A7D5D00E7D7DA /* profileItem.swift */; };
+		EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
+		EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
 		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
@@ -28,8 +32,8 @@
 		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBD50ACA26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
 		EBD50ACB26082EF8005B740E /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* data.swift */; };
-		EBD50AD1260831AD005B740E /* EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* EPL.swift */; };
-		EBD50AD2260831AD005B740E /* EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* EPL.swift */; };
+		EBD50AD1260831AD005B740E /* UpComing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* UpComing.swift */; };
+		EBD50AD2260831AD005B740E /* UpComing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* UpComing.swift */; };
 		EBD50AD926083CD8005B740E /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD826083CD8005B740E /* Initial.swift */; };
 		EBD50ADA26083CD8005B740E /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD826083CD8005B740E /* Initial.swift */; };
 		EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */; };
@@ -67,6 +71,8 @@
 		C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB07A46A2619634600A22529 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
+		EB090283262A7D5D00E7D7DA /* profileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileItem.swift; sourceTree = "<group>"; };
+		EB09028A262A7F4600E7D7DA /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
 		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +92,7 @@
 		EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBD50AC926082EF8005B740E /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
-		EBD50AD0260831AD005B740E /* EPL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPL.swift; sourceTree = "<group>"; };
+		EBD50AD0260831AD005B740E /* UpComing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComing.swift; sourceTree = "<group>"; };
 		EBD50AD826083CD8005B740E /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
 		EBE6DB2F25FAED09007C2291 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBE6DB3625FAEE90007C2291 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
@@ -152,7 +158,7 @@
 		EB09027A2628F0BB00E7D7DA /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				EBD50AD0260831AD005B740E /* EPL.swift */,
+				EBD50AD0260831AD005B740E /* UpComing.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -188,6 +194,8 @@
 				EBD50AC926082EF8005B740E /* data.swift */,
 				EBE6DB4425FAF3E1007C2291 /* AuthView.swift */,
 				EB07A46A2619634600A22529 /* UserProfileRepository.swift */,
+				EB090283262A7D5D00E7D7DA /* profileItem.swift */,
+				EB09028A262A7F4600E7D7DA /* BettingView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -481,13 +489,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F2261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
+				EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50AD926083CD8005B740E /* Initial.swift in Sources */,
 				EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */,
-				EBD50AD1260831AD005B740E /* EPL.swift in Sources */,
+				EBD50AD1260831AD005B740E /* UpComing.swift in Sources */,
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* data.swift in Sources */,
@@ -499,13 +509,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F3261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
+				EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50ADA26083CD8005B740E /* Initial.swift in Sources */,
 				EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */,
-				EBD50AD2260831AD005B740E /* EPL.swift in Sources */,
+				EBD50AD2260831AD005B740E /* UpComing.swift in Sources */,
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* data.swift in Sources */,

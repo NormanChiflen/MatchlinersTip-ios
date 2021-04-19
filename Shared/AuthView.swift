@@ -253,6 +253,33 @@ struct resetPasswordView : View {
     }
 }
 
+struct UpdatePasswordView: View {
+    @State var currentPassword: String = ""
+    @State var error: String = ""
+    @State var email: String = ""
+    @State var newPassword: String = ""
+    @EnvironmentObject var session: SessionStore
+    func changePassword() {
+        session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword) { (error) in
+                if let error = error {
+                    self.error = error.localizedDescription
+                } else {
+                    self.email = ""
+                    self.currentPassword = ""
+                    self.newPassword = ""
+                }
+            }
+        }
+        var body: some View{
+        VStack (alignment: .center, spacing: 30){
+            
+            SecureField("Current Password", text: $currentPassword)
+                .padding(.horizontal)
+            SecureField("New Password", text: $newPassword).padding(.horizontal)
+            }
+        }
+}
+
 struct AuthView: View {
     var body: some View {
         NavigationView{

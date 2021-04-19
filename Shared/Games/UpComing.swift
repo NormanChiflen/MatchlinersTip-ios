@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EPL: View {
+struct UpComing: View {
     @State var games: [Datum] = []
 
     var body: some View {
@@ -49,13 +49,13 @@ struct EPL: View {
                         .background(Color("Custom Color 2"))
                         .cornerRadius(5)
                         Spacer()
-                        VStack{
-                            Text("Draw")
-                            Divider()
-                            Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
-                            Divider()
-                            Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
-                        }
+//                        VStack{
+//                            Text("Draw")
+//                            Divider()
+//                            Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
+//                            Divider()
+//                            Text("\(game.sites[0].odds.h2H[2], specifier: "%.2f")")
+//                        }
                         .background(Color("Text"))
                         .cornerRadius(5)
                         Spacer()
@@ -66,7 +66,7 @@ struct EPL: View {
             }
         }
         .onAppear{
-            OddsApi().getUKSoccerOdds{
+            OddsApi().getUSBaseballOdds{
                 (games) in
                 self.games = games
             }
@@ -74,8 +74,8 @@ struct EPL: View {
     }
 }
 
-struct EPL_Previews: PreviewProvider {
+struct UpComing_Previews: PreviewProvider {
     static var previews: some View {
-        EPL()
+        UpComing()
     }
 }
