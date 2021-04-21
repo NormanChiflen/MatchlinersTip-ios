@@ -76,6 +76,7 @@ struct HomeTabView : View {
     @State var games: [Datum] = []
     @EnvironmentObject var session: SessionStore
     @State var showTable = false
+    @Environment(\.colorScheme) var colorScheme
     //Example
     func displayTable() {
         withAnimation{
@@ -85,15 +86,32 @@ struct HomeTabView : View {
     var body: some View {
         List{
             VStack{
-                iLineChart(
-                    data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                    title: "Betting Amount",
-                    subtitle: "$1XX,XXX.00",
-                    lineGradient:  GradientColor.green,
-                    displayChartStats: true,
-                    titleFont: .system(size: 30, weight: .bold, design: .rounded)
-                )
-                    .frame(height: 400)
+                if(colorScheme == .dark){
+                    iLineChart(
+                        data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
+                        title: "Betting Amount",
+                        subtitle: "$1XX,XXX.00",
+                        style: .dark,
+                        lineGradient:  GradientColor.green,
+                        titleColor: Color.neonRed,
+                        displayChartStats: true,
+                        titleFont: .system(size: 30, weight: .bold, design: .rounded),
+                        subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
+                    )
+                        .frame(height: 400)
+                }
+                else{
+                    iLineChart(
+                        data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
+                        title: "Betting Amount",
+                        subtitle: "$1XX,XXX.00",
+                        lineGradient:  GradientColor.green,
+                        displayChartStats: true,
+                        titleFont: .system(size: 30, weight: .bold, design: .rounded),
+                        subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
+                    )
+                        .frame(height: 400)
+                }
                 HStack{
                     Group {
                         Button(action: {print("1D")} ){
@@ -141,7 +159,6 @@ struct HomeTabView : View {
                         .offset(x: 98.0, y: 5.0)
                         .padding()
                     })
-                        .foregroundColor(.black)
                         .frame(width: .infinity, height: 50, alignment: .leading)
                     if self.showTable == true {
                         OngoingBets()
@@ -159,7 +176,7 @@ struct HomeTabView : View {
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
                 //Show all games that matches with preference
-                    UpComing()
+//                    UpComing()
             }
         }
     }
@@ -226,12 +243,12 @@ struct PopularEventsView: View {
             List(posts) { post in
                 Text(post.title)
             }
-            .onAppear{
-                OddsApi().getPosts {
-                    (posts) in
-                    self.posts = posts
-                }
-            }
+//            .onAppear{
+//                OddsApi().getPosts {
+//                    (posts) in
+//                    self.posts = posts
+//                }
+//            }
         }
     }
 }

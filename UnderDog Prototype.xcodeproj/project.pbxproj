@@ -15,6 +15,8 @@
 		EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090283262A7D5D00E7D7DA /* profileItem.swift */; };
 		EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
 		EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
+		EB090292262F88BA00E7D7DA /* GameDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* GameDetails.swift */; };
+		EB090293262F88BA00E7D7DA /* GameDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* GameDetails.swift */; };
 		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
@@ -73,6 +75,7 @@
 		EB07A46A2619634600A22529 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
 		EB090283262A7D5D00E7D7DA /* profileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileItem.swift; sourceTree = "<group>"; };
 		EB09028A262A7F4600E7D7DA /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
+		EB090291262F88BA00E7D7DA /* GameDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetails.swift; sourceTree = "<group>"; };
 		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD50AD0260831AD005B740E /* UpComing.swift */,
+				EB090291262F88BA00E7D7DA /* GameDetails.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -501,6 +505,7 @@
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* data.swift in Sources */,
+				EB090292262F88BA00E7D7DA /* GameDetails.swift in Sources */,
 				EB822D4025EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +526,7 @@
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* data.swift in Sources */,
+				EB090293262F88BA00E7D7DA /* GameDetails.swift in Sources */,
 				EB822D4125EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
