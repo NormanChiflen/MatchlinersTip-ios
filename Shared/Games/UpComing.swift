@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UpComing: View {
     @State var games: [Datum] = []
-    @State private var bottomSheetShown = false
+    @State var bottomSheetShown = false
     var body: some View {
 //        NavigationView{
             VStack{
@@ -50,7 +50,8 @@ struct UpComing: View {
                             .background(Color("Custom Color 2"))
                             .cornerRadius(5)
                             Spacer()
-                        }       //End of HStack
+                        }
+                        //End of HStack
                         .onTapGesture(perform: {
                             bottomSheetShown = true
                         })

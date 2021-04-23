@@ -260,22 +260,44 @@ struct UpdatePasswordView: View {
     @State var newPassword: String = ""
     @EnvironmentObject var session: SessionStore
     func changePassword() {
-        session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword) { (error) in
+        session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
+            { (error) in
                 if let error = error {
                     self.error = error.localizedDescription
-                } else {
+                    print("Incorrect Email/Password: \(error)")      }
+                else {
                     self.email = ""
                     self.currentPassword = ""
                     self.newPassword = ""
-                }
-            }
-        }
+                    
+                }}}
         var body: some View{
-        VStack (alignment: .center, spacing: 30){
-            
-            SecureField("Current Password", text: $currentPassword)
+            VStack(spacing: 30){
+            Text("Update Password")
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .padding()
+            TextField("Email Address", text: $email).padding(.horizontal)
+            TextField("Current Password", text: $currentPassword)
                 .padding(.horizontal)
-            SecureField("New Password", text: $newPassword).padding(.horizontal)
+            TextField("New Password", text: $newPassword).padding(.horizontal)
+            NavigationLink(
+                    destination: resetPasswordView(),
+                    label: {
+                        Text("Forget password?")
+                    })
+                    .padding(.horizontal)
+                Button(action: changePassword, label: {
+                Text("Change Password")
+                    .padding()
+                if(error != "") {
+                        Text("Incorrect Email/Password")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.red)
+                            .padding()
+                }})
+            .buttonStyle(largeButton())
+            .frame(maxHeight: .infinity,
+              alignment: .top)
             }
         }
 }

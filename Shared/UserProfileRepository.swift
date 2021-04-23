@@ -16,6 +16,25 @@ struct UserProfile: Codable {
   var age: Int
   var email: String
 }
+struct HelpTicket: Codable{
+    var email: String
+    var issue: String
+}
+
+class HelpTicketRepository: ObservableObject{
+    private var db = Firestore.firestore()
+    
+    func createHelpTicket(profile: HelpTicket, completion: @escaping (_ profile: HelpTicket?, _ error: Error?)-> Void){
+        do {
+            let _ = try db.collection("HelpTicket").document(profile.email).setData(from: profile)
+            completion(profile, nil)
+        }
+        catch let error {
+          print("Error writing users to Firestore: \(error)")
+          completion(nil, error)
+        }
+    }
+}
 
 class UserProfileRepository: ObservableObject {
   private var db = Firestore.firestore()

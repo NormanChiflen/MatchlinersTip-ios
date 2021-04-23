@@ -65,8 +65,6 @@ struct LoggedInView : View {
                     Image(systemName: "person.crop.circle")
                 }
                 .tag(3)
-        }.onAppear() {
-            UITabBar.appearance().barTintColor = .white
         }
         .accentColor(.neonGreen)
     }
@@ -77,6 +75,8 @@ struct HomeTabView : View {
     @EnvironmentObject var session: SessionStore
     @State var showTable = false
     @Environment(\.colorScheme) var colorScheme
+    @State private var bottomSheetShown = false
+    @State private var hidesheet = false
     //Example
     func displayTable() {
         withAnimation{
@@ -84,6 +84,8 @@ struct HomeTabView : View {
         }
     }
     var body: some View {
+       
+        ZStack{
         List{
             VStack{
                 if(colorScheme == .dark){
@@ -176,10 +178,25 @@ struct HomeTabView : View {
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
                 //Show all games that matches with preference
-//                    UpComing()
+//                UpComing()
+                Button(action: { bottomSheetShown.toggle() }, label: {
+                    Text("\(bottomSheetShown ? "Close" : "Open") Sheet")
+                })
+                .padding()
+            }
+        
+        }
+            if (bottomSheetShown != false) {
+            GeometryReader{ geomtry in
+                BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 700) {
+                    Rectangle().fill(Color("Button Color").opacity(0.5))
+                }.edgesIgnoringSafeArea(.all)
+                }
             }
         }
+        
     }
+    
 }
 
 //Work on this once we have data
@@ -192,7 +209,6 @@ struct PopularEventsView: View {
     @State var posts: [Initial.Datas] = []
     @Binding var text: String
     @State private var isEditing = false
-    
     var body: some View {
         VStack{
             Text("Popular Events")
@@ -276,8 +292,9 @@ struct ProfileTabView: View {
                         Text("Sign Out")
                             }
                         }
-                    }
-            .navigationTitle("Account")
+                    Spacer()
                 }
-            }
+            .navigationBarTitle("Amount")
         }
+    }
+}
