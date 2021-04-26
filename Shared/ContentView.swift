@@ -111,6 +111,7 @@ struct HomeTabView : View {
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                         title: session.profile?.displayName,
                         subtitle: balance,
+//                        style: .tertiary,
                         lineGradient:  GradientColor.green,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
