@@ -9,9 +9,10 @@ import SwiftUI
 
 struct UpComing: View {
     @State var games: [Datum] = []
-    @State var bottomSheetShown = false
+//    @State var gamed : Datum
+    @Binding var gamed : Datum
+    @Binding var bottomSheetShown : Bool
     var body: some View {
-//        NavigationView{
             VStack{
                 ForEach(games) { game in
                     VStack{
@@ -52,9 +53,10 @@ struct UpComing: View {
                             Spacer()
                         }
                         //End of HStack
-                        .onTapGesture(perform: {
-                            bottomSheetShown = true
-                        })
+                        .onTapGesture{
+                            self.bottomSheetShown.toggle()
+                            gamed = game
+                        }
                         Spacer()
                     }       //End of VStack
                     .padding()
@@ -66,12 +68,11 @@ struct UpComing: View {
                     self.games = games
                 }
             }
-//        }// end of navigationview
     }
 }
 
-struct UpComing_Previews: PreviewProvider {
-    static var previews: some View {
-        UpComing()
-    }
-}
+//struct UpComing_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UpComing()
+//    }
+//}

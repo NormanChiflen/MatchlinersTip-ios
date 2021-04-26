@@ -40,22 +40,25 @@ struct ContactSupportView: View {
     @EnvironmentObject var session: SessionStore
     @State var email: String = ""
     @State var issue: String = ""
-    @State var profile: HelpTicket?
     @State var error: String = ""
-    @State var showDetails = false
-    /*func createHelpTicket() {
-        session.createHelpTicket(email: email, issue: issue) { (profile,error) in
-                if let error = error {
-                    self.error = error.localizedDescription
-                } else {
-                    self.profile = profile
-                    print(profile!)
-                    self.email = ""
-                    self.issue = ""
-                }
+    @State private var showAlert = false
+    
+    func createHelpTicket(){
+        let db = Firestore.firestore()
+        db.collection("HelpTicket").document(email).setData([
+            "email": email,
+            "issue": issue
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
             }
-        }*/
-        var body: some View {
+        }
+        self.showAlert = true
+    }
+    
+    var body: some View {
         VStack(spacing:30){
             Text("Contact Support")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
@@ -63,17 +66,18 @@ struct ContactSupportView: View {
             TextField("Email Address", text: $email)
                 .padding()
             TextField("Issue", text: $issue).padding()
-            Button(action: {self.showDetails.toggle()})  {
-            Text("Submit Issue")
-            }.padding()
+            Button("Submit Issue")  {
+                createHelpTicket()
+            }
+            .alert(isPresented: self.$showAlert) {
+                Alert(title: Text("We Got You!"), message: Text("Your Request has been submitted"), dismissButton: .default(Text("Got it!")))
+            }
             .frame(maxHeight: .infinity,
               alignment: .top)
             .buttonStyle(largeButton())
-            if showDetails{
-                Text("Your Request has been submitted").padding()
-            }
+            .padding()
         }
-        }
+    }
 }
 
     

@@ -110,13 +110,14 @@ struct confirmPasswordView: View {
     @State var state: String = ""
     @State var age: Int = 0
     @State var error: String = ""
+    @State var score: Int = 20 //Free money
     
     @State var profile: UserProfile?
     
     @EnvironmentObject var session: SessionStore
     
     func signUp() {
-        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age) { (profile,error) in
+        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age, score: score) { (profile,error) in
             if let error = error {
                 self.error = error.localizedDescription
             } else {
@@ -165,6 +166,7 @@ struct loginView : View {
                 self.password = ""
                 self.profile = profile
             }
+            
         }
     }
     

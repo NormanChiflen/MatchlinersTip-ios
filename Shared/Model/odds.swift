@@ -15,7 +15,9 @@ struct Welcome: Codable {
 
 // MARK: - Datum
 struct Datum: Codable, Identifiable {
-    let id, sportKey, sportNice: String
+    let id: String
+    let sportKey: String
+    let sportNice: String
     let teams: [String]
     let commenceTime: Int
     let homeTeam: String

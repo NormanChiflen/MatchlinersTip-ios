@@ -22,12 +22,13 @@ class SessionStore: ObservableObject {
             if let user = user {
                 print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
+                
             } else {
                 self.session = nil
             }
         })
     }
-    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
+    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: Int, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
       Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
         if let error = error {
           print("Error signing up: \(error)")
@@ -38,10 +39,10 @@ class SessionStore: ObservableObject {
         guard let user = result?.user else { return }
         print("User \(user.uid) signed up.")
 
-        let userProfile = UserProfile(uid: user.uid, displayName: displayName, State: State, age: age, email: email)
+        let userProfile = UserProfile(uid: user.uid, displayName: displayName, State: State, age: age, email: email, score: score)
         self.profileRepository.createProfile(profile: userProfile) { (profile, error) in
           if let error = error {
-            print("Error while fetching the user profile: \(error)")
+            print("Error while creating the user profile: \(error)")
             completion(nil, error)
             return
           }
@@ -96,7 +97,6 @@ class SessionStore: ObservableObject {
     func resetPassword(email: String){
         Auth.auth().sendPasswordReset(withEmail: email)
     }
-
     func unbind(){
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)

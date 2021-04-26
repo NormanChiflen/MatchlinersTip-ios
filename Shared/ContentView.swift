@@ -39,6 +39,7 @@ struct LoggedInView : View {
     @EnvironmentObject var session: SessionStore
     @State private var selection = 0
     @State var searchText = ""
+   
     //Home Screen//
     var body: some View{
         TabView(selection: $selection) {
@@ -77,6 +78,7 @@ struct HomeTabView : View {
     @Environment(\.colorScheme) var colorScheme
     @State private var bottomSheetShown = false
     @State private var hidesheet = false
+    @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     //Example
     func displayTable() {
         withAnimation{
@@ -91,8 +93,8 @@ struct HomeTabView : View {
                 if(colorScheme == .dark){
                     iLineChart(
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                        title: "Betting Amount",
-                        subtitle: "$1XX,XXX.00",
+                        title: session.profile?.displayName,
+                        subtitle: "$",
                         style: .dark,
                         lineGradient:  GradientColor.green,
                         titleColor: Color.neonRed,
@@ -105,44 +107,16 @@ struct HomeTabView : View {
                 else{
                     iLineChart(
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                        title: "Betting Amount",
-                        subtitle: "$1XX,XXX.00",
+                        title: session.profile?.displayName,
+                        subtitle: "$ \(session.profile?.score)",
                         lineGradient:  GradientColor.green,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
                         subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
                     )
-                        .frame(height: 400)
+                    .frame(height: 400)
                 }
-                HStack{
-                    Group {
-                        Button(action: {print("1D")} ){
-                            Text("1D")
-                        }
-                        Button(action: {print("1W")} ){
-                            Text("1W")
-                        }
-                        Button(action: {print("1M")} ){
-                            Text("1M")
-                        }
-                        Button(action: {print("3M")} ){
-                            Text("3M")
-                        }
-                        Button(action: {print("1Y")} ){
-                            Text("1Y")
-                        }
-                        Button(action: {print("ALL")} ){
-                            Text("ALL")
-                        }
-                    }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30, maxHeight: 30)
-                }
-                    .foregroundColor(.black)
-                    .background(Color("Button Color"))
-                    .overlay(RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color("Button Color"), lineWidth: 4))
-                    .font(.custom("NotoSans-Medium", size: 18))
-                
+                Divider()
                 //Ongoing Bets
                 VStack{
                     Button(action: displayTable, label: {
@@ -178,20 +152,55 @@ struct HomeTabView : View {
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
                 //Show all games that matches with preference
-//                UpComing()
-                Button(action: { bottomSheetShown.toggle() }, label: {
-                    Text("\(bottomSheetShown ? "Close" : "Open") Sheet")
-                })
-                .padding()
+//                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+//                .padding()
             }
         
         }
             if (bottomSheetShown != false) {
-            GeometryReader{ geomtry in
-                BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 700) {
-                    Rectangle().fill(Color("Button Color").opacity(0.5))
-                }.edgesIgnoringSafeArea(.all)
-                }
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 700) {
+                        VStack {
+                            HStack{
+                                Spacer()
+                                VStack{
+                                    Text("Teams")
+                                    Divider()
+                                    Text(gamed.teams[0])
+                                        .font(.system(size: 15))
+                                    Divider()
+                                    Text(gamed.teams[1])
+                                        .font(.system(size: 15))
+                                }
+                                .background(Color("Custom Color 1"))
+                                .cornerRadius(5)
+                                Spacer()
+                                VStack{
+                                    Text("Win")
+                                    Divider()
+                                    Text("\(gamed.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                    Divider()
+                                    Text("-\(gamed.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                }
+                                .background(Color("Button Color"))
+                                .cornerRadius(5)
+                                Spacer()
+                                VStack{
+                                    Text("Lost")
+                                    Divider()
+                                    Text("-\(gamed.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                    Divider()
+                                    Text("\(gamed.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                }
+                                .background(Color("Custom Color 2"))
+                                .cornerRadius(5)
+                                Spacer()
+                            }
+                        }
+                        .padding(geometry.safeAreaInsets)
+//                        Rectangle().fill(Color("Button Color").opacity(0.2))
+                    }.edgesIgnoringSafeArea(.all)
+                    }
             }
         }
         
