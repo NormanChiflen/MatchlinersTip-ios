@@ -90,11 +90,13 @@ struct HomeTabView : View {
         ZStack{
         List{
             VStack{
+                
+                let balance = "$ \(session.profile?.score.description ?? "?")"
                 if(colorScheme == .dark){
                     iLineChart(
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                         title: session.profile?.displayName,
-                        subtitle: "$ \(session.profile?.score)",
+                        subtitle: balance,
                         style: .dark,
                         lineGradient:  GradientColor.green,
                         titleColor: Color.neonRed,
@@ -108,7 +110,7 @@ struct HomeTabView : View {
                     iLineChart(
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                         title: session.profile?.displayName,
-                        subtitle: "$ \(session.profile?.score)",
+                        subtitle: balance,
                         lineGradient:  GradientColor.green,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
