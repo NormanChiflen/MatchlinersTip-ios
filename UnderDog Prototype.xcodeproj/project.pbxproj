@@ -94,6 +94,7 @@
 		EB822D5825EB1B8B00018FB2 /* UnderDog Prototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UnderDog Prototype.entitlements"; sourceTree = "<group>"; };
 		EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBA3761B2636B28A0020AEE5 /* iLineChart */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iLineChart; path = ../iLineChart; sourceTree = "<group>"; };
 		EBD50AC926082EF8005B740E /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		EBD50AD0260831AD005B740E /* UpComing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComing.swift; sourceTree = "<group>"; };
 		EBD50AD826083CD8005B740E /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		EB822D1125EB1A5600018FB2 = {
 			isa = PBXGroup;
 			children = (
+				EBA3761B2636B28A0020AEE5 /* iLineChart */,
 				EB822D5825EB1B8B00018FB2 /* UnderDog Prototype.entitlements */,
 				EB822D1625EB1A5600018FB2 /* Shared */,
 				EB822D2025EB1A5700018FB2 /* iOS */,
