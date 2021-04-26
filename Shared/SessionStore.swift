@@ -23,6 +23,15 @@ class SessionStore: ObservableObject {
                 print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
                 
+                self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
+                  if let error = error {
+                    print("Error while fetching the user profile: \(error)")
+                    return
+                  }
+
+                  self.profile = profile
+                }
+                
             } else {
                 self.session = nil
             }

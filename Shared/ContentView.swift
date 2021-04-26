@@ -94,7 +94,7 @@ struct HomeTabView : View {
                     iLineChart(
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                         title: session.profile?.displayName,
-                        subtitle: "$",
+                        subtitle: "$ \(session.profile?.score)",
                         style: .dark,
                         lineGradient:  GradientColor.green,
                         titleColor: Color.neonRed,
