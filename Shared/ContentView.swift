@@ -155,53 +155,18 @@ struct HomeTabView : View {
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
                 //Show all games that matches with preference
-//                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-//                .padding()
+                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+                .padding()
             }
         
         }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
-                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 700) {
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 800) {
                         VStack {
-                            HStack{
-                                Spacer()
-                                VStack{
-                                    Text("Teams")
-                                    Divider()
-                                    Text(gamed.teams[0])
-                                        .font(.system(size: 15))
-                                    Divider()
-                                    Text(gamed.teams[1])
-                                        .font(.system(size: 15))
-                                }
-                                .background(Color("Custom Color 1"))
-                                .cornerRadius(5)
-                                Spacer()
-                                VStack{
-                                    Text("Win")
-                                    Divider()
-                                    Text("\(gamed.sites[0].odds.h2H[0], specifier: "%.2f")")
-                                    Divider()
-                                    Text("-\(gamed.sites[0].odds.h2H[0], specifier: "%.2f")")
-                                }
-                                .background(Color("Button Color"))
-                                .cornerRadius(5)
-                                Spacer()
-                                VStack{
-                                    Text("Lost")
-                                    Divider()
-                                    Text("-\(gamed.sites[0].odds.h2H[1], specifier: "%.2f")")
-                                    Divider()
-                                    Text("\(gamed.sites[0].odds.h2H[1], specifier: "%.2f")")
-                                }
-                                .background(Color("Custom Color 2"))
-                                .cornerRadius(5)
-                                Spacer()
-                            }
+                            BettingView()
                         }
                         .padding(geometry.safeAreaInsets)
-//                        Rectangle().fill(Color("Button Color").opacity(0.2))
                     }.edgesIgnoringSafeArea(.all)
                     }
             }

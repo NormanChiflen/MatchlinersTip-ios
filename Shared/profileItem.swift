@@ -85,7 +85,7 @@ struct ContactSupportView: View {
 
 struct DarkModeView: View {
     @EnvironmentObject var session: SessionStore
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @State private var isDarkMode = false
     var body: some View{
         VStack(alignment: .leading){
             Toggle(isOn: $isDarkMode, label: {
@@ -93,9 +93,8 @@ struct DarkModeView: View {
             }).padding()
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
-       // .environment(\.colorScheme,  isDarkMode ? .dark : .light)
         .accentColor(.primary)
-            
+        .padding()
         }
 }
 
