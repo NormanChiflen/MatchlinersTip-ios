@@ -156,7 +156,6 @@ struct HomeTabView : View {
                     .padding()
                 //Show all games that matches with preference
                 UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-                .padding()
             }
         
         }
