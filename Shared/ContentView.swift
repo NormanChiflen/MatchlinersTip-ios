@@ -253,24 +253,28 @@ struct ProfileTabView: View {
             VStack {
                 List{
                     NavigationLink (destination: UpdatePasswordView())
-                        { Text("Update Password")}
+                        { Text("Update Password").background(Color.clear)}
                     NavigationLink (destination: ContactSupportView())
-                        {Text("Contact Support")}
+                        {Text("Contact Support").background(Color.clear)}
                     NavigationLink (destination: SportsBetting101View())
-                        {Text("Sports Betting 101")}
+                        {Text("Sports Betting 101").background(Color.clear)}
                     NavigationLink (destination: DarkModeView())
-                        {Text("Light/Dark Mode")}
+                        {Text("Dark Mode").background(Color.clear)}
                     NavigationLink(
                         destination: BettingView()){
-                        Text("Betting Calculator")
+                        Text("Betting Calculator").background(Color.clear)
                         }
                     Button(action: session.signOut){
-                        Text("Sign Out")
+                        Text("Sign Out").background(Color.clear)
                             }
-                        }
-                    Spacer()
+                }.listItemTint(.clear)
+                .background(Color.clear)
+                    //Spacer()
                 }
             .navigationBarTitle("Amount")
+            .font(.system(size: 30, weight: .bold, design: .rounded))
+            .background(Color.clear)
+            .padding()
         }
     }
 }

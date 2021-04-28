@@ -87,7 +87,10 @@ struct DarkModeView: View {
     @EnvironmentObject var session: SessionStore
     @State private var isDarkMode = false
     var body: some View{
-        VStack(alignment: .leading){
+        VStack{
+            Text("Dark Mode")
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .padding()
             Toggle(isOn: $isDarkMode, label: {
                 Text("Dark Mode")
             }).padding()
@@ -95,6 +98,7 @@ struct DarkModeView: View {
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .accentColor(.primary)
         .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
         }
 }
 

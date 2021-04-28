@@ -2,7 +2,6 @@ import Foundation
 import SwiftUI
 import UIKit
 import Combine
-import Firebase
 
 ///Calculator Option
 enum CalcButton: String
@@ -46,35 +45,38 @@ enum CalcButton: String
 struct BettingView: View {
     @State var value = "0"
     @State var runningNumber = 0
+    //@State private var OddsCalculation = 2
   //  @State var currentOperation: Operation = .none
-
+   // let OddsCalculation = []
+    
     let buttons: [[CalcButton]] = [
         [.seven, .eight, .nine],
         [.four, .five, .six],
         [.one, .two, .three],
-        [.clear, .zero, .decimal],
+        [.decimal ,.zero, .clear],
     ]
 
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+//            .edgesIgnoringSafeArea(.all)
 
             VStack {
                 Spacer()
 
                 // Text display
                 HStack {
-                    Spacer()
+                    //Spacer()
                     Text(value)
                         .bold()
-                        .font(.system(size: 100))
-                        .foregroundColor(.white)
+                        .font(.system(size: 70))
+                        .foregroundColor(.gray)
+                        
                 }
                 .padding()
 
                 // Our buttons
                 ForEach(buttons, id: \.self) { row in
-                    HStack(spacing: 12) {
+                    HStack(spacing: 40) {
                         ForEach(row, id: \.self) { item in
                             Button(action: {
                                 self.didTap(button: item)
@@ -134,9 +136,8 @@ struct BettingView: View {
                // }
             case .clear:
                 self.value = "0"
-    case .decimal:
+           // case .decimal: self.value = "."
     //, .negative, .percent:
-                break
             default:
                 let number = button.rawValue
                 if self.value == "0" {
@@ -149,9 +150,9 @@ struct BettingView: View {
         }
 
         func buttonWidth(item: CalcButton) -> CGFloat {
-            if item == .zero {
-                return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
-            }
+            //if item == .zero {
+ //               return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
+   //         }
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
 
