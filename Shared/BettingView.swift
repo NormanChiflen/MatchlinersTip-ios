@@ -61,7 +61,7 @@ struct BettingView: View {
 //            .edgesIgnoringSafeArea(.all)
 
             VStack {
-                Spacer()
+//                Spacer()
 
                 // Text display
                 HStack {

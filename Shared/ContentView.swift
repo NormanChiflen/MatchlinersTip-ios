@@ -111,7 +111,7 @@ struct HomeTabView : View {
                         data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
                         title: session.profile?.displayName,
                         subtitle: balance,
-//                        style: .tertiary,
+                        style: .tertiary,
                         lineGradient:  GradientColor.green,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
@@ -148,16 +148,13 @@ struct HomeTabView : View {
                 Spacer()
                 Divider()
                 //Upcoming Bets
-                
                 Text("Upcoming Bets")
                     .frame(maxWidth: .infinity, alignment: .leading)
                             .offset(x: -5.0, y: 5.0)
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
-                //Show all games that matches with preference
-                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)//Show all games that matches with preference
             }
-        
         }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in

@@ -95,10 +95,197 @@ struct ageVerifyView: View {
                     self.color = Color.blue
                 }
             }
-        NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age)) {
+        NavigationLink(destination: preferenceView(email: email, displayName: displayName, state: state, age: age)) {
                                 Text("Next")
         }.disabled(calcAge.year ?? 0 < 18)
             .buttonStyle(largeButton() )
+    }
+}
+
+struct preferenceView: View{
+    @State var email: String = ""
+    @State var displayName: String = ""
+    @State var state: String = ""
+    @State var age: Int = 0
+    @State var NCAAF: Bool = false
+    @State var AFL: Bool = false
+    @State var MLB: Bool = false
+    @State var NBA: Bool = false
+    @State var NHL: Bool = false
+    @State var Euroleague: Bool = false
+    @State var MMA: Bool = false
+    @State var NRL: Bool = false
+    @State var EPL: Bool = false
+    @State var MLS: Bool = false
+    
+
+    let columns = [
+        GridItem(.adaptive(minimum: 100))
+    ]
+    
+    
+    var body: some View {
+        
+        VStack(alignment: .center, spacing: 10){
+            Spacer()
+            Text("Preference")
+                .font(.custom("NotoSans-Medium", size: 22))
+                .foregroundColor(Color.gray)
+                .padding()
+            Text("Setting up your preference will send you directly to bets that make sense for you")
+                .font(.custom("NotoSans-Medium", size: 15))
+                .foregroundColor(Color.gray)
+                .padding()
+            Menu{
+                Menu{
+                    Toggle(isOn: $NCAAF, label: {
+                        Text("NCAAF 🇺🇸")
+                    })
+                    .padding()
+                    Toggle(isOn: $AFL, label: {
+                        Text("AFL 🇦🇺")
+                    })
+                }label: {
+                    Text("Football 🏈")
+                }
+                Menu{
+                    Button("EPL 🇬🇧") {
+                        EPL = true
+                    }
+                }label: {
+                    Text("Soccer ⚽")
+                }
+                Menu{
+                    Button("NBA 🇺🇸") {
+                        NBA = true
+                    }
+                    Button("Euro League 🇪🇺"){
+                        Euroleague = true
+                    }
+                }label: {
+                    Text("Basketball 🏀")
+               }
+                Menu{
+                    Button("MLB 🇺🇸") {
+                        MLB = true
+                    }
+                }label: {
+                    Text("Baseball ⚾")
+               }
+                Menu{
+                    Button("NHL 🇺🇸") {
+                        NHL = true
+                    }
+                }label: {
+                    Text("Ice Hockey 🏒")
+               }
+                Menu{
+                    Button("MMA 🥋") {
+                        MMA = true
+                    }
+                }label: {
+                    Text("MMA 🥋")
+               }
+                Menu{
+                    Button("NRL 🇦🇺") {
+                        NRL = true
+                    }
+                }label: {
+                    Text("Rugby 🏉")
+               }
+
+            }label: {
+                Label("Sports", systemImage: "sportscourt")
+                    .accentColor(.blue)
+                    .font(.system(size: 22, weight: .semibold))
+           }
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            ScrollView{
+                LazyVGrid(columns: columns){
+                    Toggle(isOn: $NCAAF, label: {
+                        Text("NCAAF 🇺🇸")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $AFL, label: {
+                        Text("AFL 🇦🇺")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $MLB, label: {
+                        Text("MLB 🇺🇸")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $NBA, label: {
+                        Text("NBA 🇺🇸")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $Euroleague, label: {
+                        Text("Euro League 🇪🇺")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $NHL, label: {
+                        Text("NHL 🇺🇸")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $MMA, label: {
+                        Text("MMA 🥋")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $NRL, label: {
+                        Text("NRL 🇦🇺")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $EPL, label: {
+                        Text("EPL 🇬🇧")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                    Toggle(isOn: $MLS, label: {
+                        Text("MLS 🇺🇸")
+                    })
+                    .padding()
+                    .toggleStyle(CheckboxStyle())
+                }
+                NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age, NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)) {
+                                        Text("Next")
+                }
+                .buttonStyle(largeButton())
+                .padding()
+            }
+    
+        }
+    }
+}
+
+struct CheckboxStyle: ToggleStyle {
+ 
+    func makeBody(configuration: Self.Configuration) -> some View {
+ 
+        return HStack {
+ 
+            configuration.label
+ 
+            Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundColor(configuration.isOn ? .purple : .gray)
+                .font(.system(size: 10, weight: .bold, design: .default))
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                }
+        }
+ 
     }
 }
 
@@ -111,13 +298,23 @@ struct confirmPasswordView: View {
     @State var age: Int = 0
     @State var error: String = ""
     @State var score: Int = 20 //Free money
+    @State var NCAAF: Bool = false
+    @State var AFL: Bool = false
+    @State var MLB: Bool = false
+    @State var NBA: Bool = false
+    @State var NHL: Bool = false
+    @State var Euroleague: Bool = false
+    @State var MMA: Bool = false
+    @State var NRL: Bool = false
+    @State var EPL: Bool = false
+    @State var MLS: Bool = false
     
     @State var profile: UserProfile?
-    
+    @State var preference: preference?
     @EnvironmentObject var session: SessionStore
     
     func signUp() {
-        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age, score: score) { (profile,error) in
+        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age, score: score, NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS) { (profile, preference, error) in
             if let error = error {
                 self.error = error.localizedDescription
             } else {
@@ -125,6 +322,7 @@ struct confirmPasswordView: View {
                 print(profile!)
                 self.email = ""
                 self.password = ""
+                self.preference = preference
             }
         }
     }
@@ -154,10 +352,11 @@ struct loginView : View {
     @State var password: String = ""
     @State var error: String = ""
     @State var profile: UserProfile?
+    @State var pref: preference?
     @EnvironmentObject var session: SessionStore
     
     func login() {
-        session.signIn(email: email, password: password) { (profile,error) in
+        session.signIn(email: email, password: password) { (profile, pref, error) in
             if let error = error {
                 self.error = error.localizedDescription
                 print("Error when signing in: \(error)")
@@ -165,6 +364,7 @@ struct loginView : View {
                 self.email = ""
                 self.password = ""
                 self.profile = profile
+                self.pref = pref
             }
             
         }

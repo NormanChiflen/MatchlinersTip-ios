@@ -9,8 +9,10 @@ import SwiftUI
 
 struct UpComing: View {
     @State var games: [Datum] = []
+    @EnvironmentObject var session: SessionStore
     @Binding var gamed : Datum
     @Binding var bottomSheetShown : Bool
+    @State var sportsLabel : [String] = []
     var body: some View {
             VStack{
                 ForEach(games) { game in
@@ -70,74 +72,146 @@ struct UpComing: View {
                 }
             }
             .onAppear{
-                OddsApi().getUKSoccerOdds{
-                    (games) in
-                    self.games = games
+                if session.pref?.NRL == true {
+                    OddsApi().getAURugbyOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏉")
+                        }
+                    }
+                }
+                if session.pref?.EPL == true {
+                    OddsApi().getUKSoccerOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                    }
+                    for game in games {
+                        sportsLabel.append("⚽")
+                    }
+                }
+                if session.pref?.NBA == true {
+                    OddsApi().getUSBasketBallOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏀")
+                        }
+                    }
+                }
+                if session.pref?.Euroleague == true {
+                    OddsApi().getEUBasketBallOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏀")
+                        }
+                    }
+                }
+                if session.pref?.MLB == true {
+                    OddsApi().getUSBaseballOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("⚾")
+                        }
+                    }
+                }
+                if session.pref?.MLS == true {
+                    OddsApi().getUSSoccerOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("⚽")
+                        }
+                    }
+                }
+                if session.pref?.MMA == true {
+                    OddsApi().getMMAOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🥋")
+                        }
+                    }
+                }
+                if session.pref?.NCAAF == true {
+                    OddsApi().getUSFootballOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏈")
+                        }
+                    }
+                }
+                if session.pref?.AFL == true {
+                    OddsApi().getAUFootballOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏈")
+                        }
+                    }
+                }
+                if session.pref?.NHL == true {
+                    OddsApi().getIceHockeyOdds{
+                        (games) in
+                        if self.games.isEmpty {
+                            self.games = games
+                        }
+                        else {
+                            self.games += games
+                        }
+                        for game in games {
+                            sportsLabel.append("🏒")
+                        }
+                    }
                 }
             }
     }
 }
-
-//struct UpComing: View {
-//    @State var games: [Datum] = []
-////    @State var gamed : Datum
-//    @Binding var gamed : Datum
-//    @Binding var bottomSheetShown : Bool
-//    var body: some View {
-//            VStack{
-//                ForEach(games) { game in
-//                    VStack{
-//                        Spacer()
-//                        HStack{
-//                            Spacer()
-//                            VStack{
-//                                Text("Teams")
-//                                Divider()
-//                                Text(game.teams[0])
-//                                    .font(.system(size: 15))
-//                                Divider()
-//                                Text(game.teams[1])
-//                                    .font(.system(size: 15))
-//                            }
-//                            .background(Color("Custom Color 1"))
-//                            .cornerRadius(5)
-//                            Spacer()
-//                            VStack{
-//                                Text("Win")
-//                                Divider()
-//                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
-//                                Divider()
-//                                Text("-\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
-//                            }
-//                            .background(Color("Button Color"))
-//                            .cornerRadius(5)
-//                            Spacer()
-//                            VStack{
-//                                Text("Lost")
-//                                Divider()
-//                                Text("-\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
-//                                Divider()
-//                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
-//                            }
-//                            .background(Color("Custom Color 2"))
-//                            .cornerRadius(5)
-//                            Spacer()
-//                        }
-//                        //End of HStack
-//                        .onTapGesture{
-//                            self.bottomSheetShown.toggle()
-//                            gamed = game
-//                        }
-//                        Spacer()
-//                    }       //End of VStack
-//                    .padding()
-//                }
-//            }
-//            .onAppear{
-//                OddsApi().getUKSoccerOdds{
-//                    (games) in
-//                    self.games = games
-//                }
-//            }
-//    }
-//}

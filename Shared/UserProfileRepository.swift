@@ -18,25 +18,44 @@ struct UserProfile: Codable {
   var score: Int
 }
 
+struct preference: Codable {
+  var NCAAF: Bool
+  var AFL: Bool
+  var MLB: Bool
+  var NBA: Bool
+  var NHL: Bool
+  var Euroleague: Bool
+  var MMA: Bool
+  var NRL: Bool
+  var EPL: Bool
+  var MLS: Bool
+}
+
 class UserProfileRepository: ObservableObject {
   private var db = Firestore.firestore()
 
-  func createProfile(profile: UserProfile, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
+    func createProfile(profile: UserProfile, preference: preference, completion: @escaping (_ profile: UserProfile?, _ preference: preference? ,_ error: Error?) -> Void) {
     do {
         let _ = try db.collection("users").document(profile.uid).setData(from: profile)
-
-        completion(profile, nil)
+        let _ = try db.collection("users").document(profile.uid).collection("preference").document("preference").setData(from: preference)
+        completion(profile, preference, nil)
     }
     catch let error {
       print("Error writing users to Firestore: \(error)")
-      completion(nil, error)
+      completion(nil, nil, error)
     }
   }
 
-  func fetchProfile(userId: String, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
-    db.collection("users").document(userId).getDocument { (snapshot, error) in
-      let profile = try? snapshot?.data(as: UserProfile.self)
-      completion(profile, error)
+    func fetchProfile(userId: String, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
+        db.collection("users").document(userId).getDocument { (snapshot, error) in
+          let profile = try? snapshot?.data(as: UserProfile.self)
+          completion(profile, error)
+        }
     }
-  }
+    func fetchPref(userId: String, completion: @escaping (_ pref: preference?, _ error: Error?) -> Void) {
+        db.collection("users").document(userId).collection("preference").document("preference").getDocument { (snapshot, error) in
+            let pref = try? snapshot?.data(as: preference.self)
+            completion(pref,error)
+        }
+    }
 }

@@ -17,6 +17,8 @@
 		EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
 		EB090292262F88BA00E7D7DA /* GameDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* GameDetails.swift */; };
 		EB090293262F88BA00E7D7DA /* GameDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* GameDetails.swift */; };
+		EB216E8626390BE4005F8832 /* preferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB216E8526390BE4005F8832 /* preferenceView.swift */; };
+		EB216E8726390BE4005F8832 /* preferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB216E8526390BE4005F8832 /* preferenceView.swift */; };
 		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
@@ -76,6 +78,8 @@
 		EB090283262A7D5D00E7D7DA /* profileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileItem.swift; sourceTree = "<group>"; };
 		EB09028A262A7F4600E7D7DA /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
 		EB090291262F88BA00E7D7DA /* GameDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetails.swift; sourceTree = "<group>"; };
+		EB216E78263903F0005F8832 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB216E8526390BE4005F8832 /* preferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preferenceView.swift; sourceTree = "<group>"; };
 		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		5081E37B0B1F86CE7143EE93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB216E78263903F0005F8832 /* iOSDropDown.framework */,
 				325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */,
 				DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */,
 			);
@@ -202,6 +207,7 @@
 				EB07A46A2619634600A22529 /* UserProfileRepository.swift */,
 				EB090283262A7D5D00E7D7DA /* profileItem.swift */,
 				EB09028A262A7F4600E7D7DA /* BettingView.swift */,
+				EB216E8526390BE4005F8832 /* preferenceView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			files = (
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EB216E8626390BE4005F8832 /* preferenceView.swift in Sources */,
 				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F2261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
@@ -518,6 +525,7 @@
 			files = (
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EB216E8726390BE4005F8832 /* preferenceView.swift in Sources */,
 				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F3261559E00080725C /* odds.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
@@ -620,6 +628,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -672,6 +681,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};

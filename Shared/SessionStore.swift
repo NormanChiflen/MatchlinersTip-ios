@@ -14,6 +14,7 @@ class SessionStore: ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     @Published var session: User? {didSet {self.didChange.send(self) }}
     @Published var profile: UserProfile?
+    @Published var pref: preference?
     private var profileRepository = UserProfileRepository()
     
     var handle: AuthStateDidChangeListenerHandle?
@@ -31,40 +32,49 @@ class SessionStore: ObservableObject {
 
                   self.profile = profile
                 }
+                self.profileRepository.fetchPref(userId: user.uid) { (pref, error) in
+                  if let error = error {
+                    print("Error while fetching the user profile: \(error)")
+                    return
+                  }
+
+                  self.pref = pref
+                }
                 
             } else {
                 self.session = nil
             }
         })
     }
-    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: Int, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
+    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: Int, NCAAF: Bool, AFL: Bool, MLB: Bool, NBA: Bool, NHL: Bool, Euroleague: Bool, MMA: Bool, NRL: Bool, EPL: Bool, MLS: Bool, completion: @escaping (_ profile: UserProfile?,_ pref: preference? ,_ error: Error?) -> Void) {
       Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
         if let error = error {
           print("Error signing up: \(error)")
-          completion(nil, error)
+          completion(nil, nil, error)
           return
         }
-
         guard let user = result?.user else { return }
         print("User \(user.uid) signed up.")
 
         let userProfile = UserProfile(uid: user.uid, displayName: displayName, State: State, age: age, email: email, score: score)
-        self.profileRepository.createProfile(profile: userProfile) { (profile, error) in
+        let pref = preference(NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)
+        self.profileRepository.createProfile(profile: userProfile, preference: pref) { (profile, preference, error) in
           if let error = error {
             print("Error while creating the user profile: \(error)")
-            completion(nil, error)
+            completion(nil, nil, error)
             return
           }
           self.profile = profile
-          completion(profile, nil)
+          self.pref = pref
+          completion(profile, preference, nil)
         }
       }
     }
-    func signIn(email: String, password: String, completion: @escaping (_ profile: UserProfile?, _ error: Error?) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (_ profile: UserProfile?, _ pref: preference?, _ error: Error?) -> Void) {
       Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
         if let error = error {
           print("Error signing in: \(error)")
-          completion(nil, error)
+          completion(nil, nil, error)
           return
         }
 
@@ -74,12 +84,21 @@ class SessionStore: ObservableObject {
         self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
           if let error = error {
             print("Error while fetching the user profile: \(error)")
-            completion(nil, error)
+            completion(nil, nil, error)
             return
           }
 
           self.profile = profile
-          completion(profile, nil)
+          completion(profile, nil, nil)
+        }
+        self.profileRepository.fetchPref(userId: user.uid) { (pref, error) in
+            if let error = error {
+                print("Error whil fetching user preference: \(error)")
+                completion(nil, nil, error)
+                return
+            }
+            self.pref = pref
+            completion(self.profile, pref, nil)
         }
       }
     }
@@ -89,6 +108,7 @@ class SessionStore: ObservableObject {
         try Auth.auth().signOut()
         self.session = nil
         self.profile = nil
+        self.pref = nil
       }
       catch let signOutError as NSError {
         print("Error signing out: \(signOutError)")
