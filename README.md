@@ -14,7 +14,7 @@ UndrDawg is a sport-betting application that provides the learning gap often pre
 The product is still in production at this moment, feel free to explore our source code yet far!
 
 ## Our Mission
-To change the mindset and give people the easy of understanding sports betting. All these nuance terms shouldn’t be something that someone has to search up, but understands when using the application and can do it on things they know. Then it comes to things they want to venture into. 
+To change the mindset and give people the ease of understanding sports betting. All these nuance terms shouldn’t be something that someone has to search up, but understands when using the application and can do it on things they know. Then it comes to things they want to venture into. 
 
 ## Technologies
 Project is created with:
