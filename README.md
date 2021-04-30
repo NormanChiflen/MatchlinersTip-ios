@@ -24,6 +24,7 @@ Project is created with:
 
 Packages used:
 * [iLineChart](https://iswiftui.com/charts.html "iLineChart")
+* [iColor](https://iswiftui.com/iColor.html "iColor")
 
 API(Odds!):
 * [OddsApi](https://the-odds-api.com/ "OddsApi")
