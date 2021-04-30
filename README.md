@@ -33,7 +33,8 @@ To run this project:
 
 
 ## Features
-Included this far:
+Since the app is still in development, our most updated code is living in userbranch!
+We included the following features below:
 
 #### LaunchScreen (Login and Signup Authentication) 
 ![Alt Text](https://media.giphy.com/media/g1vj2pnI8APaTY5EGV/giphy.gif)
