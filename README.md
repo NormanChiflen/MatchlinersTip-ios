@@ -47,6 +47,9 @@ We included the following features below:
 #### User Preference
 ![Alt Text](https://media.giphy.com/media/Gy0hPv9Qnc5EipHNTP/giphy.gif)
 
+#### Our simple age verification method
+![Alt Text](https://media.giphy.com/media/N23P5s2nYLApA21dMN/giphy.gif)
+
 #### Home Screen -> Account Tab -> Contact Support
 ![Alt Text](https://media.giphy.com/media/V1d9PvTSwuh4ykCcOH/giphy.gif)
 
