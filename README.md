@@ -37,10 +37,19 @@ Included this far:
 
 #### LaunchScreen (Login and Signup Authentication) 
 ![Alt Text](https://media.giphy.com/media/g1vj2pnI8APaTY5EGV/giphy.gif)
+* Google Firebase Authentication
+* Stores user data in Firestore
 
-
-#### User Home Screen (Tabs: Home, Search, Betting History, Setting)
+#### User Preference
 ![Alt Text](https://media.giphy.com/media/Gy0hPv9Qnc5EipHNTP/giphy.gif)
 
-#### NEW MODE! Dark Mode!!!!
+#### Home Screen -> Account Tab -> Contact Support
+![Alt Text](https://media.giphy.com/media/V1d9PvTSwuh4ykCcOH/giphy.gif)
 
+#### Tutorial for new users!
+![Alt Text](https://media.giphy.com/media/BVer9a4syjjkTKByrG/giphy.gif)
+
+#### NEW MODE! Dark Mode!!!!
+![Alt Text](https://media.giphy.com/media/ikvgbTO3PZ8FKFBzVx/giphy.gif)
+
+#### WE ARE OPEN TO ANY FORM OF FEEDBACKS!!!!!!!!
