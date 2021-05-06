@@ -80,25 +80,20 @@ struct ContactSupportView: View {
     }
 }
 
-    
-
-
 struct DarkModeView: View {
     @EnvironmentObject var session: SessionStore
-    @State private var isDarkMode = false
     var body: some View{
         VStack{
             Text("Dark Mode")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
-            Toggle(isOn: $isDarkMode, label: {
+            Toggle(isOn: $session.isDarkMode, label: {
                 Text("Dark Mode")
             }).padding()
         }
-        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .preferredColorScheme(session.isDarkMode ? .dark : .light)
         .accentColor(.primary)
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
         }
 }
-

@@ -251,6 +251,8 @@ struct ProfileTabView: View {
                 List{
                     NavigationLink (destination: UpdatePasswordView())
                         { Text("Update Password").background(Color.clear)}
+                    NavigationLink (destination: UpdatePreferenceView())
+                        { Text("Update Preference").background(Color.clear)}
                     NavigationLink (destination: ContactSupportView())
                         {Text("Contact Support").background(Color.clear)}
                     NavigationLink (destination: SportsBetting101View())
@@ -268,7 +270,7 @@ struct ProfileTabView: View {
                 .background(Color.clear)
                     //Spacer()
                 }
-            .navigationBarTitle("Amount")
+            .navigationBarTitle("Account Seetings")
             .font(.system(size: 30, weight: .bold, design: .rounded))
             .background(Color.clear)
             .padding()
