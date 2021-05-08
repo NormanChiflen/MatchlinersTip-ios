@@ -162,7 +162,7 @@ struct HomeTabView : View {
         }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
-                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 810)  {
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
                             let string = Int("\(gamed.sites[0].odds.h2H[0])")
                             let action  = Int("\(gamed.sites[0].odds.h2H[0])")

@@ -29,7 +29,7 @@ class OddsApi {
     //Football Data
     func getUSFootballOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=americanfootball_ncaaf&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=americanfootball_nfl&region=us&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
