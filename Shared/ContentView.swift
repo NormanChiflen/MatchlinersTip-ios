@@ -266,7 +266,13 @@ struct ProfileTabView: View {
             VStack {
                 List{
                     NavigationLink (destination: UpdatePasswordView())
+<<<<<<< HEAD
                         { Text("Update Password")}
+=======
+                        { Text("Update Password").background(Color.clear)}
+                    NavigationLink (destination: UpdatePreferenceView())
+                        { Text("Update Preference").background(Color.clear)}
+>>>>>>> 51419dfb1323e456d061a5d80753ac54679344e6
                     NavigationLink (destination: ContactSupportView())
                         {Text("Contact Support")}
                     NavigationLink (destination: SportsBetting101View())
@@ -282,7 +288,7 @@ struct ProfileTabView: View {
                             }
                 }
                 }
-            .navigationBarTitle("Amount")
+            .navigationBarTitle("Account Seetings")
             .font(.system(size: 30, weight: .bold, design: .rounded))
             .padding()
         }

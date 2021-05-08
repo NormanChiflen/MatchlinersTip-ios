@@ -15,6 +15,7 @@ class SessionStore: ObservableObject {
     @Published var session: User? {didSet {self.didChange.send(self) }}
     @Published var profile: UserProfile?
     @Published var pref: preference?
+    @Published var isDarkMode = false
     private var profileRepository = UserProfileRepository()
     
     var handle: AuthStateDidChangeListenerHandle?

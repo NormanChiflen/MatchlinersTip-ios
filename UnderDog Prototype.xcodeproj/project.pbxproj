@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		295EF6F9264393530041C7F1 /* UpdatePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */; };
+		295EF6FA264393530041C7F1 /* UpdatePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */; };
 		4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */; };
 		9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */; };
 		EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
@@ -69,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		024A7A62F5BDA31F585EE0B5 /* Pods-UnderDog Prototype (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferenceView.swift; sourceTree = "<group>"; };
 		325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6302DD1A453DFE528FA37AEE /* Pods-UnderDog Prototype (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 				EBE6DB3D25FAF1D2007C2291 /* SceneDelegate.swift */,
 				EBD50AC926082EF8005B740E /* data.swift */,
 				EBE6DB4425FAF3E1007C2291 /* AuthView.swift */,
+				295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */,
 				EB07A46A2619634600A22529 /* UserProfileRepository.swift */,
 				EB090283262A7D5D00E7D7DA /* profileItem.swift */,
 				EB09028A262A7F4600E7D7DA /* BettingView.swift */,
@@ -503,6 +507,7 @@
 			files = (
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				295EF6F9264393530041C7F1 /* UpdatePreferenceView.swift in Sources */,
 				EB216E8626390BE4005F8832 /* preferenceView.swift in Sources */,
 				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F2261559E00080725C /* odds.swift in Sources */,
@@ -525,6 +530,7 @@
 			files = (
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				295EF6FA264393530041C7F1 /* UpdatePreferenceView.swift in Sources */,
 				EB216E8726390BE4005F8832 /* preferenceView.swift in Sources */,
 				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F3261559E00080725C /* odds.swift in Sources */,
