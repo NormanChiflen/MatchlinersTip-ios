@@ -77,6 +77,8 @@ struct HomeTabView : View {
     @State var showTable = false
     @Environment(\.colorScheme) var colorScheme
     @State private var bottomSheetShown = false
+    @State private var Odds = 2
+    @State var oddsAmount = []
     @State private var hidesheet = false
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     //Example
@@ -100,6 +102,7 @@ struct HomeTabView : View {
                         style: .dark,
                         lineGradient:  GradientColor.green,
                         titleColor: Color.neonRed,
+                        curvedLines: false,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
                         subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
@@ -113,6 +116,7 @@ struct HomeTabView : View {
                         subtitle: balance,
                         style: .tertiary,
                         lineGradient:  GradientColor.green,
+                        curvedLines: false,
                         displayChartStats: true,
                         titleFont: .system(size: 30, weight: .bold, design: .rounded),
                         subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
@@ -158,8 +162,21 @@ struct HomeTabView : View {
         }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
-                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 800) {
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 800)  {
                         VStack {
+                            let string = Int("\(gamed.sites[0].odds.h2H[0])")
+                            let action  = Int("\(gamed.sites[0].odds.h2H[0])")
+                            let oddsAmount = [string, action]
+                            
+                            Section(header:Text("Odds")){
+                                Picker("Odd Selection", selection: $Odds){
+                                    ForEach(0..<oddsAmount.count){ odd in
+                                        let value = String(odd);
+                              
+                                        Text("\(value)%")
+                                    }
+                                }.pickerStyle(SegmentedPickerStyle())
+                            }
                             BettingView()
                         }
                         .padding(geometry.safeAreaInsets)
@@ -169,7 +186,6 @@ struct HomeTabView : View {
         }
         
     }
-    
 }
 
 //Work on this once we have data
@@ -245,32 +261,29 @@ struct PopularEventsView: View {
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View{
-//         Sign out butto
+//         Sign out button
         NavigationView{
             VStack {
                 List{
                     NavigationLink (destination: UpdatePasswordView())
-                        { Text("Update Password").background(Color.clear)}
+                        { Text("Update Password")}
                     NavigationLink (destination: ContactSupportView())
-                        {Text("Contact Support").background(Color.clear)}
+                        {Text("Contact Support")}
                     NavigationLink (destination: SportsBetting101View())
-                        {Text("Sports Betting 101").background(Color.clear)}
+                        {Text("Sports Betting 101")}
                     NavigationLink (destination: DarkModeView())
-                        {Text("Dark Mode").background(Color.clear)}
+                        {Text("Dark Mode")}
                     NavigationLink(
                         destination: BettingView()){
-                        Text("Betting Calculator").background(Color.clear)
+                        Text("Betting Calculator")
                         }
                     Button(action: session.signOut){
-                        Text("Sign Out").background(Color.clear)
+                        Text("Sign Out")
                             }
-                }.listItemTint(.clear)
-                .background(Color.clear)
-                    //Spacer()
+                }
                 }
             .navigationBarTitle("Amount")
             .font(.system(size: 30, weight: .bold, design: .rounded))
-            .background(Color.clear)
             .padding()
         }
     }

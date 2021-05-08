@@ -381,7 +381,7 @@ struct loginView : View {
             NavigationLink(
                 destination: resetPasswordView(),
                 label: {
-                    Text("Forget passowrd?")
+                    Text("Forget password?")
                 })
                 .padding(.horizontal)
                 
@@ -405,19 +405,19 @@ struct loginView : View {
 
 struct LaunchView: View {
     var body: some View {
-        VStack{
+        VStack(alignment: .center, spacing: 50){
             Image("UnderDogSBOfficial")
-                .position(x: 190, y: 50.0)
+            // .position(x: 0, y: 50.0)
             Text("Creating the under dog story one bet at a time")
-                .foregroundColor(.accentColor)
+                .foregroundColor(.gray)
                 .frame(width: 210, height: 50, alignment: .center)
                 .font(.custom("NotoSans-Medium", size: 20))
                 .multilineTextAlignment(.center)
-                .position(x: 185.0, y: 70)
+              // .position(x: 0, y: 70)
             NavigationLink(destination: signUpView(), label: {Text( "Sign Up")} )
-                .position(x: 190, y: 70)
+            //    .position(x: 0, y: 70)
             NavigationLink(destination: loginView(), label: {Text( "Login")} )
-                .position(x: 190, y: 0)
+  //              .position(x: 190, y: 0)
         }
             .buttonStyle(largeButton() )
             .padding()

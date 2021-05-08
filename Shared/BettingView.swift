@@ -3,7 +3,7 @@ import SwiftUI
 import UIKit
 import Combine
 
-///Calculator Option
+// Creating the NumberPad
 enum CalcButton: String
 {
     case zero  = "0"
@@ -16,38 +16,41 @@ enum CalcButton: String
     case seven = "7"
     case eight = "8"
     case nine  = "9"
-  //case add = "+"
-  //case subtract = "-"
-  //case divide = "/"
-  //case multiply = "x"
-   //case equal = "="
     case clear = "<-"
     case decimal = "."
-   // case percent = "%"
-   // case negative = "-/+"
     
     var buttonColor: Color {
         switch self{
-     //   case .add, .subtract, .multiply, .divide, .equal:
-       //     return . orange
         case .clear
-        //    ,.negative, .percent
         :return .orange
         default:
             return Color(UIColor(red: 55/255.0, green: 55/255.0, blue: 55/255.0, alpha: 1))
         }
     }
 }
-//enum Operation {
- //   case add, subtract, multiply, divide, none
-//}
+
 
 struct BettingView: View {
-    @State var value = "0"
+    @EnvironmentObject var session: SessionStore
+      @State var value = "0"
     @State var runningNumber = 0
-    //@State private var OddsCalculation = 2
+    @State private var WinningAmount = ""
+    @State private var Odds = 2
   //  @State var currentOperation: Operation = .none
    // let OddsCalculation = []
+    
+    
+    let OddsAmount = [1,2,3,4,5]
+    
+    var ExpectedEarnings: Double {
+    let OddSelection = Double(OddsAmount[Odds])
+    let BettingAmount = Double(value) ?? 0
+        
+    let BettingValue = BettingAmount / 100 * OddSelection
+    let Winnings = BettingValue + BettingAmount
+    
+    return Winnings
+    }
     
     let buttons: [[CalcButton]] = [
         [.seven, .eight, .nine],
@@ -57,43 +60,59 @@ struct BettingView: View {
     ]
 
     var body: some View {
-        ZStack {
+        VStack {
+           // Form {
+                Section{
+                    Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                }
+                Section(header:Text("Odds")){
+                    Picker("Odd Selection", selection: $Odds){
+                        ForEach(0..<OddsAmount.count){
+                            Text("\(self.OddsAmount[$0])%")
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                }
+                Section(header: Text("Betting Amount")){
+                    Text(value)
+                }.padding()
+           // }
+            
 //            .edgesIgnoringSafeArea(.all)
 
             VStack {
-//                Spacer()
+            //    Spacer()
 
                 // Text display
-                HStack {
+  //              HStack {
                     //Spacer()
-                    Text(value)
-                        .bold()
-                        .font(.system(size: 70))
-                        .foregroundColor(.gray)
+                    
+            //            .bold()
+              //          .font(.system(size: 50))
+                //        .foregroundColor(.gray)
                         
-                }
-                .padding()
+    //            }
+      //          .padding()
 
                 // Our buttons
                 ForEach(buttons, id: \.self) { row in
-                    HStack(spacing: 40) {
+                    HStack(spacing: 25) {
                         ForEach(row, id: \.self) { item in
                             Button(action: {
                                 self.didTap(button: item)
                             }, label: {
                                 Text(item.rawValue)
                                     .font(.system(size: 32))
-                                    .frame(
+                                
+                                   .frame(
                                         width: self.buttonWidth(item: item),
-                                        height: self.buttonHeight()
-                                    )
-                                    .background(item.buttonColor)
-                                    .foregroundColor(.white)
+                                        height: self.buttonHeight())
+                                    //
+                                    .foregroundColor(.darkGreen)
                                     .cornerRadius(self.buttonWidth(item: item)/2)
                             })
                         }
                     }
-                    .padding(.bottom, 3)
+                    .padding()
                 }
             }
             .padding()
@@ -150,13 +169,11 @@ struct BettingView: View {
         }
 
         func buttonWidth(item: CalcButton) -> CGFloat {
-            //if item == .zero {
- //               return ((UIScreen.main.bounds.width - (4*12)) / 4) * 2
-   //         }
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
 
         func buttonHeight() -> CGFloat {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
+        //func
 }

@@ -13,6 +13,8 @@ struct UpComing: View {
     @Binding var gamed : Datum
     @Binding var bottomSheetShown : Bool
     @State var sportsLabel : [String] = []
+    
+    
     var body: some View {
             VStack{
                 ForEach(games) { game in
@@ -21,7 +23,7 @@ struct UpComing: View {
                         HStack{
                             Spacer()
                             VStack{
-                                Text("Teams")
+                                Text("Teams \(sportsLabel[0])")
                                 Divider()
                                 Text(game.teams[0])
                                     .font(.system(size: 15))
@@ -77,12 +79,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏉")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏉")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🏉")
                         }
                     }
                 }
@@ -91,13 +96,16 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("⚽")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("⚽")
+                            }
                             self.games += games
                         }
-                    }
-                    for game in games {
-                        sportsLabel.append("⚽")
                     }
                 }
                 if session.pref?.NBA == true {
@@ -105,13 +113,17 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏀")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏀")
+                            }
                             self.games += games
                         }
-                        for game in games {
-                            sportsLabel.append("🏀")
-                        }
+
                     }
                 }
                 if session.pref?.Euroleague == true {
@@ -119,12 +131,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏀")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏀")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🏀")
                         }
                     }
                 }
@@ -133,12 +148,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("⚾")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("⚾")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("⚾")
                         }
                     }
                 }
@@ -147,12 +165,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("⚽")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("⚽")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("⚽")
                         }
                     }
                 }
@@ -161,12 +182,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🥋")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🥋")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🥋")
                         }
                     }
                 }
@@ -175,12 +199,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏈")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏈")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🏈")
                         }
                     }
                 }
@@ -189,12 +216,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏈")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏈")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🏈")
                         }
                     }
                 }
@@ -203,12 +233,15 @@ struct UpComing: View {
                         (games) in
                         if self.games.isEmpty {
                             self.games = games
+                            for game in games {
+                                sportsLabel.append("🏒")
+                            }
                         }
                         else {
+                            for game in games {
+                                sportsLabel.append("🏒")
+                            }
                             self.games += games
-                        }
-                        for game in games {
-                            sportsLabel.append("🏒")
                         }
                     }
                 }

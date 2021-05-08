@@ -6,18 +6,34 @@ import FirebaseDatabase
 
 struct SportsBetting101View: View {
     @EnvironmentObject var session: SessionStore
+    @Environment(\.colorScheme) var colorScheme
     @State var numberOfTut = 12
     var body: some View{
+        if(colorScheme == .dark){
         TabView{
+            ForEach(1..<numberOfTut) {   num in
+                Image("dtut\(num)")
+                    .resizable()
+                    .scaledToFit()
+                    .tag(num)
+            }
+            }
+        .tabViewStyle(PageTabViewStyle())
+                .padding()
+        }
+            else{
+                TabView{
             ForEach(1..<numberOfTut) {   num in
                 Image("tut\(num)")
                     .resizable()
                     .scaledToFit()
                     .tag(num)
             }
-        }.tabViewStyle(PageTabViewStyle())
-        .padding()
+            }
+            .tabViewStyle(PageTabViewStyle())
+            .padding()
     }
+}
 }
                 
 // Edit to Add as CheckBox
