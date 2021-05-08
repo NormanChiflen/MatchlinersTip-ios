@@ -162,7 +162,7 @@ struct HomeTabView : View {
         }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
-                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 800)  {
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 810)  {
                         VStack {
                             let string = Int("\(gamed.sites[0].odds.h2H[0])")
                             let action  = Int("\(gamed.sites[0].odds.h2H[0])")
@@ -266,13 +266,9 @@ struct ProfileTabView: View {
             VStack {
                 List{
                     NavigationLink (destination: UpdatePasswordView())
-<<<<<<< HEAD
-                        { Text("Update Password")}
-=======
                         { Text("Update Password").background(Color.clear)}
                     NavigationLink (destination: UpdatePreferenceView())
                         { Text("Update Preference").background(Color.clear)}
->>>>>>> 51419dfb1323e456d061a5d80753ac54679344e6
                     NavigationLink (destination: ContactSupportView())
                         {Text("Contact Support")}
                     NavigationLink (destination: SportsBetting101View())
