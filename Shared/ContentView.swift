@@ -164,14 +164,16 @@ struct HomeTabView : View {
                 GeometryReader{ geometry in
                     BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
-                            let string = Int("\(gamed.sites[0].odds.h2H[0])")
-                            let action  = Int("\(gamed.sites[0].odds.h2H[0])")
-                            let oddsAmount = [string, action]
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let oddsAmount = [win1, lose1, win2, lose2]
                             
                             Section(header:Text("Odds")){
                                 Picker("Odd Selection", selection: $Odds){
-                                    ForEach(0..<oddsAmount.count){ odd in
-                                        let value = String(odd);
+                                    ForEach(0..<oddsAmount.count){ index in
+                                        let value = String(oddsAmount[index]);
                               
                                         Text("\(value)%")
                                     }
