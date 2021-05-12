@@ -35,7 +35,7 @@ struct BettingView: View {
     @State var value = "0"
     @State var runningNumber = 0
     @State private var WinningAmount = ""
-    @State private var Odds = 2
+    @State private var Odds = 0
     @State var OddsAmount: [Double]
     
     var ExpectedEarnings: Double {
@@ -80,11 +80,15 @@ struct BettingView: View {
                     HStack(spacing: 50){
                         VStack{
                             Text("Gain")
+                                .foregroundColor(.white)
                             Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                                .foregroundColor(.white)
                         }
                         VStack{
                             Text("Total")
+                                .foregroundColor(.white)
                             Text("$\(TotalGain,specifier:"%.2f")")
+                                .foregroundColor(.white)
                         }
                     }
                 }
@@ -92,6 +96,7 @@ struct BettingView: View {
                     Picker("Odd Selection", selection: $Odds){
                         ForEach(0..<OddsAmount.count){
                             Text("\(self.OddsAmount[$0])%")
+                                .foregroundColor(.white)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
@@ -99,6 +104,13 @@ struct BettingView: View {
                 Section{
                     Text("Betting Amount: " + value)
                         .foregroundColor(.yellow)
+                }
+                Section{
+                    Button(action: { print("Go Ahead") } ){
+                        Text("Place Bet")
+                    }
+                    .buttonStyle(largeButton() )
+                    .padding()
                 }
             VStack {
                 // Our buttons
@@ -120,10 +132,8 @@ struct BettingView: View {
                             })
                         }
                     }
-                    .padding()
                 }
             }
-            .padding()
         }
     }
     func didTap(button: CalcButton) {
@@ -184,4 +194,9 @@ struct BettingView: View {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
         
+    func exceedAmount() {
+        if(session.profile?.score < BettingAmount){
+            
+        }
+    }
 }
