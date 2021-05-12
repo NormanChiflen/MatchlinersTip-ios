@@ -32,24 +32,38 @@ enum CalcButton: String
 
 struct BettingView: View {
     @EnvironmentObject var session: SessionStore
-      @State var value = "0"
+    @State var value = "0"
     @State var runningNumber = 0
     @State private var WinningAmount = ""
     @State private var Odds = 2
-  //  @State var currentOperation: Operation = .none
-   // let OddsCalculation = []
-    
-    
-    let OddsAmount = [1,2,3,4,5]
+    @State var OddsAmount: [Double]
     
     var ExpectedEarnings: Double {
     let OddSelection = Double(OddsAmount[Odds])
     let BettingAmount = Double(value) ?? 0
-        
-    let BettingValue = BettingAmount / 100 * OddSelection
-    let Winnings = BettingValue + BettingAmount
-    
+    var BettingValue = Double(0)
+        if(OddSelection < 0){
+            BettingValue = BettingAmount / abs(OddSelection)
+        }
+        else{
+            BettingValue = BettingAmount * OddSelection
+        }
+    let Winnings = BettingValue
     return Winnings
+    }
+    
+    var TotalGain: Double {
+    let OddSelection = Double(OddsAmount[Odds])
+    let BettingAmount = Double(value) ?? 0
+    var BettingValue = Double(0)
+        if(OddSelection < 0){
+            BettingValue = BettingAmount / abs(OddSelection)
+        }
+        else{
+            BettingValue = BettingAmount * OddSelection
+        }
+    let TotalGain = BettingValue + BettingAmount
+    return TotalGain
     }
     
     let buttons: [[CalcButton]] = [
@@ -63,36 +77,30 @@ struct BettingView: View {
         VStack {
            // Form {
                 Section{
-                    Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                    HStack(spacing: 50){
+                        VStack{
+                            Text("Gain")
+                            Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                        }
+                        VStack{
+                            Text("Total")
+                            Text("$\(TotalGain,specifier:"%.2f")")
+                        }
+                    }
                 }
-                Section(header:Text("Odds")){
+                Section{
                     Picker("Odd Selection", selection: $Odds){
                         ForEach(0..<OddsAmount.count){
                             Text("\(self.OddsAmount[$0])%")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
-                Section(header: Text("Betting Amount")){
-                    Text(value)
-                }.padding()
-           // }
-            
-//            .edgesIgnoringSafeArea(.all)
-
+                .padding()
+                Section{
+                    Text("Betting Amount: " + value)
+                        .foregroundColor(.yellow)
+                }
             VStack {
-            //    Spacer()
-
-                // Text display
-  //              HStack {
-                    //Spacer()
-                    
-            //            .bold()
-              //          .font(.system(size: 50))
-                //        .foregroundColor(.gray)
-                        
-    //            }
-      //          .padding()
-
                 // Our buttons
                 ForEach(buttons, id: \.self) { row in
                     HStack(spacing: 25) {
@@ -102,12 +110,12 @@ struct BettingView: View {
                             }, label: {
                                 Text(item.rawValue)
                                     .font(.system(size: 32))
-                                
+
                                    .frame(
                                         width: self.buttonWidth(item: item),
                                         height: self.buttonHeight())
                                     //
-                                    .foregroundColor(.darkGreen)
+                                    .foregroundColor(.green)
                                     .cornerRadius(self.buttonWidth(item: item)/2)
                             })
                         }
@@ -175,5 +183,5 @@ struct BettingView: View {
         func buttonHeight() -> CGFloat {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
-        //func
+        
 }

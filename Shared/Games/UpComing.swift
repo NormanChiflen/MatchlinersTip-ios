@@ -12,7 +12,6 @@ struct UpComing: View {
     @EnvironmentObject var session: SessionStore
     @Binding var gamed : Datum
     @Binding var bottomSheetShown : Bool
-    @State var sportsLabel : [String] = []
     @State var sportsTag = ["rugbyleague_nrl": "🏉",
                             "soccer_epl": "⚽",
                             "soccer_usa_mls": "⚽",

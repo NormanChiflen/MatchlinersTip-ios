@@ -168,18 +168,18 @@ struct HomeTabView : View {
                             let lose1  = -gamed.sites[0].odds.h2H[0]
                             let win2 = gamed.sites[0].odds.h2H[1]
                             let lose2 = -gamed.sites[0].odds.h2H[1]
-                            let oddsAmount = [win1, lose1, win2, lose2]
+                            let OddsAmount = [win1, lose1, win2, lose2]
                             
-                            Section(header:Text("Odds")){
-                                Picker("Odd Selection", selection: $Odds){
-                                    ForEach(0..<oddsAmount.count){ index in
-                                        let value = String(oddsAmount[index]);
-                              
-                                        Text("\(value)%")
-                                    }
-                                }.pickerStyle(SegmentedPickerStyle())
-                            }
-                            BettingView()
+//                            Section(header:Text("Odds")){
+//                                Picker("Odd Selection", selection: $Odds){
+//                                    ForEach(0..<oddsAmount.count){ index in
+//                                        let value = String(oddsAmount[index]);
+//
+//                                        Text("\(value)%")
+//                                    }
+//                                }.pickerStyle(SegmentedPickerStyle())
+//                            }
+                            BettingView(OddsAmount: OddsAmount)
                         }
                         .padding(geometry.safeAreaInsets)
                     }.edgesIgnoringSafeArea(.all)
@@ -277,10 +277,6 @@ struct ProfileTabView: View {
                         {Text("Sports Betting 101")}
                     NavigationLink (destination: DarkModeView())
                         {Text("Dark Mode")}
-                    NavigationLink(
-                        destination: BettingView()){
-                        Text("Betting Calculator")
-                        }
                     Button(action: session.signOut){
                         Text("Sign Out")
                             }
