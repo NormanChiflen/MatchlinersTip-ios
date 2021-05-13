@@ -194,9 +194,9 @@ struct BettingView: View {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
         
-    func exceedAmount() {
-        if(session.profile?.score < BettingAmount){
-            
-        }
-    }
+//    func exceedAmount() {
+//        if(session.profile?.score < BettingAmount){
+//            
+//        }
+//    }
 }

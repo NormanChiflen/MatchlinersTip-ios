@@ -152,6 +152,10 @@ struct UpdatePreferenceView: View {
                     .toggleStyle(CheckboxStyle())
                 }
             }
+            Button(action: session.signOut, label: {
+                Text("Place-Holder Button").padding()
+            })
+            .buttonStyle(largeButton())
 
         }
     }

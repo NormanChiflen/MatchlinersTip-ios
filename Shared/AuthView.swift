@@ -25,11 +25,11 @@ struct signUpView : View {
                 .font(.custom("NotoSans-bold", size: 22))
                 .foregroundColor(.accentColor)
                 .padding()
-            TextField("Nickname", text: $displayName)
+            TextField("Nickname", text: $displayName).disableAutocorrection(true)
                 .padding()
-            TextField("Email Address", text: $email)
+            TextField("Email Address", text: $email).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
-            TextField("State", text: $state)
+            TextField("State", text: $state).autocapitalization(.allCharacters)
                 .padding()
         }
             .padding(.horizontal)
@@ -375,6 +375,7 @@ struct loginView : View {
         Image("Logo")
         VStack(alignment: .leading, spacing:20){
             TextField("Email Address", text: $email)
+                .autocapitalization(.none)
                 .padding()
             SecureField("Password", text: $password)
                 .padding()
@@ -444,6 +445,8 @@ struct resetPasswordView : View {
         }
         VStack (alignment: .center, spacing: 30){
             TextField("Email Address", text: $email)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
                 .padding(.horizontal)
                 .padding()
             Button(action: resetPassword, label: {
@@ -475,13 +478,13 @@ struct UpdatePasswordView: View {
                 }}}
         var body: some View{
             VStack(spacing: 30){
-            Text("Update Password")
+            Text("Update Password tt")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
-            TextField("Email Address", text: $email).padding(.horizontal)
-            TextField("Current Password", text: $currentPassword)
+            TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
+            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
                 .padding(.horizontal)
-            TextField("New Password", text: $newPassword).padding(.horizontal)
+            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
             NavigationLink(
                     destination: resetPasswordView(),
                     label: {
