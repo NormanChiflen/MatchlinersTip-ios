@@ -47,7 +47,7 @@ class SessionStore: ObservableObject {
             }
         })
     }
-    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: Int, NCAAF: Bool, AFL: Bool, MLB: Bool, NBA: Bool, NHL: Bool, Euroleague: Bool, MMA: Bool, NRL: Bool, EPL: Bool, MLS: Bool, completion: @escaping (_ profile: UserProfile?,_ pref: preference? ,_ error: Error?) -> Void) {
+    func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: Int, NFL: Bool, AFL: Bool, MLB: Bool, NBA: Bool, NHL: Bool, Euroleague: Bool, MMA: Bool, NRL: Bool, EPL: Bool, MLS: Bool, completion: @escaping (_ profile: UserProfile?,_ pref: preference? ,_ error: Error?) -> Void) {
       Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
         if let error = error {
           print("Error signing up: \(error)")
@@ -58,7 +58,7 @@ class SessionStore: ObservableObject {
         print("User \(user.uid) signed up.")
 
         let userProfile = UserProfile(uid: user.uid, displayName: displayName, State: State, age: age, email: email, score: score)
-        let pref = preference(NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)
+        let pref = preference(NFL: NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)
         self.profileRepository.createProfile(profile: userProfile, preference: pref) { (profile, preference, error) in
           if let error = error {
             print("Error while creating the user profile: \(error)")

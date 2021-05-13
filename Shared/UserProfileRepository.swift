@@ -19,7 +19,7 @@ struct UserProfile: Codable {
 }
 
 struct preference: Codable {
-  var NCAAF: Bool
+  var NFL: Bool
   var AFL: Bool
   var MLB: Bool
   var NBA: Bool

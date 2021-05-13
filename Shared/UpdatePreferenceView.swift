@@ -10,17 +10,16 @@ import SwiftUI
 struct UpdatePreferenceView: View {
     @EnvironmentObject var session: SessionStore
 
-    @State var NCAAF: Bool = false
+    @State var NFL: Bool = false
     @State var AFL: Bool = true
     @State var MLB: Bool = false
     @State var NBA: Bool = false
     @State var NHL: Bool = false
     @State var Euroleague: Bool = false
     @State var MMA: Bool = false
-    @State var Rugby: Bool = false
+    @State var NRL: Bool = false
     @State var EPL: Bool = false
     @State var MLS: Bool = false
-
 
     let columns = [
         GridItem(.adaptive(minimum: 100))
@@ -36,8 +35,8 @@ struct UpdatePreferenceView: View {
                 .padding()
             Menu{
                 Menu{
-                    Toggle(isOn: $NCAAF, label: {
-                        Text("NCAAF 🇺🇸")
+                    Toggle(isOn: $NFL, label: {
+                        Text("NFL 🇺🇸")
                     })
                     .padding()
                     Toggle(isOn: $AFL, label: {
@@ -86,7 +85,7 @@ struct UpdatePreferenceView: View {
                }
                 Menu{
                     Button("NRL 🇦🇺") {
-                        Rugby = true
+                        NRL = true
                     }
                 }label: {
                     Text("Rugby 🏉")
@@ -100,8 +99,8 @@ struct UpdatePreferenceView: View {
             Spacer()
             ScrollView{
                 LazyVGrid(columns: columns){
-                    Toggle(isOn: $NCAAF, label: {
-                        Text("NCAAF 🇺🇸")
+                    Toggle(isOn: $NFL, label: {
+                        Text("NFL 🇺🇸")
                     })
                     .padding()
                     .toggleStyle(CheckboxStyle())
@@ -135,7 +134,7 @@ struct UpdatePreferenceView: View {
                     })
                     .padding()
                     .toggleStyle(CheckboxStyle())
-                    Toggle(isOn: $Rugby, label: {
+                    Toggle(isOn: $NRL, label: {
                         Text("NRL 🇦🇺")
                     })
                     .padding()
@@ -157,6 +156,22 @@ struct UpdatePreferenceView: View {
             })
             .buttonStyle(largeButton())
 
+        }
+        .onAppear{
+            let thisPref = session.pref
+            NFL = thisPref!.NFL
+            AFL = thisPref!.AFL
+            MLB = thisPref!.MLB
+            NBA = thisPref!.NBA
+            NHL = thisPref!.NHL
+            Euroleague = thisPref!.Euroleague
+            MMA = thisPref!.MMA
+            NRL = thisPref!.NRL
+            EPL = thisPref!.EPL
+            MLS = thisPref!.MLS
+        }
+        .onDisappear{
+            
         }
     }
 }
