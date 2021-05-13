@@ -17,15 +17,11 @@ struct UpComing: View {
                             "soccer_usa_mls": "⚽",
                             "basketball_euroleague": "🏀",
                             "basketball_nba": "🏀",
-                            "americanfootball_ncaaf": "🏈",
+                            "americanfootball_nfl": "🏈",
                             "aussierules_afl": "🏈",
                             "baseball_mlb": "⚾",
                             "mma_mixed_martial_arts": "🥋",
                             "icehockey_nhl": "🏒"]
-    
-    
-    
-    
     
     var body: some View {
             VStack{
@@ -164,7 +160,7 @@ struct UpComing: View {
                         }
                     }
                 }
-                if session.pref?.NCAAF == true {
+                if session.pref?.NFL == true {
                     OddsApi().getUSFootballOdds{
                         (games) in
                         if self.games.isEmpty {

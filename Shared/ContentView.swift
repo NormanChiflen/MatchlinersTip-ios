@@ -53,14 +53,12 @@ struct LoggedInView : View {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(1)
-
             Text("Betting History")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     Image(systemName: "list.bullet")
                 }
                 .tag(2)
-         
             ProfileTabView()
                 .tabItem {
                     Image(systemName: "person.crop.circle")

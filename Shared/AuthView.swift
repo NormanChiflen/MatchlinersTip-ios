@@ -25,11 +25,11 @@ struct signUpView : View {
                 .font(.custom("NotoSans-bold", size: 22))
                 .foregroundColor(.accentColor)
                 .padding()
-            TextField("Nickname", text: $displayName)
+            TextField("Nickname", text: $displayName).disableAutocorrection(true)
                 .padding()
-            TextField("Email Address", text: $email)
+            TextField("Email Address", text: $email).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
-            TextField("State", text: $state)
+            TextField("State", text: $state).autocapitalization(.allCharacters)
                 .padding()
         }
             .padding(.horizontal)
@@ -107,7 +107,7 @@ struct preferenceView: View{
     @State var displayName: String = ""
     @State var state: String = ""
     @State var age: Int = 0
-    @State var NCAAF: Bool = false
+    @State var NFL: Bool = false
     @State var AFL: Bool = false
     @State var MLB: Bool = false
     @State var NBA: Bool = false
@@ -138,8 +138,8 @@ struct preferenceView: View{
                 .padding()
             Menu{
                 Menu{
-                    Toggle(isOn: $NCAAF, label: {
-                        Text("NCAAF 🇺🇸")
+                    Toggle(isOn: $NFL, label: {
+                        Text("NFL 🇺🇸")
                     })
                     .padding()
                     Toggle(isOn: $AFL, label: {
@@ -206,8 +206,8 @@ struct preferenceView: View{
             Spacer()
             ScrollView{
                 LazyVGrid(columns: columns){
-                    Toggle(isOn: $NCAAF, label: {
-                        Text("NCAAF 🇺🇸")
+                    Toggle(isOn: $NFL, label: {
+                        Text("NFL 🇺🇸")
                     })
                     .padding()
                     .toggleStyle(CheckboxStyle())
@@ -257,7 +257,7 @@ struct preferenceView: View{
                     .padding()
                     .toggleStyle(CheckboxStyle())
                 }
-                NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age, NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)) {
+                NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age, NFL: NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)) {
                                         Text("Next")
                 }
                 .buttonStyle(largeButton())
@@ -298,7 +298,7 @@ struct confirmPasswordView: View {
     @State var age: Int = 0
     @State var error: String = ""
     @State var score: Int = 20 //Free money
-    @State var NCAAF: Bool = false
+    @State var NFL: Bool = false
     @State var AFL: Bool = false
     @State var MLB: Bool = false
     @State var NBA: Bool = false
@@ -314,7 +314,7 @@ struct confirmPasswordView: View {
     @EnvironmentObject var session: SessionStore
     
     func signUp() {
-        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age, score: score, NCAAF: NCAAF, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS) { (profile, preference, error) in
+        session.signUp(email: email, password: password, displayName: displayName, State: state, age: age, score: score, NFL: NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS) { (profile, preference, error) in
             if let error = error {
                 self.error = error.localizedDescription
             } else {
@@ -375,6 +375,7 @@ struct loginView : View {
         Image("Logo")
         VStack(alignment: .leading, spacing:20){
             TextField("Email Address", text: $email)
+                .autocapitalization(.none)
                 .padding()
             SecureField("Password", text: $password)
                 .padding()
@@ -444,6 +445,8 @@ struct resetPasswordView : View {
         }
         VStack (alignment: .center, spacing: 30){
             TextField("Email Address", text: $email)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
                 .padding(.horizontal)
                 .padding()
             Button(action: resetPassword, label: {
@@ -475,13 +478,13 @@ struct UpdatePasswordView: View {
                 }}}
         var body: some View{
             VStack(spacing: 30){
-            Text("Update Password")
+            Text("Update Password tt")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
-            TextField("Email Address", text: $email).padding(.horizontal)
-            TextField("Current Password", text: $currentPassword)
+            TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
+            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
                 .padding(.horizontal)
-            TextField("New Password", text: $newPassword).padding(.horizontal)
+            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
             NavigationLink(
                     destination: resetPasswordView(),
                     label: {
