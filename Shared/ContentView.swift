@@ -77,8 +77,8 @@ struct HomeTabView : View {
     @State var showTable = false
     @Environment(\.colorScheme) var colorScheme
     @State private var bottomSheetShown = false
-    @State private var Odds = 2
-    @State var oddsAmount = []
+    @State private var Odds = 0
+    @State var OddsAmount = []
     @State private var hidesheet = false
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     //Example
@@ -168,18 +168,10 @@ struct HomeTabView : View {
                             let lose1  = -gamed.sites[0].odds.h2H[0]
                             let win2 = gamed.sites[0].odds.h2H[1]
                             let lose2 = -gamed.sites[0].odds.h2H[1]
-                            let OddsAmount = [win1, lose1, win2, lose2]
-                            
-//                            Section(header:Text("Odds")){
-//                                Picker("Odd Selection", selection: $Odds){
-//                                    ForEach(0..<oddsAmount.count){ index in
-//                                        let value = String(oddsAmount[index]);
-//
-//                                        Text("\(value)%")
-//                                    }
-//                                }.pickerStyle(SegmentedPickerStyle())
-//                            }
-                            BettingView(OddsAmount: OddsAmount)
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2)
                         }
                         .padding(geometry.safeAreaInsets)
                     }.edgesIgnoringSafeArea(.all)
@@ -263,7 +255,6 @@ struct PopularEventsView: View {
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View{
-//         Sign out button
         NavigationView{
             VStack {
                 List{

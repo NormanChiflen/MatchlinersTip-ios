@@ -37,6 +37,9 @@ struct BettingView: View {
     @State private var WinningAmount = ""
     @State private var Odds = 0
     @State var OddsAmount: [Double]
+    @State var showingAlert = false
+    @State var team_Name1 = ""
+    @State var team_Name2 = ""
     
     var ExpectedEarnings: Double {
     let OddSelection = Double(OddsAmount[Odds])
@@ -75,43 +78,65 @@ struct BettingView: View {
 
     var body: some View {
         VStack {
-           // Form {
-                Section{
-                    HStack(spacing: 50){
-                        VStack{
-                            Text("Gain")
-                                .foregroundColor(.white)
-                            Text("$\(ExpectedEarnings,specifier:"%.2f")")
-                                .foregroundColor(.white)
-                        }
-                        VStack{
-                            Text("Total")
-                                .foregroundColor(.white)
-                            Text("$\(TotalGain,specifier:"%.2f")")
-                                .foregroundColor(.white)
-                        }
+            Section{
+                HStack(spacing: 50){
+                    VStack{
+                        Text("Gain")
+                            .foregroundColor(.white)
+                        Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                            .foregroundColor(.white)
+                    }
+                    VStack{
+                        Text("Total")
+                            .foregroundColor(.white)
+                        Text("$\(TotalGain,specifier:"%.2f")")
+                            .foregroundColor(.white)
                     }
                 }
-                Section{
-                    Picker("Odd Selection", selection: $Odds){
-                        ForEach(0..<OddsAmount.count){
+            }
+            .padding()
+            HStack(spacing: 100){
+                Text("\(team_Name1)")
+                    .foregroundColor(.lightPurple)
+                Text("\(team_Name2)")
+                    .foregroundColor(.lightPurple)
+            }
+            Section{
+                Picker("Odd Selection", selection: $Odds){
+                    ForEach(0..<OddsAmount.count){
                             Text("\(self.OddsAmount[$0])%")
-                                .foregroundColor(.white)
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-                .padding()
-                Section{
-                    Text("Betting Amount: " + value)
-                        .foregroundColor(.yellow)
-                }
-                Section{
-                    Button(action: { print("Go Ahead") } ){
-                        Text("Place Bet")
                     }
-                    .buttonStyle(largeButton() )
-                    .padding()
+                }.pickerStyle(SegmentedPickerStyle())
+            }
+            HStack(spacing: 95){
+                ForEach(0..<OddsAmount.count) {
+                    if($0 % 2 == 0){
+                        Text("W")
+                            .foregroundColor(.green)
+                    }
+                    else{
+                        Text("L")
+                            .foregroundColor(.red)
+                    }
                 }
+            }
+            Section{
+                Text("Betting Amount: " + value)
+                    .foregroundColor(.yellow)
+            }
+            .padding()
+            Section{
+                Button("Place Bet") {
+                    if(Double(session.profile?.score ?? 0) < Double(value) ?? 0) {
+                        showingAlert = true;
+                    }
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Not enough points"), message: Text("You do not have enough points to place this bet"), dismissButton: .default(Text("Got it!")))
+                }
+                .buttonStyle(largeButton() )
+                .padding()
+            }
             VStack {
                 // Our buttons
                 ForEach(buttons, id: \.self) { row in
@@ -138,43 +163,8 @@ struct BettingView: View {
     }
     func didTap(button: CalcButton) {
             switch button {
-   //         case .add, .subtract, .multiply, .divide, .equal:
-      //          if button == .add {
-        //            self.currentOperation = .add
-          //          self.runningNumber = Int(self.value) ?? 0
-            //    }
-            //    else if button == .subtract {
-              //      self.currentOperation = .subtract
-               //     self.runningNumber = Int(self.value) ?? 0
-               // }
-             //   else if button == .multiply {
-               //     self.currentOperation = .multiply
-                 //   self.runningNumber = Int(self.value) ?? 0
-               // }
-               // else if button == .divide {
-                 //   self.currentOperation = .divide
-                  //  self.runningNumber = Int(self.value) ?? 0
-                //}
-           //     else if button == .equal {
-             //       let runningValue = self.runningNumber
-              //      let currentValue = Int(self.value) ?? 0
-              //      switch self.currentOperation {
-                //    case .add: self.value = "\(runningValue + currentValue)"
-               //     case .subtract: self.value = "\(runningValue - currentValue)"
-                 //   case .multiply: self.value = "\(runningValue * currentValue)"
-                   // case .divide: self.value = "\(runningValue / currentValue)"
-                   // case .none:
-                    //    break
-            //}
-              //  }
-
-               // if button != .equal {
-                 //   self.value = "0"
-               // }
             case .clear:
                 self.value = "0"
-           // case .decimal: self.value = "."
-    //, .negative, .percent:
             default:
                 let number = button.rawValue
                 if self.value == "0" {
@@ -194,9 +184,7 @@ struct BettingView: View {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
         
-    func exceedAmount() {
-        if(session.profile?.score < BettingAmount){
-            
-        }
+    func executeOrder() {
+        
     }
 }
