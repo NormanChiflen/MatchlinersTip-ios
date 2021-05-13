@@ -327,7 +327,12 @@ struct confirmPasswordView: View {
         }
     }
     var body: some View {
-        VStack(alignment: .leading, spacing: 20){
+        VStack(alignment: .center, spacing: 20){
+            Text("If you need a tutorial in sports betting, you can check out our tutorial in the account settings") .foregroundColor(.gray)
+                .frame(width: 350, height: 100, alignment: .center)
+                .font(.custom("NotoSans-Medium", size: 20))
+                .multilineTextAlignment(.center)
+                .padding()
             SecureField("Password", text: $password)
                 .padding()
             SecureField("Re-enter Password", text: $rpassword)
