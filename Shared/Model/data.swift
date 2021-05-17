@@ -14,7 +14,7 @@ class OddsApi {
     
     func getPosts(completion: @escaping ([Initial.Datas]) -> () ) {
         
-        let urlString = "https://api.the-odds-api.com/v3/sports/?apiKey=9623e29e6f1d98b57eef11b73cda4326"
+        let urlString = "https://api.the-odds-api.com/v3/sports/?apiKey=fdddc894261e9b8b7252cef12463faec"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let posts = try! JSONDecoder().decode(Initial.self, from: info!)
@@ -29,7 +29,7 @@ class OddsApi {
     //Football Data
     func getUSFootballOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=americanfootball_nfl&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=americanfootball_nfl&region=us&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -41,7 +41,7 @@ class OddsApi {
     }
     func getAUFootballOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=aussierules_afl&region=au&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=aussierules_afl&region=au&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -54,7 +54,7 @@ class OddsApi {
     //Baseball Data
     func getUSBaseballOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=baseball_mlb&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=baseball_mlb&region=us&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -67,7 +67,7 @@ class OddsApi {
     //BasketBall
     func getUSBasketBallOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=basketball_nba&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=basketball_nba&region=us&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -79,7 +79,7 @@ class OddsApi {
     }
     func getEUBasketBallOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=basketball_euroleague&region=eu&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=basketball_euroleague&region=eu&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -92,7 +92,7 @@ class OddsApi {
     //Ice Hockey
     func getIceHockeyOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=icehockey_nhl&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=icehockey_nhl&region=us&mkt=h2h") else { return }
 
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
@@ -106,7 +106,7 @@ class OddsApi {
     //MMA
     func getMMAOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=mma_mixed_martial_arts&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=mma_mixed_martial_arts&region=us&mkt=h2h") else { return }
 
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
@@ -120,7 +120,7 @@ class OddsApi {
     //Rugby
     func getAURugbyOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=rugbyleague_nrl&region=au&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=rugbyleague_nrl&region=au&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -133,7 +133,7 @@ class OddsApi {
     //Soccer Data
     func getUKSoccerOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=soccer_epl&region=uk&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=soccer_epl&region=uk&mkt=h2h") else { return }
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)
             
@@ -146,7 +146,7 @@ class OddsApi {
     }
     func getUSSoccerOdds(completion: @escaping ([Datum]) -> () ) {
         
-        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=9623e29e6f1d98b57eef11b73cda4326&sport=soccer_usa_mls&region=us&mkt=h2h") else { return }
+        guard let url = URL(string: "https://api.the-odds-api.com/v3/odds/?apiKey=fdddc894261e9b8b7252cef12463faec&sport=soccer_usa_mls&region=us&mkt=h2h") else { return }
 
         URLSession.shared.dataTask(with: url) { (info, _, _) in
             let games = try! JSONDecoder().decode(Welcome.self, from: info!)

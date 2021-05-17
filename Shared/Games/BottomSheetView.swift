@@ -1,5 +1,5 @@
 //
-//  GameDetails.swift
+//  BottomSheetView.swift
 //  UnderDog Prototype
 //
 //  Created by John Lee on 4/20/21.

@@ -40,6 +40,8 @@ struct BettingView: View {
     @State var showingAlert = false
     @State var team_Name1 = ""
     @State var team_Name2 = ""
+    @State private var showSheet = false
+//    @State var SelectedOdd : Double = 0
     
     var ExpectedEarnings: Double {
     let OddSelection = Double(OddsAmount[Odds])
@@ -78,23 +80,21 @@ struct BettingView: View {
 
     var body: some View {
         VStack {
-            Section{
-                HStack(spacing: 50){
-                    VStack{
-                        Text("Gain")
-                            .foregroundColor(.white)
-                        Text("$\(ExpectedEarnings,specifier:"%.2f")")
-                            .foregroundColor(.white)
-                    }
-                    VStack{
-                        Text("Total")
-                            .foregroundColor(.white)
-                        Text("$\(TotalGain,specifier:"%.2f")")
-                            .foregroundColor(.white)
-                    }
+            HStack(spacing: 50){
+                VStack{
+                    Text("Gain")
+                        .foregroundColor(.white)
+                    Text("$\(ExpectedEarnings,specifier:"%.2f")")
+                        .foregroundColor(.white)
+                }
+                VStack{
+                    Text("Total")
+                        .foregroundColor(.white)
+                    Text("$\(TotalGain,specifier:"%.2f")")
+                        .foregroundColor(.white)
                 }
             }
-            .padding()
+            .padding(.bottom)
             HStack(spacing: 100){
                 Text("\(team_Name1)")
                     .foregroundColor(.lightPurple)
@@ -104,7 +104,7 @@ struct BettingView: View {
             Section{
                 Picker("Odd Selection", selection: $Odds){
                     ForEach(0..<OddsAmount.count){
-                            Text("\(self.OddsAmount[$0])%")
+                        Text("\(self.OddsAmount[$0], specifier: "%.3f")%")
                     }
                 }.pickerStyle(SegmentedPickerStyle())
             }
@@ -127,13 +127,20 @@ struct BettingView: View {
             .padding()
             Section{
                 Button("Place Bet") {
-                    if(Double(session.profile?.score ?? 0) < Double(value) ?? 0) {
+                    if(Double(session.profile?.score ?? 0) < Double(value) ?? 0 || Double(value) == 0 ) {
                         showingAlert = true;
+                    }
+                    else{
+                        showSheet.toggle()
                     }
                 }
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Not enough points"), message: Text("You do not have enough points to place this bet"), dismissButton: .default(Text("Got it!")))
                 }
+                .sheet(isPresented: $showSheet) {
+                    let SelectedOdd = Double(OddsAmount[Odds])
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd)
+                        }
                 .buttonStyle(largeButton() )
                 .padding()
             }
@@ -184,7 +191,7 @@ struct BettingView: View {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
         
-    func executeOrder() {
-        
-    }
+//    func executeOrder() {
+//        
+//    }
 }

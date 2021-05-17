@@ -53,7 +53,7 @@ struct LoggedInView : View {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(1)
-            Text("Betting History")
+            ArchiveView()
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     Image(systemName: "list.bullet")
@@ -78,6 +78,7 @@ struct HomeTabView : View {
     @State private var Odds = 0
     @State var OddsAmount = []
     @State private var hidesheet = false
+    @State var onGoingBets : [Any] = []
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     //Example
     func displayTable() {
@@ -141,10 +142,13 @@ struct HomeTabView : View {
                         .padding()
                     })
                         .frame(width: .infinity, height: 50, alignment: .leading)
-                    if self.showTable == true {
-                        OngoingBets()
-                            .transition(.scale)
-                    }
+//                    if !onGoingBets.isEmpty {
+//                            ForEach(onGoingBets){ bet in
+//
+//                            }
+//                        }
+//                            .transition(.scale)
+//                    }
                 }
                 .padding()
                 Spacer()
@@ -155,7 +159,9 @@ struct HomeTabView : View {
                             .offset(x: -5.0, y: 5.0)
                             .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
-                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)//Show all games that matches with preference
+                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+                
+                //Show all games that matches with preference
             }
         }
             if (bottomSheetShown != false) {
@@ -172,7 +178,9 @@ struct HomeTabView : View {
                             BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2)
                         }
                         .padding(geometry.safeAreaInsets)
-                    }.edgesIgnoringSafeArea(.all)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
                     }
             }
         }
@@ -181,11 +189,11 @@ struct HomeTabView : View {
 }
 
 //Work on this once we have data
-struct OngoingBets: View {
-    var body: some View{
-        Text("SF Giants @ LA Dodgers")
-    }
-}
+//struct OngoingBets: View {
+//    var body: some View{
+//        Text("SF Giants @ LA Dodgers")
+//    }
+//}
 struct PopularEventsView: View {
     @State var posts: [Initial.Datas] = []
     @Binding var text: String
@@ -271,7 +279,7 @@ struct ProfileTabView: View {
                             }
                 }
                 }
-            .navigationBarTitle("Account Seetings")
+            .navigationBarTitle("Settings")
             .font(.system(size: 30, weight: .bold, design: .rounded))
             .padding()
         }
