@@ -30,11 +30,11 @@ struct ConfirmOrder: View {
         return formatter
     }
     var body: some View {
-        Color.neonPurple.opacity(0.9).ignoresSafeArea()
+        Color.black.opacity(0.9).ignoresSafeArea()
             .overlay(
                 VStack{
                     Section{
-                        Text("Order Summary")
+                        Text("Order Summary testing")
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
@@ -46,7 +46,7 @@ struct ConfirmOrder: View {
                     }
                     Section{
                         HStack{
-                            Text("\(team_Name1)  vs  \(team_Name2)")
+                            Text("\(team_Name1)  \r\n vs  \r\n \(team_Name2)")
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .font(.system(size: 25))
                                 .foregroundColor(.lightGray)

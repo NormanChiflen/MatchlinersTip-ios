@@ -137,7 +137,7 @@ struct BettingView: View {
                     }
                 }
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Not enough points"), message: Text("You do not have enough points to place this bet"), dismissButton: .default(Text("Got it!")))
+                    Alert(title: Text("Not enough points"), message: Text("You do not have enough points to place this bet"), dismissButton: .default(Text("Got it!").foregroundColor(.black)))
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds])

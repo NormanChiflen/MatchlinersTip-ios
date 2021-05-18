@@ -73,17 +73,20 @@ struct signUpView : View {
         VStack(alignment: .leading, spacing: 20){
             Text("Create Account")
                 .font(.custom("NotoSans-bold", size: 22))
-                .foregroundColor(.accentColor)
+                .foregroundColor(.darkOceanBlue)
                 .padding()
-            TextField("Nickname", text: $displayName).disableAutocorrection(true)
+            TextField("Username", text: $displayName).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
             TextField("Email Address", text: $email).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
-            Text("Pick Your State:")
+//            Text("    Pick Your State:").foregroundColor(.gray)
+            TextField("State", text: $state).autocapitalization(.none).disableAutocorrection(true)
+                .padding()
+
         }
             .padding(.horizontal)
             .padding(.vertical, 34)
-
+        Spacer()
         NavigationLink(destination: ageVerifyView(email: email, displayName: displayName, state: state) ) {Text( "Next")}
             .disabled(email.isEmpty || displayName.isEmpty || state.isEmpty)
             .buttonStyle(largeButton() )
@@ -94,7 +97,7 @@ struct signUpView : View {
                 .foregroundColor(.red)
                 .padding()
         }
-        Spacer()
+//        Spacer()
     }
 }
 
@@ -120,15 +123,17 @@ struct ageVerifyView: View {
         VStack(alignment: .center, spacing: 20){
             Text("Enter Your Birthday")
                 .font(.custom("NotoSans-Medium", size: 22))
-                .foregroundColor(Color.gray)
-            Text("Users must be at least 18 years old to play and in some states users are required to be older")
+                .foregroundColor(Color.darkOceanBlue)
+            Text("Users must be at least 18 years old to play and, in some states, users are required to be older")
                 .font(.custom("NotoSans-Medium", size: 15))
                 .foregroundColor(Color.gray)
                 .padding()
         }
-        VStack(alignment: .center){
+        VStack{
             DatePicker("",selection: $birthDate, displayedComponents: [.date])
                 .datePickerStyle(WheelDatePickerStyle())
+                .clipped()
+                .labelsHidden()
 //                .frame(maxHeight: 400)
         }.onChange(of: birthDate, perform: { value in
             calcAge = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
@@ -144,6 +149,7 @@ struct ageVerifyView: View {
                     self.color = Color.blue
                 }
             }
+        Spacer()
         NavigationLink(destination: preferenceView(email: email, displayName: displayName, state: state, age: age)) {
                                 Text("Next")
         }.disabled(calcAge.year ?? 0 < 18)
@@ -178,9 +184,9 @@ struct preferenceView: View{
             Spacer()
             Text("Preference")
                 .font(.custom("NotoSans-Medium", size: 22))
-                .foregroundColor(Color.gray)
+                .foregroundColor(Color.darkOceanBlue)
                 .padding()
-            Text("Setting up your preference will send you directly to bets that make sense for you")
+            Text("Select your prefered sports to get bets that make sense for you")
                 .font(.custom("NotoSans-Medium", size: 15))
                 .foregroundColor(Color.gray)
                 .padding()
@@ -249,9 +255,6 @@ struct preferenceView: View{
            }
             Spacer()
             Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
             ScrollView{
                 LazyVGrid(columns: columns){
                     Toggle(isOn: $NFL, label: {
@@ -305,6 +308,14 @@ struct preferenceView: View{
                     .padding()
                     .toggleStyle(CheckboxStyle())
                 }
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
                 NavigationLink(destination: confirmPasswordView(email: email, displayName: displayName, state: state, age: age, NFL: NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS)) {
                                         Text("Next")
                 }
@@ -374,19 +385,21 @@ struct confirmPasswordView: View {
             }
         }
     }
+    // look into inserting optional tutorial here
     var body: some View {
         VStack(alignment: .center, spacing: 20){
-            Text("If you need a tutorial in sports betting, you can check out our tutorial in the account settings") .foregroundColor(.gray)
+            Text("If you need a tutorial in sports betting, you can check out our tutorial in the account settings") .foregroundColor(.black)
                 .frame(width: 350, height: 100, alignment: .center)
                 .font(.custom("NotoSans-Medium", size: 20))
                 .multilineTextAlignment(.center)
                 .padding()
-            SecureField("Password", text: $password)
+            SecureField("Password", text: $password).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
-            SecureField("Re-enter Password", text: $rpassword)
+            SecureField("Re-enter Password", text: $rpassword).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
         }
         .padding()
+        Spacer()
         Button(action: signUp) {Text( "Sign Up")}
             .disabled(password != rpassword)
             .buttonStyle(largeButton() )
@@ -435,7 +448,7 @@ struct loginView : View {
             NavigationLink(
                 destination: resetPasswordView(),
                 label: {
-                    Text("Forget password?")
+                    Text("Forget password?").foregroundColor(.blue)
                 })
                 .padding(.horizontal)
                 
@@ -443,6 +456,12 @@ struct loginView : View {
         .padding(.horizontal)
         .padding(.vertical, 34)
         
+        Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
+        Spacer()
         Button(action: login) { Text("Login") }
             .buttonStyle(largeButton())
             .padding(.horizontal, 32)
@@ -453,21 +472,21 @@ struct loginView : View {
                 .foregroundColor(.red)
                 .padding()
         }
-        Spacer()
     }
 }
 
 struct LaunchView: View {
     var body: some View {
-        VStack(alignment: .center, spacing: 50){
+        VStack(alignment: .center, spacing: 35){
             Image("UnderDogSBOfficial")
             // .position(x: 0, y: 50.0)
             Text("Creating the under dog story one bet at a time")
                 .foregroundColor(.gray)
-                .frame(width: 210, height: 50, alignment: .center)
+                .frame(width: 260, height: 100, alignment: .center)
                 .font(.custom("NotoSans-Medium", size: 20))
                 .multilineTextAlignment(.center)
               // .position(x: 0, y: 70)
+            Spacer()
             NavigationLink(destination: signUpView(), label: {Text( "Sign Up")} )
             //    .position(x: 0, y: 70)
             NavigationLink(destination: loginView(), label: {Text( "Login")} )
@@ -512,53 +531,51 @@ struct resetPasswordView : View {
 }
 
 
-struct UpdatePasswordView: View
-{
+struct UpdatePasswordView: View {
     @State var currentPassword: String = ""
     @State var error: String = ""
     @State var email: String = ""
     @State var newPassword: String = ""
     @EnvironmentObject var session: SessionStore
-    @State private var showAlert = false
     func changePassword() {
         session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
             { (error) in
                 if let error = error {
+                    self.error = error.localizedDescription
                     print("Incorrect Email/Password: \(error)")      }
-             else {
-//                    print("Document successfully written!")
-                self.email = ""
-                self.currentPassword = ""
-                self.newPassword = ""
-                }
-            }
-            self.showAlert = true
-            }
-    
+                else {
+                    self.email = ""
+                    self.currentPassword = ""
+                    self.newPassword = ""
+                    
+                }}}
         var body: some View{
             VStack(spacing: 30){
-            Text("Update Password")
+            Text("Update Password tt")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
             TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
-            TextField("Current Password", text: $currentPassword).autocapitalization(.none).disableAutocorrection(true)
+            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
                 .padding(.horizontal)
-            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
+            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
             NavigationLink(
                     destination: resetPasswordView(),
                     label: {
                         Text("Forget password?")
                     })
                     .padding(.horizontal)
-                Button("Change Password"){
-                    changePassword()
-                }
-                .alert(isPresented: self.$showAlert) {
-                    Alert(title: Text("Password Changed!"), message: Text("Your Request has been submitted"), dismissButton: .default(Text("Close")))
-                }
-                .padding()
-                .buttonStyle(largeButton())
-                .frame(maxHeight: .infinity, alignment: .top)
+                Button(action: changePassword, label: {
+                Text("Change Password")
+                    .padding()
+                if(error != "") {
+                        Text("Incorrect Email/Password")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(.red)
+                            .padding()
+                }})
+            .buttonStyle(largeButton())
+            .frame(maxHeight: .infinity,
+              alignment: .top)
             }
         }
 }
