@@ -6,37 +6,24 @@
 //
 
 import SwiftUI
-import Foundation
-import Firebase
-import FirebaseFirestoreSwift
 
 struct UpdatePreferenceView: View {
     @EnvironmentObject var session: SessionStore
-//    private var profileRepository = UserProfileRepository()
-    
-    @State var NFL: Bool = true
+
+    @State var NFL: Bool = false
     @State var AFL: Bool = true
-    @State var MLB: Bool = true
-    @State var NBA: Bool = true
-    @State var NHL: Bool = true
+    @State var MLB: Bool = false
+    @State var NBA: Bool = false
+    @State var NHL: Bool = false
     @State var Euroleague: Bool = false
     @State var MMA: Bool = false
     @State var NRL: Bool = false
     @State var EPL: Bool = false
     @State var MLS: Bool = false
-    @State var error: String = ""
 
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-    
-    func confirmUpdatedPref() {
-        session.confirmUpdatedPref(NFL: NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS) { (preference, error) in
-            if let error = error {
-                self.error = error.localizedDescription
-            }
-        }
-    }
 
     var body: some View {
 
@@ -164,8 +151,8 @@ struct UpdatePreferenceView: View {
                     .toggleStyle(CheckboxStyle())
                 }
             }
-            Button(action: confirmUpdatedPref, label: {
-                Text("Confirm Changes").padding()
+            Button(action: session.signOut, label: {
+                Text("Place-Holder Button").padding()
             })
             .buttonStyle(largeButton())
 
@@ -182,6 +169,9 @@ struct UpdatePreferenceView: View {
             NRL = thisPref!.NRL
             EPL = thisPref!.EPL
             MLS = thisPref!.MLS
+        }
+        .onDisappear{
+            
         }
     }
 }

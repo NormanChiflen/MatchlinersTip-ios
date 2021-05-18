@@ -143,6 +143,20 @@ class SessionStore: ObservableObject {
             } )
         }
     
+    func confirmUpdatedPref(NFL: Bool, AFL: Bool, MLB: Bool, NBA: Bool, NHL: Bool, Euroleague: Bool, MMA: Bool, NRL: Bool, EPL: Bool, MLS: Bool,completion: @escaping (_ pref: preference?, _ error: Error?) -> Void) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            self.profileRepository.updatePref(userId:uid, NFL:NFL, AFL: AFL, MLB: MLB, NBA: NBA, NHL: NHL, Euroleague: Euroleague, MMA: MMA, NRL: NRL, EPL: EPL, MLS: MLS){ (pref, error) in
+                if let error = error {
+                    print("Error whil confirm updating user preference: \(error)")
+                    completion(nil, nil)
+                    return
+                }
+                self.pref = pref
+            }
+        }
+    }
     func resetPassword(email: String){
         Auth.auth().sendPasswordReset(withEmail: email)
     }
