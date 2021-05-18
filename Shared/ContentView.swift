@@ -267,7 +267,9 @@ struct ProfileTabView: View {
                     NavigationLink (destination: UpdatePasswordView())
                         { Text("Update Password").background(Color.clear)}
                     NavigationLink (destination: UpdatePreferenceView())
-                        { Text("Update Preference").background(Color.clear)}
+                        { Text("Update Sports Preference").background(Color.clear)}
+                    NavigationLink (destination: UpdateInformationView())
+                        { Text("Update User Information").background(Color.clear)}
                     NavigationLink (destination: ContactSupportView())
                         {Text("Contact Support")}
                     NavigationLink (destination: SportsBetting101View())

@@ -13,6 +13,56 @@ struct signUpView : View {
     @State var state: String = ""
     @State var error: String = ""
     
+    var states = ["Alabama",
+            "Alaska",
+            "Arizona",
+            "Arkansas",
+            "California",
+            "Colorado",
+            "Connecticut",
+            "Delaware",
+            "Florida",
+            "Georgia",
+            "Hawaii",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Iowa",
+            "Kansas",
+            "Kentucky",
+            "Louisiana",
+            "Maine",
+            "Maryland",
+            "Massachusetts",
+            "Michigan",
+            "Minnesota",
+            "Mississippi",
+            "Missouri",
+            "Montana",
+            "Nebraska",
+            "Nevada",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "New York",
+            "North Carolina",
+            "North Dakota",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Vermont",
+            "Virginia",
+            "Washington",
+            "West Virginia",
+            "Wisconsin",
+            "Wyoming"]
     @EnvironmentObject var session: SessionStore
     
     var body: some View{
@@ -29,8 +79,7 @@ struct signUpView : View {
                 .padding()
             TextField("Email Address", text: $email).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
-            TextField("State", text: $state).autocapitalization(.allCharacters)
-                .padding()
+            Text("Pick Your State:")
         }
             .padding(.horizontal)
             .padding(.vertical, 34)
@@ -77,10 +126,10 @@ struct ageVerifyView: View {
                 .foregroundColor(Color.gray)
                 .padding()
         }
-        VStack(alignment: .leading, spacing: 20){
-            DatePicker("Birthday", selection: $birthDate, displayedComponents: .date)
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .frame(maxHeight: 400)
+        VStack(alignment: .center){
+            DatePicker("",selection: $birthDate, displayedComponents: [.date])
+                .datePickerStyle(WheelDatePickerStyle())
+//                .frame(maxHeight: 400)
         }.onChange(of: birthDate, perform: { value in
             calcAge = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
             age = calcAge.year ?? 0
@@ -118,7 +167,6 @@ struct preferenceView: View{
     @State var EPL: Bool = false
     @State var MLS: Bool = false
     
-
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
@@ -463,54 +511,106 @@ struct resetPasswordView : View {
     }
 }
 
-struct UpdatePasswordView: View {
+
+struct UpdatePasswordView: View
+{
     @State var currentPassword: String = ""
     @State var error: String = ""
     @State var email: String = ""
     @State var newPassword: String = ""
     @EnvironmentObject var session: SessionStore
+    @State private var showAlert = false
     func changePassword() {
         session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
             { (error) in
                 if let error = error {
-                    self.error = error.localizedDescription
                     print("Incorrect Email/Password: \(error)")      }
-                else {
-                    self.email = ""
-                    self.currentPassword = ""
-                    self.newPassword = ""
-                    
-                }}}
+             else {
+//                    print("Document successfully written!")
+                self.email = ""
+                self.currentPassword = ""
+                self.newPassword = ""
+                }
+            }
+            self.showAlert = true
+            }
+    
         var body: some View{
             VStack(spacing: 30){
-            Text("Update Password tt")
+            Text("Update Password")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
             TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
-            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
+            TextField("Current Password", text: $currentPassword).autocapitalization(.none).disableAutocorrection(true)
                 .padding(.horizontal)
-            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
+            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
             NavigationLink(
                     destination: resetPasswordView(),
                     label: {
                         Text("Forget password?")
                     })
                     .padding(.horizontal)
-                Button(action: changePassword, label: {
-                Text("Change Password")
-                    .padding()
-                if(error != "") {
-                        Text("Incorrect Email/Password")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.red)
-                            .padding()
-                }})
-            .buttonStyle(largeButton())
-            .frame(maxHeight: .infinity,
-              alignment: .top)
+                Button("Change Password"){
+                    changePassword()
+                }
+                .alert(isPresented: self.$showAlert) {
+                    Alert(title: Text("Password Changed!"), message: Text("Your Request has been submitted"), dismissButton: .default(Text("Close")))
+                }
+                .padding()
+                .buttonStyle(largeButton())
+                .frame(maxHeight: .infinity, alignment: .top)
             }
         }
 }
+
+//struct UpdatePasswordView: View {
+//    @State var currentPassword: String = ""
+//    @State var error: String = ""
+//    @State var email: String = ""
+//    @State var newPassword: String = ""
+//    @EnvironmentObject var session: SessionStore
+//    func changePassword() {
+//        session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
+//            { (error) in
+//                if let error = error {
+//                    self.error = error.localizedDescription
+//                    print("Incorrect Email/Password: \(error)")      }
+//                else {
+//                    self.email = ""
+//                    self.currentPassword = ""
+//                    self.newPassword = ""
+//                    
+//                }}}
+//        var body: some View{
+//            VStack(spacing: 30){
+//            Text("Update Password tt")
+//                .font(.system(size: 30, weight: .bold, design: .rounded))
+//                .padding()
+//            TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
+//            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
+//                .padding(.horizontal)
+//            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
+//            NavigationLink(
+//                    destination: resetPasswordView(),
+//                    label: {
+//                        Text("Forget password?")
+//                    })
+//                    .padding(.horizontal)
+//                Button(action: changePassword, label: {
+//                Text("Change Password")
+//                    .padding()
+//                if(error != "") {
+//                        Text("Incorrect Email/Password")
+//                            .font(.system(size: 14, weight: .semibold))
+//                            .foregroundColor(.red)
+//                            .padding()
+//                }})
+//            .buttonStyle(largeButton())
+//            .frame(maxHeight: .infinity,
+//              alignment: .top)
+//            }
+//        }
+//}
 
 struct AuthView: View {
     var body: some View {
