@@ -15,8 +15,10 @@ class SessionStore: ObservableObject {
     @Published var session: User? {didSet {self.didChange.send(self) }}
     @Published var profile: UserProfile?
     @Published var pref: preference?
+    @Published var order: OrderDetails?
     @Published var isDarkMode = false
     private var profileRepository = UserProfileRepository()
+    private var orderRespository = OrderRepository()
     
     var handle: AuthStateDidChangeListenerHandle?
     func listen() {
@@ -41,6 +43,14 @@ class SessionStore: ObservableObject {
 
                   self.pref = pref
                 }
+//                self.orderRespository.fetchOrder(userId: user.uid) { (order, error) in
+//                  if let error = error {
+//                    print("Error while fetching the user profile: \(error)")
+//                    return
+//                  }
+//
+//                  self.order = order
+//                }
                 
             } else {
                 self.session = nil
@@ -101,6 +111,14 @@ class SessionStore: ObservableObject {
             self.pref = pref
             completion(self.profile, pref, nil)
         }
+        //                self.orderRespository.fetchOrder(userId: user.uid) { (order, error) in
+        //                  if let error = error {
+        //                    print("Error while fetching the user profile: \(error)")
+        //                    return
+        //                  }
+        //
+        //                  self.order = order
+        //                }
       }
     }
 
@@ -124,9 +142,25 @@ class SessionStore: ObservableObject {
                 }
             } )
         }
+    
     func resetPassword(email: String){
         Auth.auth().sendPasswordReset(withEmail: email)
     }
+    
+    func submitOrder(userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
+        let orderDetail = OrderDetails(time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value)
+        self.orderRespository.createOrder(userId: userId, order: orderDetail){
+            (order, error) in
+              if let error = error {
+                print("Error while submitting betting order: \(error)")
+                completion(nil, error)
+                return
+              }
+              self.order = order
+              completion(order, nil)
+        }
+    }
+    
     func unbind(){
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)

@@ -41,6 +41,8 @@ struct BettingView: View {
     @State var team_Name1 = ""
     @State var team_Name2 = ""
     @State private var showSheet = false
+    @State var date = Date()
+    @Binding var bottomSheetShown: Bool
 //    @State var SelectedOdd : Double = 0
     
     var ExpectedEarnings: Double {
@@ -139,7 +141,7 @@ struct BettingView: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds])
-                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd)
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, date: Date(), showSheet: $showSheet, bottomSheetShown: $bottomSheetShown)
                         }
                 .buttonStyle(largeButton() )
                 .padding()

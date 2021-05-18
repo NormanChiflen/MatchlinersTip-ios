@@ -175,7 +175,7 @@ struct HomeTabView : View {
                             let OddsAmount = [win1, lose2, win2, lose1]
                             let team_Name1 = gamed.teams[0]
                             let team_Name2 = gamed.teams[1]
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2)
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))

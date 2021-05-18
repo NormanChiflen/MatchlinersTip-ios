@@ -15,7 +15,20 @@ struct ConfirmOrder: View {
     @State var value : String = ""
     @State var SelectedOdd: Double = 0
     @EnvironmentObject var session: SessionStore
-    @State var isPressed: Bool = true;
+    @State var isPressed: Bool = true
+    @State var stringDate = ""
+    @State var date: Date
+    @Binding var showSheet: Bool
+    @State var orderDetail: OrderDetails?
+    @State var userID: String = ""
+    @State var error: String = ""
+    @Binding var bottomSheetShown: Bool
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }
     var body: some View {
         Color.neonPurple.opacity(0.9).ignoresSafeArea()
             .overlay(
@@ -27,6 +40,10 @@ struct ConfirmOrder: View {
                             .foregroundColor(.white)
                     }
                     .padding()
+                    Section{
+                        Text("\(stringDate)")
+                            .foregroundColor(.white)
+                    }
                     Section{
                         HStack{
                             Text("\(team_Name1)  vs  \(team_Name2)")
@@ -61,7 +78,12 @@ struct ConfirmOrder: View {
                             .font(.system(size: 25))
                     }
                     Spacer()
-                    Button(action: {self.isPressed.toggle() }, label: {
+                    Button(action: {
+                        self.isPressed = false
+                        placeOrder()
+                        self.showSheet = false
+                        self.bottomSheetShown = false
+                    }, label: {
                       Text("Confirm")
                         .padding()
                         .foregroundColor(.white)
@@ -78,11 +100,21 @@ struct ConfirmOrder: View {
                     .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
                     Spacer()
                 })
+            .onAppear(perform: loadDate)
     }
-}
-
-struct ConfirmOrder_Previews: PreviewProvider {
-    static var previews: some View {
-        ConfirmOrder()
+    func loadDate() {
+        stringDate = dateFormatter.string(from: date)
+        
+    }
+    func placeOrder() {
+        userID = session.profile?.uid ?? ""
+        session.submitOrder(userId: userID, time: stringDate, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value) { (orderDetail, error) in
+            if let error = error {
+                self.error = error.localizedDescription
+                print("Error placing order: \(error)")      }
+            else {
+                self.orderDetail = orderDetail
+            }
+        }
     }
 }
