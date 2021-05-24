@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 struct UpComing: View {
-    @State var games: [Datum] = []
+    @State var games: [Datum]
     @EnvironmentObject var session: SessionStore
     @Binding var gamed : Datum
     @Binding var bottomSheetShown : Bool
@@ -22,6 +22,8 @@ struct UpComing: View {
                             "baseball_mlb": "⚾",
                             "mma_mixed_martial_arts": "🥋",
                             "icehockey_nhl": "🏒"]
+    
+    
     
     var body: some View {
             VStack{

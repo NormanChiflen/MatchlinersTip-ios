@@ -23,6 +23,7 @@ struct ConfirmOrder: View {
     @State var userID: String = ""
     @State var error: String = ""
     @Binding var bottomSheetShown: Bool
+    @State var id: String = ""
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -108,7 +109,7 @@ struct ConfirmOrder: View {
     }
     func placeOrder() {
         userID = session.profile?.uid ?? ""
-        session.submitOrder(userId: userID, time: stringDate, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value) { (orderDetail, error) in
+        session.submitOrder(id: id, userId: userID, time: stringDate, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value) { (orderDetail, error) in
             if let error = error {
                 self.error = error.localizedDescription
                 print("Error placing order: \(error)")      }

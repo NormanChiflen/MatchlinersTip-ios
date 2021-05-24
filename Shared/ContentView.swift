@@ -77,97 +77,142 @@ struct HomeTabView : View {
     @State private var bottomSheetShown = false
     @State private var Odds = 0
     @State var OddsAmount = []
+    @State var ScoreHistory: [Double] = [25,25,26,26,26,26,24,24,30,20,35,35,35]
     @State private var hidesheet = false
-    @State var onGoingBets : [Any] = []
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
-    //Example
+//    @State var NBAeventStats: [Event] = []
     func displayTable() {
         withAnimation{
             self.showTable.toggle()
         }
     }
+    var gameEnded: [String] {
+        var result = [String]()
+        var ended = true
+        session.onGoingBets.forEach { bet in
+            games.forEach { game in
+                if game.id == bet.id {
+                    ended = false
+                }
+                print("game id: " + game.id)
+                print("bet id: " + bet.id)
+            }
+            if ended == false {
+                
+                let empty = ""
+                result.append(empty)
+            }
+            if ended == true{
+                //If a game ended set to the name of the game
+                let answer = "\(bet.team_Name1) at " + "\(bet.team_Name2)"
+                result.append(answer)
+            }
+            ended = true
+        }
+        return result
+    }
     var body: some View {
        
         ZStack{
-        List{
-            VStack{
-                
-                let balance = "$ \(session.profile?.score.description ?? "?")"
-                if(colorScheme == .dark){
-                    iLineChart(
-                        data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                        title: session.profile?.displayName,
-                        subtitle: balance,
-                        style: .dark,
-                        lineGradient:  GradientColor.green,
-                        titleColor: Color.neonRed,
-                        curvedLines: false,
-                        displayChartStats: true,
-                        titleFont: .system(size: 30, weight: .bold, design: .rounded),
-                        subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
-                    )
-                        .frame(height: 400)
-                }
-                else{
-                    iLineChart(
-                        data: [25,25,26,26,26,26,24,24,30,20,35,35,35],
-                        title: session.profile?.displayName,
-                        subtitle: balance,
-                        style: .tertiary,
-                        lineGradient:  GradientColor.green,
-                        curvedLines: false,
-                        displayChartStats: true,
-                        titleFont: .system(size: 30, weight: .bold, design: .rounded),
-                        subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
-                    )
-                    .frame(height: 400)
-                }
-                Divider()
-                //Ongoing Bets
+            List{
                 VStack{
-                    Button(action: displayTable, label: {
-                        HStack(){
-                            Text("Ongoing Bets")
-                                .font(.custom("NotoSans-Medium", size: 25))
-                            if(self.showTable == false){
-                            Text("▼")
-                            }else {
-                                Text("▲")
+                    let balance = "$ \(session.profile?.score.description ?? "?")"
+                    if(colorScheme == .dark){
+                        iLineChart(
+                            data: ScoreHistory,
+                            title: session.profile?.displayName,
+                            subtitle: balance,
+                            style: .dark,
+                            lineGradient:  GradientColor.green,
+                            titleColor: Color.neonRed,
+                            curvedLines: false,
+                            displayChartStats: true,
+                            titleFont: .system(size: 30, weight: .bold, design: .rounded),
+                            subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
+                        )
+                            .frame(height: 400)
+                    }
+                    else{
+                        iLineChart(
+                            data: ScoreHistory,
+                            title: session.profile?.displayName,
+                            subtitle: balance,
+                            style: .tertiary,
+                            lineGradient:  GradientColor.green,
+                            curvedLines: false,
+                            displayChartStats: true,
+                            titleFont: .system(size: 30, weight: .bold, design: .rounded),
+                            subtitleFont: .system(size: 24, weight: .bold, design: .monospaced)
+                        )
+                        .frame(height: 400)
+                    }
+                    Divider()
+                    //Ongoing Bets
+                    VStack{
+                        Button(action: displayTable, label: {
+                            HStack(){
+                                Text("Ongoing Bets")
+                                    .font(.custom("NotoSans-Medium", size: 25))
+                                if(self.showTable == false){
+                                Text("▼")
+                                }else {
+                                    Text("▲")
+                                }
                             }
+                            .alignmentGuide(.leading){
+                                d in d[.trailing]
+                            }
+                            .offset(x: 98.0, y: 5.0)
+//                            .padding()
+                        })
+                            .frame(width: .infinity, height: 50, alignment: .leading)
+                        if showTable == true {
+                                OnGoing()
                         }
-                        .alignmentGuide(.leading){
-                            d in d[.trailing]
-                        }
-                        .offset(x: 98.0, y: 5.0)
-                        .padding()
-                    })
-                        .frame(width: .infinity, height: 50, alignment: .leading)
-//                    if !onGoingBets.isEmpty {
-//                            ForEach(onGoingBets){ bet in
+                    }
+//                    .onAppear(){
+//                        ESPN().getNBAResults{ events in
+//                            self.NBAeventStats = events
+//                        }
+//                        gameEnded.forEach{ gEnded in
+//                            if gEnded != "" {
+//                                NBAeventStats.forEach{
+//                                    NBAevents in
+//                                    if(gEnded == NBAevents.name){
+//                                        NBAevents.competitions[0].competitors.forEach{
+//                                            NBAevent in
+//                                            if NBAevent.homeAway == "home"{
+//                                                //team_Name2
+//                                            }
+//                                            if NBAevent.homeAway == "away"{
+//                                                //team_Name1
+//                                            }
 //
+//                                        }
+//                                    }
+//                                }
 //                            }
 //                        }
-//                            .transition(.scale)
 //                    }
-                }
-                .padding()
-                Spacer()
-                Divider()
-                //Upcoming Bets
-                Text("Upcoming Bets")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                            .offset(x: -5.0, y: 5.0)
-                            .font(.custom("NotoSans-Medium", size: 25))
                     .padding()
-                UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-                
-                //Show all games that matches with preference
+                    Spacer()
+                    Divider()
+                    //Upcoming Bets
+                    Text("Upcoming Bets")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                                .offset(x: -5.0, y: 5.0)
+                                .font(.custom("NotoSans-Medium", size: 25))
+                        .padding()
+                    UpComing(games: games,gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+                        
+                    //Show all games that matches with preference
+                }
             }
-        }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
                     BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
+                            let id = gamed.id
                             let win1 = gamed.sites[0].odds.h2H[0]
                             let lose1  = -gamed.sites[0].odds.h2H[0]
                             let win2 = gamed.sites[0].odds.h2H[1]
@@ -175,25 +220,132 @@ struct HomeTabView : View {
                             let OddsAmount = [win1, lose2, win2, lose1]
                             let team_Name1 = gamed.teams[0]
                             let team_Name2 = gamed.teams[1]
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))
                     }
                     .edgesIgnoringSafeArea(.all)
+                }
+            }
+        }
+        .onAppear{
+            if session.pref?.NRL == true {
+                OddsApi().getAURugbyOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
                     }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.EPL == true {
+                OddsApi().getUKSoccerOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.NBA == true {
+                OddsApi().getUSBasketBallOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+
+                }
+            }
+            if session.pref?.Euroleague == true {
+                OddsApi().getEUBasketBallOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.MLB == true {
+                OddsApi().getUSBaseballOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.MLS == true {
+                OddsApi().getUSSoccerOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.MMA == true {
+                OddsApi().getMMAOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.NFL == true {
+                OddsApi().getUSFootballOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.AFL == true {
+                OddsApi().getAUFootballOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
+            }
+            if session.pref?.NHL == true {
+                OddsApi().getIceHockeyOdds{
+                    (games) in
+                    if self.games.isEmpty {
+                        self.games = games
+                    }
+                    else {
+                        self.games += games
+                    }
+                }
             }
         }
         
     }
 }
 
-//Work on this once we have data
-//struct OngoingBets: View {
-//    var body: some View{
-//        Text("SF Giants @ LA Dodgers")
-//    }
-//}
 struct PopularEventsView: View {
     @State var posts: [Initial.Datas] = []
     @Binding var text: String

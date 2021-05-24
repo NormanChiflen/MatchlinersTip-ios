@@ -13,27 +13,36 @@ struct ArchiveView : View {
 @State var posts: [Initial.Datas] = []
     func dummy(){}
     var body: some View {
-        VStack(alignment: .center){
+        VStack{
             Text("Betting History")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
-            Spacer()
-            HStack (alignment: .top, spacing: 100) {
-                Button(action: dummy){Text("Win")}
-                     //   .padding(7)
-                       // .padding(.horizontal, 25)
-                    .foregroundColor(.green)
-                       // .cornerRadius(😎
+//            Spacer()
+            
+            HStack (alignment: .top, spacing: 10) {
+                List{
+                    VStack{
+                        Text("Win")
+                            .foregroundColor(.green)
+                            .padding()
+                        OnGoing()
+                    }
+                }
                 Divider()
-                Button(action: dummy){Text("Lost")}
-                        .foregroundColor(.red)
-                     //   .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        //.padding(.leading, 😎
-                                }
+                List{
+                    VStack{
+                        Text("Lost")
+                            .foregroundColor(.red)
+                            .padding()
+                        OnGoing()
+                    }
+                }
+            }
         }
         .font(.custom("NotoSans-Medium", size: 25))
     }
-            }
+}
 struct ArchiveView_Previews: PreviewProvider {
     static var previews: some View {
         ArchiveView()

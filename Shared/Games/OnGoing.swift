@@ -13,41 +13,42 @@ struct OnGoing: View {
     @State var SelectedOdd: Double = 0
     @State var ExpectedEarning : Double = 0
     @State var value : String = ""
+    @EnvironmentObject var session: SessionStore
+    @State var OnGoingBets: [OrderDetails] = []
     // create order array
     var body: some View {
-        VStack{
-            // ForEach(order)
-            Text("\(team_Name1)  vs  \(team_Name2)")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Text("Odds: \(SelectedOdd,specifier:"%.2f")%")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Text("Wager: $\(Double(value) ?? 0,specifier:"%.2f")")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Text("Winner")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Text("(Incl. OT)")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Text("Potential Winnings: $\(ExpectedEarning,specifier:"%.2f")")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-            Divider()
+        VStack(alignment: .leading){
+            ForEach(OnGoingBets) { ongoing in
+                
+                Text("\(ongoing.team_Name1)  vs  \(ongoing.team_Name2)")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: 12))
+                    .foregroundColor(.orange)
+//                Text("Odds: \(ongoing.SelectedOdd,specifier:"%.2f")%")
+//                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                    .font(.system(size: 12))
+//                    .foregroundColor(.gray)
+                Text("Wager: $\(Double(ongoing.value) ?? 0,specifier:"%.2f")")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Text("Winner")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Text("(Incl. OT)")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Text("Potential Winnings: $\(ongoing.ExpectedEarning,specifier:"%.2f")")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: 12))
+                    .foregroundColor(.green)
+                Divider()
+            }
         }
-    }
-}
-
-struct OnGoing_Previews: PreviewProvider {
-    static var previews: some View {
-        OnGoing()
+        .onAppear(){
+            OnGoingBets = session.onGoingBets
+        }
     }
 }
