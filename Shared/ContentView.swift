@@ -428,6 +428,7 @@ struct ProfileTabView: View {
                         {Text("Sports Betting 101")}
                     NavigationLink (destination: DarkModeView())
                         {Text("Dark Mode")}
+                    NavigationLink (destination: NBAView()){Text("NBA")}
                     Button(action: session.signOut){
                         Text("Sign Out")
                             }
