@@ -41,6 +41,8 @@
 		EB822DAF25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
 		EB86B46E2659FADD00DF0C4E /* NBATEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B46D2659FADD00DF0C4E /* NBATEST.swift */; };
 		EB86B46F2659FADD00DF0C4E /* NBATEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B46D2659FADD00DF0C4E /* NBATEST.swift */; };
+		EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
+		EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
 		EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC29419264E55AA00454268 /* OnGoing.swift */; };
@@ -119,6 +121,7 @@
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB86B46D2659FADD00DF0C4E /* NBATEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBATEST.swift; sourceTree = "<group>"; };
 		EBA3761B2636B28A0020AEE5 /* iLineChart */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iLineChart; path = ../iLineChart; sourceTree = "<group>"; };
+		EBA59B5D265C5F950038026C /* PopularEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEvent.swift; sourceTree = "<group>"; };
 		EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrder.swift; sourceTree = "<group>"; };
 		EBC29419264E55AA00454268 /* OnGoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoing.swift; sourceTree = "<group>"; };
 		EBC29428265312D300454268 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 				EB09028A262A7F4600E7D7DA /* BettingView.swift */,
 				EBC29428265312D300454268 /* ArchiveView.swift */,
 				EB86B46D2659FADD00DF0C4E /* NBATEST.swift */,
+				EBA59B5D265C5F950038026C /* PopularEvent.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -551,6 +555,7 @@
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBC2943826531A6000454268 /* OrderDetails.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
+				EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */,
 				EB01D9B22658C9F000D33163 /* ESPN_NBA.swift in Sources */,
 				EB090292262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
@@ -581,6 +586,7 @@
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
 				EBC2943926531A6000454268 /* OrderDetails.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
+				EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */,
 				EB01D9B32658C9F000D33163 /* ESPN_NBA.swift in Sources */,
 				EB090293262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
