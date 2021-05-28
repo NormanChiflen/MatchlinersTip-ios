@@ -11,12 +11,6 @@
 		295EF6FA264393530041C7F1 /* UpdatePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */; };
 		4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */; };
 		9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */; };
-		EB01D98C2658907700D33163 /* ESPN_EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D98B2658907700D33163 /* ESPN_EPL.swift */; };
-		EB01D98D2658907700D33163 /* ESPN_EPL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D98B2658907700D33163 /* ESPN_EPL.swift */; };
-		EB01D9B22658C9F000D33163 /* ESPN_NBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D9B12658C9F000D33163 /* ESPN_NBA.swift */; };
-		EB01D9B32658C9F000D33163 /* ESPN_NBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D9B12658C9F000D33163 /* ESPN_NBA.swift */; };
-		EB01D9BD2658CA9300D33163 /* ESPN.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D9BC2658CA9300D33163 /* ESPN.swift */; };
-		EB01D9BE2658CA9300D33163 /* ESPN.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01D9BC2658CA9300D33163 /* ESPN.swift */; };
 		EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090283262A7D5D00E7D7DA /* profileItem.swift */; };
@@ -39,8 +33,8 @@
 		EB822D9D25F6FD6D00018FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */; };
 		EB822DAE25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
 		EB822DAF25F9C54A00018FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */; };
-		EB86B46E2659FADD00DF0C4E /* NBATEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B46D2659FADD00DF0C4E /* NBATEST.swift */; };
-		EB86B46F2659FADD00DF0C4E /* NBATEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86B46D2659FADD00DF0C4E /* NBATEST.swift */; };
+		EB9B0CE9266056DC0093E620 /* SearchEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */; };
+		EB9B0CEA266056DC0093E620 /* SearchEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */; };
 		EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
 		EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
 		EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
@@ -93,9 +87,6 @@
 		9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB01D98B2658907700D33163 /* ESPN_EPL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPN_EPL.swift; sourceTree = "<group>"; };
-		EB01D9B12658C9F000D33163 /* ESPN_NBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPN_NBA.swift; sourceTree = "<group>"; };
-		EB01D9BC2658CA9300D33163 /* ESPN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPN.swift; sourceTree = "<group>"; };
 		EB07A46A2619634600A22529 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
 		EB090283262A7D5D00E7D7DA /* profileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileItem.swift; sourceTree = "<group>"; };
 		EB09028A262A7F4600E7D7DA /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
@@ -119,7 +110,7 @@
 		EB822D5825EB1B8B00018FB2 /* UnderDog Prototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "UnderDog Prototype.entitlements"; sourceTree = "<group>"; };
 		EB822D9B25F6FD6D00018FB2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB822DAD25F9C54A00018FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EB86B46D2659FADD00DF0C4E /* NBATEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBATEST.swift; sourceTree = "<group>"; };
+		EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventsView.swift; sourceTree = "<group>"; };
 		EBA3761B2636B28A0020AEE5 /* iLineChart */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iLineChart; path = ../iLineChart; sourceTree = "<group>"; };
 		EBA59B5D265C5F950038026C /* PopularEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEvent.swift; sourceTree = "<group>"; };
 		EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrder.swift; sourceTree = "<group>"; };
@@ -238,8 +229,8 @@
 				EB090283262A7D5D00E7D7DA /* profileItem.swift */,
 				EB09028A262A7F4600E7D7DA /* BettingView.swift */,
 				EBC29428265312D300454268 /* ArchiveView.swift */,
-				EB86B46D2659FADD00DF0C4E /* NBATEST.swift */,
 				EBA59B5D265C5F950038026C /* PopularEvent.swift */,
+				EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -294,11 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				EBD50AC926082EF8005B740E /* OddsApi.swift */,
-				EB01D98B2658907700D33163 /* ESPN_EPL.swift */,
-				EB01D9B12658C9F000D33163 /* ESPN_NBA.swift */,
 				EBD50AD826083CD8005B740E /* Initial.swift */,
 				EB47B8F1261559E00080725C /* odds.swift */,
-				EB01D9BC2658CA9300D33163 /* ESPN.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -540,12 +528,11 @@
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EB9B0CE9266056DC0093E620 /* SearchEventsView.swift in Sources */,
 				295EF6F9264393530041C7F1 /* UpdatePreferenceView.swift in Sources */,
 				EBE6DB3025FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F2261559E00080725C /* odds.swift in Sources */,
 				EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */,
-				EB01D9BD2658CA9300D33163 /* ESPN.swift in Sources */,
-				EB86B46E2659FADD00DF0C4E /* NBATEST.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC29429265312D300454268 /* ArchiveView.swift in Sources */,
 				EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */,
@@ -557,10 +544,8 @@
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */,
-				EB01D9B22658C9F000D33163 /* ESPN_NBA.swift in Sources */,
 				EB090292262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
 				EB822D4025EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
-				EB01D98C2658907700D33163 /* ESPN_EPL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,12 +556,11 @@
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
+				EB9B0CEA266056DC0093E620 /* SearchEventsView.swift in Sources */,
 				295EF6FA264393530041C7F1 /* UpdatePreferenceView.swift in Sources */,
 				EBE6DB3125FAED09007C2291 /* AppDelegate.swift in Sources */,
 				EB47B8F3261559E00080725C /* odds.swift in Sources */,
 				EBC2941B264E55AA00454268 /* OnGoing.swift in Sources */,
-				EB01D9BE2658CA9300D33163 /* ESPN.swift in Sources */,
-				EB86B46F2659FADD00DF0C4E /* NBATEST.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC2942A265312D300454268 /* ArchiveView.swift in Sources */,
 				EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */,
@@ -588,10 +572,8 @@
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */,
-				EB01D9B32658C9F000D33163 /* ESPN_NBA.swift in Sources */,
 				EB090293262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
 				EB822D4125EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
-				EB01D98D2658907700D33163 /* ESPN_EPL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

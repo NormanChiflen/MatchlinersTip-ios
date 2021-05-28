@@ -163,8 +163,8 @@ class SessionStore: ObservableObject {
         Auth.auth().sendPasswordReset(withEmail: email)
     }
     
-    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
-        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value)
+    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, purchase: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
+        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value, purchase: purchase)
         self.orderRespository.createOrder(userId: userId, order: orderDetail){
             (order, error) in
               if let error = error {

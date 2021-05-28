@@ -48,7 +48,7 @@ struct LoggedInView : View {
                     Image(systemName: "house.fill")
                 }
                 .tag(0)
-            PopularEventsView(text: $searchText)
+            SearchEventsView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
@@ -77,10 +77,24 @@ struct HomeTabView : View {
     @State private var bottomSheetShown = false
     @State private var Odds = 0
     @State var OddsAmount = []
-    @State var ScoreHistory: [Double] = [25,25,26,26,26,26,24,24,30,20,35,35,35]
     @State private var hidesheet = false
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
-//    @State var NBAeventStats: [Event] = []
+    var ScoreHistory: [Double] {
+        var history = [Double]()
+        history = [25,25,26,26,26,26,24,24,30,20,35,35,35]
+        return history
+    }
+    var buyingPower: Double{
+        var bp = Double(session.profile?.score ?? 0)
+        var aggregate: Double = 0
+        session.onGoingBets.forEach{
+            bet in
+            aggregate += Double(bet.value) ?? 0
+        }
+        bp = bp - aggregate
+        return bp
+    }
+//    [25,25,26,26,26,26,24,24,30,20,35,35,35]
     func displayTable() {
         withAnimation{
             self.showTable.toggle()
@@ -94,8 +108,6 @@ struct HomeTabView : View {
                 if game.id == bet.id {
                     ended = false
                 }
-                print("game id: " + game.id)
-                print("bet id: " + bet.id)
             }
             if ended == false {
                 
@@ -103,7 +115,7 @@ struct HomeTabView : View {
                 result.append(empty)
             }
             if ended == true{
-                //If a game ended set to the name of the game
+                //If a game ended, create a list of games ended
                 let answer = "\(bet.team_Name1) at " + "\(bet.team_Name2)"
                 result.append(answer)
             }
@@ -147,6 +159,17 @@ struct HomeTabView : View {
                         .frame(height: 400)
                     }
                     Divider()
+                    VStack{
+                        HStack{
+                            Text("Buying Power: ")
+                                .font(.custom("NotoSans-Bold", size: 20))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .offset(x: 15.0, y: 5.0)
+                            Text("$\(buyingPower,specifier:"%.2f")")
+                                .bold()
+                        }
+                    }
+                    Divider()
                     //Ongoing Bets
                     VStack{
                         Button(action: displayTable, label: {
@@ -163,37 +186,12 @@ struct HomeTabView : View {
                                 d in d[.trailing]
                             }
                             .offset(x: 98.0, y: 5.0)
-//                            .padding()
                         })
                             .frame(width: .infinity, height: 50, alignment: .leading)
                         if showTable == true {
                                 OnGoing()
                         }
                     }
-//                    .onAppear(){
-//                        ESPN().getNBAResults{ events in
-//                            self.NBAeventStats = events
-//                        }
-//                        gameEnded.forEach{ gEnded in
-//                            if gEnded != "" {
-//                                NBAeventStats.forEach{
-//                                    NBAevents in
-//                                    if(gEnded == NBAevents.name){
-//                                        NBAevents.competitions[0].competitors.forEach{
-//                                            NBAevent in
-//                                            if NBAevent.homeAway == "home"{
-//                                                //team_Name2
-//                                            }
-//                                            if NBAevent.homeAway == "away"{
-//                                                //team_Name1
-//                                            }
-//
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
                     .padding()
                     Spacer()
                     Divider()
@@ -204,7 +202,7 @@ struct HomeTabView : View {
                                 .font(.custom("NotoSans-Medium", size: 25))
                         .padding()
                     UpComing(games: games,gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-                        
+                            
                     //Show all games that matches with preference
                 }
             }
@@ -220,7 +218,7 @@ struct HomeTabView : View {
                             let OddsAmount = [win1, lose2, win2, lose1]
                             let team_Name1 = gamed.teams[0]
                             let team_Name2 = gamed.teams[1]
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id)
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))
@@ -428,7 +426,7 @@ struct ProfileTabView: View {
                         {Text("Sports Betting 101")}
                     NavigationLink (destination: DarkModeView())
                         {Text("Dark Mode")}
-                    NavigationLink (destination: NBAView()){Text("NBA")}
+//                    NavigationLink (destination: NBAView()){Text("NBA")}
                     Button(action: session.signOut){
                         Text("Sign Out")
                             }

@@ -19,7 +19,7 @@ struct UpcomingNBA: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -101,31 +101,33 @@ struct NBAView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("NBA Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingNBA(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//            Text("NBA Bets")
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//                    .offset(x: 30.0, y: 5.0)
+//                    .font(.custom("NotoSans-Medium", size: 25))
+//            .padding()
+            UpcomingNBA(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+            
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -148,7 +150,7 @@ struct UpcomingSoccerEPL: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -230,31 +232,32 @@ struct SoccerEPLView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("EPL Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingSoccerEPL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 1000)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//    Text("EPL Bets")
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//                .offset(x: -5.0, y: 5.0)
+//                .font(.custom("NotoSans-Medium", size: 25))
+//        .padding()
+            UpcomingSoccerEPL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 1000)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -277,7 +280,7 @@ struct UpcomingRugby: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -359,31 +362,33 @@ struct RugbyView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("AU Rugby Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingRugby(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//        Text("AU Rugby Bets")
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//                .offset(x: -5.0, y: 5.0)
+//                .font(.custom("NotoSans-Medium", size: 25))
+//        .padding()
+            UpcomingRugby(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                        }
             }
         }
     }
@@ -406,7 +411,7 @@ struct UpcomingEuroLeague: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -488,31 +493,33 @@ struct EuroLeagueBBView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("Euro League Basketball Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingEuroLeague(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        VStack{
+//    Text("Euro League Basketball Bets")
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//                .offset(x: -5.0, y: 5.0)
+//                .font(.custom("NotoSans-Medium", size: 25))
+//        .padding()
+            UpcomingEuroLeague(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
     
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -535,7 +542,7 @@ struct UpcomingMLB: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -617,31 +624,35 @@ struct MLBView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("NBA Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingMLB(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        VStack{
+//    Text("NBA Bets")
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//                .offset(x: -5.0, y: 5.0)
+//                .font(.custom("NotoSans-Medium", size: 25))
+//        .padding()
+            
+            
+            UpcomingMLB(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
     
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -664,7 +675,7 @@ struct UpcomingMLS: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -746,31 +757,33 @@ struct MLSView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("NBA Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingMLS(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        VStack{
+//        Text("NBA Bets")
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//                    .offset(x: -5.0, y: 5.0)
+//                    .font(.custom("NotoSans-Medium", size: 25))
+//            .padding()
+            UpcomingMLS(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
     
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -793,7 +806,7 @@ struct UpcomingMMA: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -875,31 +888,33 @@ struct MMAView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("MMA Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingMMA(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//    Text("MMA Bets")
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//                .offset(x: -5.0, y: 5.0)
+//                .font(.custom("NotoSans-Medium", size: 25))
+//        .padding()
+            UpcomingMMA(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        
+        //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                        }
             }
         }
     }
@@ -922,7 +937,7 @@ struct UpcomingNFL: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -1004,31 +1019,33 @@ struct NFLView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("NBA Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingNFL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        VStack{
+//            Text("NBA Bets")
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                        .offset(x: -5.0, y: 5.0)
+//                        .font(.custom("NotoSans-Medium", size: 25))
+//                .padding()
+            UpcomingNFL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
     
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -1051,7 +1068,7 @@ struct UpcomingAFL: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -1133,31 +1150,33 @@ struct AUFootballView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("Australian Football Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingAFL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//            Text("Australian Football Bets")
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                        .offset(x: -5.0, y: 5.0)
+//                        .font(.custom("NotoSans-Medium", size: 25))
+//                .padding()
+            UpcomingAFL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+            
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
@@ -1180,7 +1199,7 @@ struct UpcomingNHL: View {
                             "icehockey_nhl": "🏒"]
     
     var body: some View {
-            VStack{
+            List{
                 ForEach(games) { game in
                     VStack{
                         Spacer()
@@ -1262,35 +1281,35 @@ struct NHLView: View{
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     
     var body: some View {
-    Text("NHL Bets")
-        .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: -5.0, y: 5.0)
-                .font(.custom("NotoSans-Medium", size: 25))
-        .padding()
-    UpcomingNHL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-    
-    //Show all games that matches with preference
-if (bottomSheetShown != false) {
-    GeometryReader{ geometry in
-        BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
-            VStack {
-                let win1 = gamed.sites[0].odds.h2H[0]
-                let lose1  = -gamed.sites[0].odds.h2H[0]
-                let win2 = gamed.sites[0].odds.h2H[1]
-                let lose2 = -gamed.sites[0].odds.h2H[1]
-                let OddsAmount = [win1, lose2, win2, lose1]
-                let team_Name1 = gamed.teams[0]
-                let team_Name2 = gamed.teams[1]
-                BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
-            }
-            .padding(geometry.safeAreaInsets)
-            .transition(.move(edge: .leading))
-        }
-        .edgesIgnoringSafeArea(.all)
+        VStack{
+//        Text("NHL Bets")
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//                    .offset(x: -5.0, y: 5.0)
+//                    .font(.custom("NotoSans-Medium", size: 25))
+//            .padding()
+            UpcomingNHL(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+        
+            //Show all games that matches with preference
+            if (bottomSheetShown != false) {
+                GeometryReader{ geometry in
+                    BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
+                        VStack {
+                            let win1 = gamed.sites[0].odds.h2H[0]
+                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let win2 = gamed.sites[0].odds.h2H[1]
+                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let OddsAmount = [win1, lose2, win2, lose1]
+                            let team_Name1 = gamed.teams[0]
+                            let team_Name2 = gamed.teams[1]
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown)
+                        }
+                        .padding(geometry.safeAreaInsets)
+                        .transition(.move(edge: .leading))
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                }
             }
         }
     }
 }
-Ivan is a bitch
-
 

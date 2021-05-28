@@ -44,7 +44,27 @@ struct BettingView: View {
     @State var date = Date()
     @Binding var bottomSheetShown: Bool
     @State var id: String = ""
-//    @State var SelectedOdd : Double = 0
+    @State var buyingPower: Double = 0
+    
+    var purchase: String {
+        if(Odds == 0){
+            let pur = "Winner: \(team_Name1)"
+            return pur
+        }
+        if(Odds == 1){
+            let pur = "Loser: \(team_Name1)"
+            return pur
+        }
+        if(Odds == 2){
+            let pur = "Winner: \(team_Name2)"
+            return pur
+        }
+        if(Odds == 3){
+            let pur = "Loser: \(team_Name2)"
+            return pur
+        }
+        return ""
+    }
     
     var ExpectedEarnings: Double {
     let OddSelection = Double(OddsAmount[Odds])
@@ -130,7 +150,7 @@ struct BettingView: View {
             .padding()
             Section{
                 Button("Place Bet") {
-                    if(Double(session.profile?.score ?? 0) < Double(value) ?? 0 || Double(value) == 0 ) {
+                    if(Double(buyingPower) < Double(value) ?? 0 || Double(value) == 0 ) {
                         showingAlert = true;
                     }
                     else{
@@ -142,7 +162,7 @@ struct BettingView: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds])
-                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, date: Date(), showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id)
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, date: Date(), showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase)
                         }
                 .buttonStyle(largeButton() )
                 .padding()

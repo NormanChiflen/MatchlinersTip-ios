@@ -16,6 +16,7 @@ struct OrderDetails: Codable, Identifiable {
   var SelectedOdd: Double = 0
   var ExpectedEarning: Double = 0
   var value: String = ""
+  var purchase: String = ""
 }
 
 class OrderRepository: ObservableObject {

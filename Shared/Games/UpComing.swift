@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 struct UpComing: View {
-    @State var games: [Datum]
+    @State var games: [Datum] = []
     @EnvironmentObject var session: SessionStore
     @Binding var gamed : Datum
     @Binding var bottomSheetShown : Bool
@@ -83,118 +83,118 @@ struct UpComing: View {
                     .padding()
                 }
             }
-            .onAppear{
-                if session.pref?.NRL == true {
-                    OddsApi().getAURugbyOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.EPL == true {
-                    OddsApi().getUKSoccerOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NBA == true {
-                    OddsApi().getUSBasketBallOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-
-                    }
-                }
-                if session.pref?.Euroleague == true {
-                    OddsApi().getEUBasketBallOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MLB == true {
-                    OddsApi().getUSBaseballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MLS == true {
-                    OddsApi().getUSSoccerOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MMA == true {
-                    OddsApi().getMMAOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NFL == true {
-                    OddsApi().getUSFootballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.AFL == true {
-                    OddsApi().getAUFootballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NHL == true {
-                    OddsApi().getIceHockeyOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-            }
+//            .onAppear{
+//                if session.pref?.NRL == true {
+//                    OddsApi().getAURugbyOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.EPL == true {
+//                    OddsApi().getUKSoccerOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.NBA == true {
+//                    OddsApi().getUSBasketBallOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//
+//                    }
+//                }
+//                if session.pref?.Euroleague == true {
+//                    OddsApi().getEUBasketBallOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.MLB == true {
+//                    OddsApi().getUSBaseballOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.MLS == true {
+//                    OddsApi().getUSSoccerOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.MMA == true {
+//                    OddsApi().getMMAOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.NFL == true {
+//                    OddsApi().getUSFootballOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.AFL == true {
+//                    OddsApi().getAUFootballOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//                if session.pref?.NHL == true {
+//                    OddsApi().getIceHockeyOdds{
+//                        (games) in
+//                        if self.games.isEmpty {
+//                            self.games = games
+//                        }
+//                        else {
+//                            self.games += games
+//                        }
+//                    }
+//                }
+//            }
     }
 }
