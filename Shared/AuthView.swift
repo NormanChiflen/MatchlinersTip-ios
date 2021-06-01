@@ -356,7 +356,7 @@ struct confirmPasswordView: View {
     @State var state: String = ""
     @State var age: Int = 0
     @State var error: String = ""
-    @State var score: Int = 20 //Free money
+    @State var score: [Double] = [20] //Free money
     @State var NFL: Bool = false
     @State var AFL: Bool = false
     @State var MLB: Bool = false
@@ -536,6 +536,7 @@ struct UpdatePasswordView: View {
     @State var error: String = ""
     @State var email: String = ""
     @State var newPassword: String = ""
+    @State private var showingAlert = false
     @EnvironmentObject var session: SessionStore
     func changePassword() {
         session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
@@ -551,7 +552,7 @@ struct UpdatePasswordView: View {
                 }}}
         var body: some View{
             VStack(spacing: 30){
-            Text("Update Password tt")
+            Text("Update Password")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
                 .padding()
             TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
@@ -564,82 +565,28 @@ struct UpdatePasswordView: View {
                         Text("Forget password?")
                     })
                     .padding(.horizontal)
-                Button(action: changePassword, label: {
-                Text("Change Password")
+                Button("Change Password"){if(error != ""){ showingAlert = true;}
+                else {changePassword()}}
                     .padding()
-                if(error != "") {
-                        Text("Incorrect Email/Password")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.red)
-                            .padding()
-                }})
+                      //  Text("Incorrect Email/Password")
+                        //    .font(.system(size: 14, weight: .semibold))
+                          //  .foregroundColor(.red)
+                           // .padding()
+
             .buttonStyle(largeButton())
             .frame(maxHeight: .infinity,
               alignment: .top)
-            }
+            .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Incorrect Email/Password"), message: Text("Please Enter the Correct Email/Password"), dismissButton: .default(Text("Dismiss").foregroundColor(.black)))
+                    }            }
         }
 }
-
-//struct UpdatePasswordView: View {
-//    @State var currentPassword: String = ""
-//    @State var error: String = ""
-//    @State var email: String = ""
-//    @State var newPassword: String = ""
-//    @EnvironmentObject var session: SessionStore
-//    func changePassword() {
-//        session.changePassword(email: email, currentPassword: currentPassword, newPassword: newPassword)
-//            { (error) in
-//                if let error = error {
-//                    self.error = error.localizedDescription
-//                    print("Incorrect Email/Password: \(error)")      }
-//                else {
-//                    self.email = ""
-//                    self.currentPassword = ""
-//                    self.newPassword = ""
-//                    
-//                }}}
-//        var body: some View{
-//            VStack(spacing: 30){
-//            Text("Update Password tt")
-//                .font(.system(size: 30, weight: .bold, design: .rounded))
-//                .padding()
-//            TextField("Email Address", text: $email).padding(.horizontal).autocapitalization(.none).disableAutocorrection(true)
-//            TextField("Current Password", text: $currentPassword).autocapitalization(.none)
-//                .padding(.horizontal)
-//            TextField("New Password", text: $newPassword).padding(.horizontal).autocapitalization(.none)
-//            NavigationLink(
-//                    destination: resetPasswordView(),
-//                    label: {
-//                        Text("Forget password?")
-//                    })
-//                    .padding(.horizontal)
-//                Button(action: changePassword, label: {
-//                Text("Change Password")
-//                    .padding()
-//                if(error != "") {
-//                        Text("Incorrect Email/Password")
-//                            .font(.system(size: 14, weight: .semibold))
-//                            .foregroundColor(.red)
-//                            .padding()
-//                }})
-//            .buttonStyle(largeButton())
-//            .frame(maxHeight: .infinity,
-//              alignment: .top)
-//            }
-//        }
-//}
 
 struct AuthView: View {
     var body: some View {
         NavigationView{
             LaunchView()
         }
-    }
-}
-
-struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView().environmentObject(SessionStore())
     }
 }
 

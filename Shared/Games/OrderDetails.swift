@@ -47,4 +47,5 @@ class OrderRepository: ObservableObject {
         }
 
     }
+    //Delete ongoing bet if game has ended and add to order history win/lost
 }

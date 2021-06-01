@@ -15,7 +15,7 @@ struct UserProfile: Codable {
   var State: String
   var age: Int
   var email: String
-  var score: Int
+  var score: [Double]
 }
 
 struct preference: Codable {

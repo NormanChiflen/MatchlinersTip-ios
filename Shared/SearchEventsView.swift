@@ -5,9 +5,7 @@
 //  Created by John Lee on 5/27/21.
 //
 import Foundation
-import iLineChart
 import SwiftUI
-import Firebase
 import UIKit
 
 struct SearchEventsView: View {
@@ -28,9 +26,8 @@ struct SearchEventsView: View {
     let SportNRL = ["NRL"]
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                
+        NavigationView{
+            ScrollView{
                 HStack{
                     HStack{
                         TextField("Search Sport...", text: $text)
@@ -75,95 +72,111 @@ struct SearchEventsView: View {
                         .animation(.spring())
                     }
                 }
-                            
+                // List of games
                 ForEach(SportAFL.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                       NavigationLink(destination: AUFootballView()) {Text("AFL 🏈 🇦🇺")}
+                       NavigationLink(destination: AUFootballView()) {
+                            Text("AFL 🏈 🇦🇺")
+                            Spacer()
+                       }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
                 ForEach(SportEPL.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                       NavigationLink(destination: SoccerEPLView()) {Text("EPL ⚽ 🇬🇧")}
+                       NavigationLink(destination: SoccerEPLView()) {
+                            Text("EPL ⚽ 🇬🇧")
+                            Spacer()
+                       }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
                 ForEach(SportEuro.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
-                HStack{
-                   NavigationLink(destination: EuroLeagueBBView()) {Text("Euro League 🏀 🇪🇺")}
-                }.padding()
-                Divider()
-                    .background(Color.black)
-                    .padding(.leading)
-            }
-                ForEach(SportMLB.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                       NavigationLink(destination: MLBView()) {Text("MLB ⚾ 🇺🇸")}
+                       NavigationLink(destination: EuroLeagueBBView()) {
+                            Text("Euro League 🏀 🇪🇺")
+                            Spacer()
+                       }
                     }.padding()
                     Divider()
-                        .background(Color.black)
+                    .padding(.leading)
+                }
+                ForEach(SportMLB.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
+                    HStack{
+                       NavigationLink(destination: MLBView()) {
+                            Text("MLB ⚾ 🇺🇸")
+                            Spacer()
+                       }
+                    }.padding()
+                    Divider()
                         .padding(.leading)
                 }
                 ForEach(SportMLS.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                       NavigationLink(destination: MLSView()) {Text("MLS ⚽ 🇺🇸")}
+                       NavigationLink(destination: MLSView()) {
+                            Text("MLS ⚽ 🇺🇸")
+                            Spacer()
+                       }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
                 ForEach(SportMMA.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                        NavigationLink(destination: MMAView()) {Text("MMA 🥋 🇺🇸")}
+                        NavigationLink(destination: MMAView()) {
+                            Text("MMA 🥋 🇺🇸")
+                            Spacer()
+                        }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
                 ForEach(SportNBA.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                        NavigationLink(destination: NBAView()) {Text("NBA 🏀 🇺🇸")}
+                        NavigationLink(destination: NBAView()) {
+                            Text("NBA 🏀 🇺🇸")
+                            Spacer()
+                        }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
-                
                 ForEach(SportNFL.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                     HStack{
-                       NavigationLink(destination: NFLView()) {Text("NFL 🏈 🇺🇸")}
+                       NavigationLink(destination: NFLView()) {
+                            Text("NFL 🏈 🇺🇸")
+                            Spacer()
+                       }
                     }.padding()
                     Divider()
-                        .background(Color.black)
                         .padding(.leading)
                 }
-                
-                Group {
+                Group{
                     ForEach(SportNHL.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                         HStack{
-                            NavigationLink(destination: NHLView()) {Text("NHL 🏒 🇺🇸")}
+                            NavigationLink(destination: NHLView()) {
+                                Text("NHL 🏒 🇺🇸")
+                                Spacer()
+                            }
                         }.padding()
                         Divider()
-                            .background(Color.black)
                             .padding(.leading)
                     }
-
-                        
                     ForEach(SportNRL.filter {self.text.isEmpty ? true :$0.contains(text)}, id:\.self) {String in
                         HStack{
-                            NavigationLink(destination: RugbyView()) {Text("NRL 🏉 🇦🇺")}
+                            NavigationLink(destination: RugbyView()) {
+                                Text("NRL 🏉 🇦🇺")
+                                Spacer()
+                            }
                         }.padding()
                         Divider()
-                            .background(Color.black)
                             .padding(.leading)
-                        
                     }
                 }
             }
+            .foregroundColor(.gray)
             .navigationTitle("Events")
         }
     }

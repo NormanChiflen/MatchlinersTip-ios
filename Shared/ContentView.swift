@@ -81,11 +81,13 @@ struct HomeTabView : View {
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
     var ScoreHistory: [Double] {
         var history = [Double]()
-        history = [25,25,26,26,26,26,24,24,30,20,35,35,35]
+        //Get Score array from firestore
+        history = session.profile?.score ?? []
         return history
     }
     var buyingPower: Double{
-        var bp = Double(session.profile?.score ?? 0)
+        let index = (session.profile?.score.count ?? 0 ) - 1
+        var bp = (session.profile?.score[index] ?? 0)
         var aggregate: Double = 0
         session.onGoingBets.forEach{
             bet in
@@ -94,7 +96,6 @@ struct HomeTabView : View {
         bp = bp - aggregate
         return bp
     }
-//    [25,25,26,26,26,26,24,24,30,20,35,35,35]
     func displayTable() {
         withAnimation{
             self.showTable.toggle()
@@ -111,12 +112,12 @@ struct HomeTabView : View {
             }
             if ended == false {
                 
-                let empty = ""
+                let empty = "Game has not ended"
                 result.append(empty)
             }
             if ended == true{
                 //If a game ended, create a list of games ended
-                let answer = "\(bet.team_Name1) at " + "\(bet.team_Name2)"
+                let answer = "\(bet.time)"
                 result.append(answer)
             }
             ended = true
@@ -128,7 +129,8 @@ struct HomeTabView : View {
         ZStack{
             List{
                 VStack{
-                    let balance = "$ \(session.profile?.score.description ?? "?")"
+                    let currentScoreIndex = (session.profile?.score.count ?? 0 ) - 1
+                    let balance = "$ \(session.profile?.score[currentScoreIndex].description ?? "?")"
                     if(colorScheme == .dark){
                         iLineChart(
                             data: ScoreHistory,
@@ -169,6 +171,14 @@ struct HomeTabView : View {
                                 .bold()
                         }
                     }
+                    //On Going Bets checker
+//                    Divider()
+//                    VStack{
+//                        ForEach(gameEnded,id: \.self){
+//                            gam in
+//                            Text("\(gam)")
+//                        }
+//                    }
                     Divider()
                     //Ongoing Bets
                     VStack{
@@ -407,30 +417,43 @@ struct PopularEventsView: View {
         }
     }
 }
-
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View{
         NavigationView{
-            VStack {
                 List{
-                    NavigationLink (destination: UpdatePasswordView())
-                        { Text("Update Password").background(Color.clear)}
-                    NavigationLink (destination: UpdatePreferenceView())
-                        { Text("Update Sports Preference").background(Color.clear)}
+                    NavigationLink (destination: UpdatePasswordView()){
+                        Text("Update Password")
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
+                    NavigationLink (destination: UpdatePreferenceView()){
+                        Text("Update Sports Preference")
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
 //                    NavigationLink (destination: UpdateInformationView())
 //                        { Text("Update User Information").background(Color.clear)}
-                    NavigationLink (destination: ContactSupportView())
-                        {Text("Contact Support")}
-                    NavigationLink (destination: SportsBetting101View())
-                        {Text("Sports Betting 101")}
-                    NavigationLink (destination: DarkModeView())
-                        {Text("Dark Mode")}
-//                    NavigationLink (destination: NBAView()){Text("NBA")}
+                    NavigationLink (destination: ContactSupportView()){
+                        Text("Contact Support")
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
+                    NavigationLink (destination: SportsBetting101View()){
+                        Text("Sports Betting 101")
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
+                    NavigationLink (destination: DarkModeView()){
+                        Text("Dark Mode")
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
                     Button(action: session.signOut){
                         Text("Sign Out")
-                            }
-                }
+                            .font(.custom("NotoSans-Medium", size: 23))
+                            .padding()
+                    }
                 }
             .navigationBarTitle("Settings")
             .font(.system(size: 30, weight: .bold, design: .rounded))
