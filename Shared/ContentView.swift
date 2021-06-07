@@ -171,7 +171,7 @@ struct HomeTabView : View {
                                 .bold()
                         }
                     }
-                    //On Going Bets checker
+//                    On Going Bets checker
 //                    Divider()
 //                    VStack{
 //                        ForEach(gameEnded,id: \.self){

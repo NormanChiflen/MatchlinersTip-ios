@@ -20,32 +20,47 @@ struct OrderDetails: Codable, Identifiable {
 }
 
 class OrderRepository: ObservableObject {
-  private var db = Firestore.firestore()
+    private var db = Firestore.firestore()
+    
     func createOrder(userId: String,order: OrderDetails, completion: @escaping (_ order: OrderDetails?,_ error: Error?) -> Void) {
-    do {
-        let _ = try db.collection("users").document(userId).collection("On Going Bet").document(order.time).setData(from: order)
-        completion(order, nil)
+        do {
+            let _ = try db.collection("users").document(userId).collection("On Going Bet").document(order.time).setData(from: order)
+            completion(order, nil)
+        }
+        catch let error {
+          print("Error writing users to Firestore: \(error)")
+          completion(nil, error)
+        }
     }
-    catch let error {
-      print("Error writing users to Firestore: \(error)")
-      completion(nil, error)
-    }
-  }
-
     func fetchOrder(userId: String, completion: @escaping ( _ OnGoingBets: [OrderDetails]?, _ error: Error?) -> Void) {
-        db.collection("users").document(userId).collection("On Going Bet").getDocuments() { (querySnapshot, err) in
-        var OnGoingBets: [OrderDetails] = []
-        if let err = err {
-            print("Error getting documents: \(err)")
-        } else {
-            for document in querySnapshot!.documents {
-                let order = try? document.data(as: OrderDetails.self)
-                OnGoingBets.append(order!)
+//        db.collection("users").document(userId).collection("On Going Bet").getDocuments() { (querySnapshot, err) in
+//        var OnGoingBets: [OrderDetails] = []
+//        if let err = err {
+//            print("Error getting documents: \(err)")
+//        } else {
+//            for document in querySnapshot!.documents {
+//                let order = try? document.data(as: OrderDetails.self)
+//                OnGoingBets.append(order!)
+//            }
+//        }
+//          completion(OnGoingBets, err)
+//        }
+        
+        
+        db.collection("users").document(userId).collection("On Going Bet").addSnapshotListener { querySnapshot, error in
+                var OnGoingBets: [OrderDetails] = []
+                guard let query = querySnapshot else {
+                    print("Error fetching onGoingBets: \(error!)")
+                    return
+                }
+                for document in querySnapshot!.documents {
+                    let order = try? document.data(as: OrderDetails.self)
+                    OnGoingBets.append(order!)
+                }
+                completion(OnGoingBets, error)
             }
-        }
-          completion(OnGoingBets, err)
-        }
-
     }
+    
+    
     //Delete ongoing bet if game has ended and add to order history win/lost
 }
