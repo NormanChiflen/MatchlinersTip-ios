@@ -37,6 +37,12 @@
 		EB9B0CEA266056DC0093E620 /* SearchEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */; };
 		EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
 		EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA59B5D265C5F950038026C /* PopularEvent.swift */; };
+		EBAE20EF266F32DE00132688 /* apiBaseball.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE20EE266F32DE00132688 /* apiBaseball.swift */; };
+		EBAE20F0266F32DE00132688 /* apiBaseball.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE20EE266F32DE00132688 /* apiBaseball.swift */; };
+		EBAE2131267179D500132688 /* baseballOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE2130267179D500132688 /* baseballOdds.swift */; };
+		EBAE2132267179D500132688 /* baseballOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE2130267179D500132688 /* baseballOdds.swift */; };
+		EBAE213C267190B200132688 /* baseballTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE213B267190B200132688 /* baseballTest.swift */; };
+		EBAE213D267190B200132688 /* baseballTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE213B267190B200132688 /* baseballTest.swift */; };
 		EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC29419264E55AA00454268 /* OnGoing.swift */; };
@@ -113,6 +119,9 @@
 		EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventsView.swift; sourceTree = "<group>"; };
 		EBA3761B2636B28A0020AEE5 /* iLineChart */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iLineChart; path = ../iLineChart; sourceTree = "<group>"; };
 		EBA59B5D265C5F950038026C /* PopularEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEvent.swift; sourceTree = "<group>"; };
+		EBAE20EE266F32DE00132688 /* apiBaseball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiBaseball.swift; sourceTree = "<group>"; };
+		EBAE2130267179D500132688 /* baseballOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseballOdds.swift; sourceTree = "<group>"; };
+		EBAE213B267190B200132688 /* baseballTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseballTest.swift; sourceTree = "<group>"; };
 		EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrder.swift; sourceTree = "<group>"; };
 		EBC29419264E55AA00454268 /* OnGoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoing.swift; sourceTree = "<group>"; };
 		EBC29428265312D300454268 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
@@ -231,6 +240,7 @@
 				EBC29428265312D300454268 /* ArchiveView.swift */,
 				EBA59B5D265C5F950038026C /* PopularEvent.swift */,
 				EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */,
+				EBAE213B267190B200132688 /* baseballTest.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 				EBD50AC926082EF8005B740E /* OddsApi.swift */,
 				EBD50AD826083CD8005B740E /* Initial.swift */,
 				EB47B8F1261559E00080725C /* odds.swift */,
+				EBAE20EE266F32DE00132688 /* apiBaseball.swift */,
+				EBAE2130267179D500132688 /* baseballOdds.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -525,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAE20EF266F32DE00132688 /* apiBaseball.swift in Sources */,
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
@@ -535,8 +548,10 @@
 				EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC29429265312D300454268 /* ArchiveView.swift in Sources */,
+				EBAE213C267190B200132688 /* baseballTest.swift in Sources */,
 				EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50AD926083CD8005B740E /* Initial.swift in Sources */,
+				EBAE2131267179D500132688 /* baseballOdds.swift in Sources */,
 				EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */,
 				EBD50AD1260831AD005B740E /* UpComing.swift in Sources */,
 				EB822D4225EB1A5700018FB2 /* ContentView.swift in Sources */,
@@ -553,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAE20F0266F32DE00132688 /* apiBaseball.swift in Sources */,
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
@@ -563,8 +579,10 @@
 				EBC2941B264E55AA00454268 /* OnGoing.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC2942A265312D300454268 /* ArchiveView.swift in Sources */,
+				EBAE213D267190B200132688 /* baseballTest.swift in Sources */,
 				EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50ADA26083CD8005B740E /* Initial.swift in Sources */,
+				EBAE2132267179D500132688 /* baseballOdds.swift in Sources */,
 				EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */,
 				EBD50AD2260831AD005B740E /* UpComing.swift in Sources */,
 				EB822D4325EB1A5700018FB2 /* ContentView.swift in Sources */,
