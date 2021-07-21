@@ -18,22 +18,74 @@ class SessionStore: ObservableObject {
     @Published var order: OrderDetails?
     @Published var isDarkMode = false
     @Published var onGoingBets: [OrderDetails] = []
+    @Published var WBets: OrderDetails?
+    @Published var LBets: OrderDetails?
+    @Published var wonBets: [OrderDetails] = []
+    @Published var lostBets: [OrderDetails] = []
+    @Published var gameResults: [GameResult] = []
     private var profileRepository = UserProfileRepository()
     private var orderRespository = OrderRepository()
-    
+    private var resultRespository = ResultRepository()
     var handle: AuthStateDidChangeListenerHandle?
+    
+    func PayOutFunction(userId: String) {
+        if(onGoingBets.count > 0){
+            onGoingBets.forEach {
+                child in
+                gameResults.forEach {
+                    game in
+                    if (child.time == game.date && child.team_Name1 == game.home_team && child.team_Name2 == game.away_team){
+                        if child.purchase == game.winner {
+                            //Update New Score
+                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
+                            let PrevScore = profile?.score[currentScoreIndex]
+                            let UpdateScore = PrevScore ?? 0.0 + child.ExpectedEarning
+                            profile?.score.append(UpdateScore)
+                            //Update Betting History
+                            self.orderRespository.WonOrder(userId: userId, order: child) { (betsWon, error) in
+                                if let error = error {
+                                  print("Error while fetching the user profile: \(error)")
+                                  return
+                                }
+                                self.WBets = betsWon
+                            }
+                            //Delete onGoing Bets
+                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
+                            
+                        }
+                        else {
+                            //Update New Score
+                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
+                            let PrevScore = profile?.score[currentScoreIndex]
+                            let UpdateScore = PrevScore ?? 0.0 - child.ExpectedEarning
+                            profile?.score.append(UpdateScore)
+                            //Update Betting History
+                            self.orderRespository.LostOrder(userId: userId, order: child) { (LostBets, error) in
+                                if let error = error {
+                                  print("Error while fetching the user profile: \(error)")
+                                  return
+                                }
+                                self.LBets = LostBets
+                            }
+                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
     func listen() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
                 print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
-                
                 self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
                   if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     return
                   }
-
                   self.profile = profile
                 }
                 self.profileRepository.fetchPref(userId: user.uid) { (pref, error) in
@@ -41,19 +93,42 @@ class SessionStore: ObservableObject {
                     print("Error while fetching the user profile: \(error)")
                     return
                   }
-
                   self.pref = pref
                 }
                 self.orderRespository.fetchOrder(userId: user.uid) { (onGoingBets, error) in
                   if let error = error {
-                    print("Error while fetching the user profile: \(error)")
+                    print("Error while fetching order: \(error)")
                     return
                   }
 
                     self.onGoingBets = onGoingBets!
                 }
-                //Call the checker function here
-                
+                //Get games that are completed
+                self.resultRespository.findFinishedGames() { (gameResults , error) in
+                    if let error = error {
+                        print("Error finding finished games: \(error)")
+                        return
+                    }
+                    self.gameResults = gameResults
+                    print(gameResults)
+                }
+                //Check payout base on OngoingBets and Results
+                self.PayOutFunction(userId: user.uid)
+                //Betting history update in listen handler
+                self.orderRespository.fetchLostBets(userId: user.uid) { (lbets ,error) in
+                    if let error = error {
+                        print("\(error)")
+                        return
+                    }
+                    self.lostBets = lbets!
+                }
+                self.orderRespository.fetchLostBets(userId: user.uid) { (wbets ,error) in
+                    if let error = error {
+                        print("\(error)")
+                        return
+                    }
+                    self.wonBets = wbets!
+                }
             } else {
                 self.session = nil
             }
@@ -113,14 +188,6 @@ class SessionStore: ObservableObject {
             self.pref = pref
             completion(self.profile, pref, nil)
         }
-//        self.orderRespository.fetchOrder(userId: user.uid) { (onGoingBets, error) in
-//            if let error = error {
-//                print("Error while fetching user orders: \(error)")
-//                completion(nil, nil, error)
-//                return
-//            }
-//            self.onGoingBets = onGoingBets ?? []
-//        }
       }
     }
 
@@ -131,6 +198,8 @@ class SessionStore: ObservableObject {
         self.profile = nil
         self.pref = nil
         self.onGoingBets = []
+        self.wonBets = []
+        self.lostBets = []
       }
       catch let signOutError as NSError {
         print("Error signing out: \(signOutError)")

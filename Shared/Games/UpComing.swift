@@ -9,8 +9,8 @@ import SwiftUI
 
 struct UpComing: View {
     @State var games: [Datum] = []
-    @EnvironmentObject var session: SessionStore
     @Binding var gamed : Datum
+    @EnvironmentObject var session: SessionStore
     @Binding var bottomSheetShown : Bool
     @State var sportsTag = ["rugbyleague_nrl": "🏉",
                             "soccer_epl": "⚽",
@@ -32,8 +32,9 @@ struct UpComing: View {
                         Spacer()
                         HStack{
                             Spacer()
+                            
                             VStack{
-                                Text("Teams \(sportsTag[game.sportKey]!)")
+                                Text("Teams")
                                 Divider()
                                 Text(game.teams[0])
                                     .font(.system(size: 15))
@@ -52,6 +53,7 @@ struct UpComing: View {
                                 Spacer()
                             VStack{
                                Spacer()
+                                //Away
                                 Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
                                 Divider()
                                 Text("-\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
@@ -59,6 +61,7 @@ struct UpComing: View {
                             }
                             VStack{
                                 Spacer()
+                                //Home
                                 Text("-\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
                                 Divider()
                                 Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")

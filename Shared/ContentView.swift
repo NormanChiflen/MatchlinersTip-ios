@@ -39,7 +39,13 @@ struct LoggedInView : View {
     @EnvironmentObject var session: SessionStore
     @State private var selection = 0
     @State var searchText = ""
-   
+    var base: Response {
+        var temp: Response!
+        apiBaseball().getOdds { (games) in
+            temp = games[0]
+        }
+        return temp
+    }
     //Home Screen//
     var body: some View{
         TabView(selection: $selection) {
@@ -79,6 +85,7 @@ struct HomeTabView : View {
     @State var OddsAmount = []
     @State private var hidesheet = false
     @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
+
     var ScoreHistory: [Double] {
         var history = [Double]()
         //Get Score array from firestore
@@ -101,31 +108,8 @@ struct HomeTabView : View {
             self.showTable.toggle()
         }
     }
-    var gameEnded: [String] {
-        var result = [String]()
-        var ended = true
-        session.onGoingBets.forEach { bet in
-            games.forEach { game in
-                if game.id == bet.id {
-                    ended = false
-                }
-            }
-            if ended == false {
-                
-                let empty = "Game has not ended"
-                result.append(empty)
-            }
-            if ended == true{
-                //If a game ended, create a list of games ended
-                let answer = "\(bet.time)"
-                result.append(answer)
-            }
-            ended = true
-        }
-        return result
-    }
     var body: some View {
-       
+        
         ZStack{
             List{
                 VStack{
@@ -211,8 +195,7 @@ struct HomeTabView : View {
                                 .offset(x: -5.0, y: 5.0)
                                 .font(.custom("NotoSans-Medium", size: 25))
                         .padding()
-                    UpComing(games: games,gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-                            
+                    UpComing(games: games, gamed: $gamed, bottomSheetShown: $bottomSheetShown)
                     //Show all games that matches with preference
                 }
             }
@@ -220,6 +203,7 @@ struct HomeTabView : View {
                 GeometryReader{ geometry in
                     BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
+                            let commenceTime = gamed.commenceTime
                             let id = gamed.id
                             let win1 = gamed.sites[0].odds.h2H[0]
                             let lose1  = -gamed.sites[0].odds.h2H[0]
@@ -228,7 +212,7 @@ struct HomeTabView : View {
                             let OddsAmount = [win1, lose2, win2, lose1]
                             let team_Name1 = gamed.teams[0]
                             let team_Name2 = gamed.teams[1]
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower)
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower, commenceTime: commenceTime)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))

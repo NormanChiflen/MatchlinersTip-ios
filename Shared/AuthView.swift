@@ -8,12 +8,17 @@ import UIKit
 import SwiftUI
 
 struct signUpView : View {
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
     @State var email: String = ""
     @State var displayName: String = ""
     @State var state: String = ""
     @State var error: String = ""
+   // @State var stateIndex = 0
     
-    var states = ["Alabama",
+    let states: [String] = ["Alabama",
             "Alaska",
             "Arizona",
             "Arkansas",
@@ -69,7 +74,9 @@ struct signUpView : View {
         
         Image("Logo")
             .padding()
-
+        VStack{
+            
+        
         VStack(alignment: .leading, spacing: 20){
             Text("Create Account")
                 .font(.custom("NotoSans-bold", size: 22))
@@ -80,15 +87,22 @@ struct signUpView : View {
             TextField("Email Address", text: $email).autocapitalization(.none).disableAutocorrection(true)
                 .padding()
 //            Text("    Pick Your State:").foregroundColor(.gray)
-            TextField("State", text: $state).autocapitalization(.none).disableAutocorrection(true)
-                .padding()
-
-        }
-            .padding(.horizontal)
-            .padding(.vertical, 34)
+        }.padding(.horizontal)
+        .padding(.vertical, 34)
+        VStack{
+            Form {
+            Section{
+                Picker(selection: $state, label: Text("State")){
+                        ForEach(states, id: \.self){
+                            state in
+                            Text(state).tag(state)
+                        }}}.background(Color.white)
+            }.background(Color.white)
+        }}
+            
         Spacer()
         NavigationLink(destination: ageVerifyView(email: email, displayName: displayName, state: state) ) {Text( "Next")}
-            .disabled(email.isEmpty || displayName.isEmpty || state.isEmpty)
+            .disabled(email.isEmpty || displayName.isEmpty)
             .buttonStyle(largeButton() )
         
         if(error != "") {

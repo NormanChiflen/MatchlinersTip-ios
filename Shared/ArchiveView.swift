@@ -23,10 +23,11 @@ struct ArchiveView : View {
             HStack (alignment: .top, spacing: 10) {
                 List{
                     VStack{
-                        Text("Win")
+                        Text("Won")
                             .foregroundColor(.green)
                             .padding()
                         OnGoing()
+                        //betsWon()
                     }
                 }
                 Divider()
@@ -36,6 +37,7 @@ struct ArchiveView : View {
                             .foregroundColor(.red)
                             .padding()
                         OnGoing()
+                        //betsLost()
                     }
                 }
             }

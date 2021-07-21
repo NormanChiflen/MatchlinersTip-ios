@@ -36,7 +36,7 @@ struct BettingView: View {
     @State var runningNumber = 0
     @State private var WinningAmount = ""
     @State private var Odds = 0
-    @State var OddsAmount: [Double]
+    @State var OddsAmount: [Double?]
     @State var showingAlert = false
     @State var team_Name1 = ""
     @State var team_Name2 = ""
@@ -45,53 +45,55 @@ struct BettingView: View {
     @Binding var bottomSheetShown: Bool
     @State var id: String = ""
     @State var buyingPower: Double = 0
+    @State var commenceTime: Int = 0
     
     var purchase: String {
+        //pur referes to team that will win according to the option selected
         if(Odds == 0){
-            let pur = "Winner: \(team_Name1)"
+            let pur = "\(team_Name1)"
             return pur
         }
         if(Odds == 1){
-            let pur = "Loser: \(team_Name1)"
+            let pur = "\(team_Name2)"
             return pur
         }
         if(Odds == 2){
-            let pur = "Winner: \(team_Name2)"
+            let pur = "\(team_Name2)"
             return pur
         }
         if(Odds == 3){
-            let pur = "Loser: \(team_Name2)"
+            let pur = "\(team_Name1)"
             return pur
         }
         return ""
     }
     
     var ExpectedEarnings: Double {
-    let OddSelection = Double(OddsAmount[Odds])
-    let BettingAmount = Double(value) ?? 0
-    var BettingValue = Double(0)
-        if(OddSelection < 0){
-            BettingValue = BettingAmount / abs(OddSelection)
-        }
-        else{
-            BettingValue = BettingAmount * OddSelection
-        }
-    let Winnings = BettingValue
-    return Winnings
+        let OddSelection = Double(OddsAmount[Odds] ?? 0.0)
+        let BettingAmount = Double(value) ?? 0
+        var BettingValue = Double(0)
+            if(OddSelection < 0){
+                BettingValue = BettingAmount / abs(OddSelection)
+            }
+            else{
+                BettingValue = BettingAmount * OddSelection
+            }
+        let Winnings = BettingValue
+        return Winnings
     }
     
     var TotalGain: Double {
-    let OddSelection = Double(OddsAmount[Odds])
-    let BettingAmount = Double(value) ?? 0
-    var BettingValue = Double(0)
-        if(OddSelection < 0){
-            BettingValue = BettingAmount / abs(OddSelection)
-        }
-        else{
-            BettingValue = BettingAmount * OddSelection
-        }
-    let TotalGain = BettingValue + BettingAmount
-    return TotalGain
+        let OddSelection = Double(OddsAmount[Odds] ?? 0.0)
+        let BettingAmount = Double(value) ?? 0
+        var BettingValue = Double(0)
+            if(OddSelection < 0){
+                BettingValue = BettingAmount / abs(OddSelection)
+            }
+            else{
+                BettingValue = BettingAmount * OddSelection
+            }
+        let TotalGain = BettingValue + BettingAmount
+        return TotalGain
     }
     
     let buttons: [[CalcButton]] = [
@@ -100,9 +102,22 @@ struct BettingView: View {
         [.one, .two, .three],
         [.decimal ,.zero, .clear],
     ]
+    var TimeStamp: String {
+            let epocTime = TimeInterval(commenceTime)
+            let convertdate = Date(timeIntervalSince1970: epocTime)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm'Z'"
+            let strDate = dateFormatter.string(from: convertdate)
+            return strDate
+    }
 
     var body: some View {
         VStack {
+//            HStack{
+//                Text(TimeStamp)
+//            }
             HStack(spacing: 50){
                 VStack{
                     Text("Gain")
@@ -127,7 +142,7 @@ struct BettingView: View {
             Section{
                 Picker("Odd Selection", selection: $Odds){
                     ForEach(0..<OddsAmount.count){
-                        Text("\(self.OddsAmount[$0], specifier: "%.3f")%")
+                        Text("\(self.OddsAmount[$0] ?? 0.0, specifier: "%.3f")%")
                     }
                 }.pickerStyle(SegmentedPickerStyle())
             }
@@ -161,7 +176,7 @@ struct BettingView: View {
                     Alert(title: Text("Not enough points"), message: Text("You do not have enough points to place this bet"), dismissButton: .default(Text("Got it!").foregroundColor(.black)))
                 }
                 .sheet(isPresented: $showSheet) {
-                    let SelectedOdd = Double(OddsAmount[Odds])
+                    let SelectedOdd = Double(OddsAmount[Odds] ?? 0.0)
                     ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, date: Date(), showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase)
                         }
                 .buttonStyle(largeButton() )

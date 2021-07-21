@@ -9,56 +9,13 @@ import Foundation
 //import Alamofire
 
 class apiBaseball {
-//    @State private var API_KEY = "fdddc894261e9b8b7252cef12463faec"
-//    let MAIN_URL = "https://api-baseball.p.rapidapi.com/odds?league=1&season=2021"
-//
-//        let headers: HTTPHeaders = [
-//            "X-RapidAPI-Host": "api-baseball.p.rapidapi.com",
-//            "X-RapidAPI-Key": "1dda1367c8msh5ddb3ecac2ebc79p1851d7jsn59ecfb40c3a3"
-//        ]
-//
-//    func getLeague() {
-//
-//        let url = MAIN_URL
-//
-//        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON{ response in
-//              if let JSON = response.value {
-//                  if response.response?.statusCode == 200{
-////                      completionHandler(JSON as AnyObject?, nil)
-//                    print(JSON)
-//                  }else if(response.response?.statusCode == 401){
-////                        completionHandler(JSON as AnyObject?, nil)
-//                    print(JSON)
-//                  }
-//              }
-//              else{
-//                  if response.response?.statusCode == 401 {
-//                      print("Request timed out.")
-//                  }
-//                  else {
-//                    print(response.error)
-//                  }
-//              }
-//         }
-//    }
-//    func jsonToString(json: AnyObject){
-//            do {
-//                let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
-//                let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-//                print(convertedString) // <-- here is ur string
-//
-//            } catch let myJSONError {
-//                print(myJSONError)
-//            }
-//
-//        }
-    func getGames() {
+    func getOdds(completion: @escaping ([Response]) -> () ) {
         let headers = [
             "x-rapidapi-key": "1dda1367c8msh5ddb3ecac2ebc79p1851d7jsn59ecfb40c3a3",
             "x-rapidapi-host": "api-baseball.p.rapidapi.com"
         ]
 
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api-baseball.p.rapidapi.com/odds?league=1")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api-baseball.p.rapidapi.com/odds?season=2021&league=1")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -70,29 +27,50 @@ class apiBaseball {
                 print(error)
             } else {
                 let httpResponse = response as? HTTPURLResponse
-                print(httpResponse)
+//                print(httpResponse ?? "")
             }
             guard let jsonData = data else{
                 print("URLSession dataTask error:", error ?? "nil")
                 return
             }
+            enum DateError: String, Error {
+                case invalidDate
+            }
             let decoder = JSONDecoder()
+            
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+            decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
+                let container = try decoder.singleValueContainer()
+                let dateStr = try container.decode(String.self)
+
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+                if let date = formatter.date(from: dateStr) {
+                    return date
+                }
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+                if let date = formatter.date(from: dateStr) {
+                    return date
+                }
+                throw DateError.invalidDate
+            })
             do {
-                let gameResponse = try decoder.decode(BaseballOdds.self, from:jsonData)
-                print(gameResponse)
-//                guard let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String:Any] else { return }
-//                let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
-//                let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-//                print(convertedString) // <-- here is ur string
-//                for item in json {
-//                    print(item)
-//                }
+//                let json = try JSONSerialization.jsonObject(with: jsonData, options: [])
+//               let Jdata = Data(json.utf8)
 //                print(json)
-            } catch{
-                print("Error in JSON parsing")
+                let baseballOdds = try decoder.decode(BaseballOdds.self, from: jsonData)
+                print(baseballOdds)
+                DispatchQueue.main.async {
+    //                print(games.data)
+                    completion(baseballOdds.response)
+                }
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
             }
         })
-
         dataTask.resume()
     }
 }

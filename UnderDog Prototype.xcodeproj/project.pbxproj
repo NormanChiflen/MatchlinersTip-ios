@@ -41,8 +41,6 @@
 		EBAE20F0266F32DE00132688 /* apiBaseball.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE20EE266F32DE00132688 /* apiBaseball.swift */; };
 		EBAE2131267179D500132688 /* baseballOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE2130267179D500132688 /* baseballOdds.swift */; };
 		EBAE2132267179D500132688 /* baseballOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE2130267179D500132688 /* baseballOdds.swift */; };
-		EBAE213C267190B200132688 /* baseballTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE213B267190B200132688 /* baseballTest.swift */; };
-		EBAE213D267190B200132688 /* baseballTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE213B267190B200132688 /* baseballTest.swift */; };
 		EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */; };
 		EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC29419264E55AA00454268 /* OnGoing.swift */; };
@@ -51,6 +49,12 @@
 		EBC2942A265312D300454268 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC29428265312D300454268 /* ArchiveView.swift */; };
 		EBC2943826531A6000454268 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2943726531A6000454268 /* OrderDetails.swift */; };
 		EBC2943926531A6000454268 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2943726531A6000454268 /* OrderDetails.swift */; };
+		EBD44D5C26A7B5E100240AB1 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D5B26A7B5E000240AB1 /* GameResult.swift */; };
+		EBD44D5D26A7B5E100240AB1 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D5B26A7B5E000240AB1 /* GameResult.swift */; };
+		EBD44D7926A7F6D800240AB1 /* betsWon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7826A7F6D800240AB1 /* betsWon.swift */; };
+		EBD44D7A26A7F6D800240AB1 /* betsWon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7826A7F6D800240AB1 /* betsWon.swift */; };
+		EBD44D8026A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
+		EBD44D8126A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
 		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
 		EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
@@ -121,11 +125,13 @@
 		EBA59B5D265C5F950038026C /* PopularEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEvent.swift; sourceTree = "<group>"; };
 		EBAE20EE266F32DE00132688 /* apiBaseball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apiBaseball.swift; sourceTree = "<group>"; };
 		EBAE2130267179D500132688 /* baseballOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseballOdds.swift; sourceTree = "<group>"; };
-		EBAE213B267190B200132688 /* baseballTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseballTest.swift; sourceTree = "<group>"; };
 		EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrder.swift; sourceTree = "<group>"; };
 		EBC29419264E55AA00454268 /* OnGoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoing.swift; sourceTree = "<group>"; };
 		EBC29428265312D300454268 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 		EBC2943726531A6000454268 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
+		EBD44D5B26A7B5E000240AB1 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		EBD44D7826A7F6D800240AB1 /* betsWon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = betsWon.swift; sourceTree = "<group>"; };
+		EBD44D7F26A7F6E400240AB1 /* betsLost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = betsLost.swift; sourceTree = "<group>"; };
 		EBD50AC926082EF8005B740E /* OddsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsApi.swift; sourceTree = "<group>"; };
 		EBD50AD0260831AD005B740E /* UpComing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComing.swift; sourceTree = "<group>"; };
 		EBD50AD826083CD8005B740E /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
@@ -199,6 +205,9 @@
 				EBBBA82A264E235A0017A450 /* ConfirmOrder.swift */,
 				EB090291262F88BA00E7D7DA /* BottomSheetView.swift */,
 				EBC2943726531A6000454268 /* OrderDetails.swift */,
+				EBD44D5B26A7B5E000240AB1 /* GameResult.swift */,
+				EBD44D7826A7F6D800240AB1 /* betsWon.swift */,
+				EBD44D7F26A7F6E400240AB1 /* betsLost.swift */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -240,7 +249,6 @@
 				EBC29428265312D300454268 /* ArchiveView.swift */,
 				EBA59B5D265C5F950038026C /* PopularEvent.swift */,
 				EB9B0CE8266056DC0093E620 /* SearchEventsView.swift */,
-				EBAE213B267190B200132688 /* baseballTest.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBAE20EF266F32DE00132688 /* apiBaseball.swift in Sources */,
+				EBD44D8026A7F6E400240AB1 /* betsLost.swift in Sources */,
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
@@ -548,7 +557,6 @@
 				EBC2941A264E55AA00454268 /* OnGoing.swift in Sources */,
 				EBE6DB4525FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC29429265312D300454268 /* ArchiveView.swift in Sources */,
-				EBAE213C267190B200132688 /* baseballTest.swift in Sources */,
 				EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50AD926083CD8005B740E /* Initial.swift in Sources */,
 				EBAE2131267179D500132688 /* baseballOdds.swift in Sources */,
@@ -558,6 +566,8 @@
 				EBC2943826531A6000454268 /* OrderDetails.swift in Sources */,
 				EBE6DB3725FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBA59B5E265C5F950038026C /* PopularEvent.swift in Sources */,
+				EBD44D7926A7F6D800240AB1 /* betsWon.swift in Sources */,
+				EBD44D5C26A7B5E100240AB1 /* GameResult.swift in Sources */,
 				EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */,
 				EB090292262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
 				EB822D4025EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
@@ -569,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBAE20F0266F32DE00132688 /* apiBaseball.swift in Sources */,
+				EBD44D8126A7F6E400240AB1 /* betsLost.swift in Sources */,
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
 				EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
@@ -579,7 +590,6 @@
 				EBC2941B264E55AA00454268 /* OnGoing.swift in Sources */,
 				EBE6DB4625FAF3E1007C2291 /* AuthView.swift in Sources */,
 				EBC2942A265312D300454268 /* ArchiveView.swift in Sources */,
-				EBAE213D267190B200132688 /* baseballTest.swift in Sources */,
 				EB090285262A7D5D00E7D7DA /* profileItem.swift in Sources */,
 				EBD50ADA26083CD8005B740E /* Initial.swift in Sources */,
 				EBAE2132267179D500132688 /* baseballOdds.swift in Sources */,
@@ -589,6 +599,8 @@
 				EBC2943926531A6000454268 /* OrderDetails.swift in Sources */,
 				EBE6DB3825FAEE90007C2291 /* SessionStore.swift in Sources */,
 				EBA59B5F265C5F950038026C /* PopularEvent.swift in Sources */,
+				EBD44D7A26A7F6D800240AB1 /* betsWon.swift in Sources */,
+				EBD44D5D26A7B5E100240AB1 /* GameResult.swift in Sources */,
 				EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */,
 				EB090293262F88BA00E7D7DA /* BottomSheetView.swift in Sources */,
 				EB822D4125EB1A5700018FB2 /* UnderDog_PrototypeApp.swift in Sources */,
