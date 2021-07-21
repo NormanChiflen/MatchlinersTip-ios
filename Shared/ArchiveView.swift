@@ -26,8 +26,8 @@ struct ArchiveView : View {
                         Text("Won")
                             .foregroundColor(.green)
                             .padding()
-                        OnGoing()
-                        //betsWon()
+//                        OnGoing()
+                        betsWon()
                     }
                 }
                 Divider()
@@ -36,8 +36,8 @@ struct ArchiveView : View {
                         Text("Lost")
                             .foregroundColor(.red)
                             .padding()
-                        OnGoing()
-                        //betsLost()
+//                        OnGoing()
+                        betsLost()
                     }
                 }
             }
@@ -45,8 +45,8 @@ struct ArchiveView : View {
         .font(.custom("NotoSans-Medium", size: 25))
     }
 }
-struct ArchiveView_Previews: PreviewProvider {
-    static var previews: some View {
-        ArchiveView()
-    }
-}
+//struct ArchiveView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ArchiveView()
+//    }
+//}

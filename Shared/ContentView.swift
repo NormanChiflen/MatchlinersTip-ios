@@ -155,14 +155,6 @@ struct HomeTabView : View {
                                 .bold()
                         }
                     }
-//                    On Going Bets checker
-//                    Divider()
-//                    VStack{
-//                        ForEach(gameEnded,id: \.self){
-//                            gam in
-//                            Text("\(gam)")
-//                        }
-//                    }
                     Divider()
                     //Ongoing Bets
                     VStack{
@@ -338,69 +330,6 @@ struct HomeTabView : View {
     }
 }
 
-struct PopularEventsView: View {
-    @State var posts: [Initial.Datas] = []
-    @Binding var text: String
-    @State private var isEditing = false
-    var body: some View {
-        VStack{
-            Text("Popular Events")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .padding()
-            HStack {
-                    TextField("Search ...", text: $text)
-                        .padding(7)
-                        .padding(.horizontal, 25)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                        .overlay(
-                            HStack {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.gray)
-                                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading, 8)
-                         
-                                if isEditing {
-                                    Button(action: {
-                                        self.text = ""
-                                    }) {
-                                        Image(systemName: "multiply.circle.fill")
-                                            .foregroundColor(.gray)
-                                            .padding(.trailing, 8)
-                                    }
-                                }
-                            }
-                        )
-                        .padding(.horizontal, 10)
-                        .onTapGesture {
-                            self.isEditing = true
-                        }
-         
-                    if isEditing {
-                        Button(action: {
-                            self.isEditing = false
-                            self.text = ""
-         
-                        }) {
-                            Text("Cancel")
-                        }
-                        .padding(.trailing, 10)
-                        .transition(.move(edge: .trailing))
-                        .animation(.default)
-                    }
-            }
-            List(posts) { post in
-                Text(post.title)
-            }
-//            .onAppear{
-//                OddsApi().getPosts {
-//                    (posts) in
-//                    self.posts = posts
-//                }
-//            }
-        }
-    }
-}
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     var body: some View{
