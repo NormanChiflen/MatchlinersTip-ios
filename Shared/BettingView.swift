@@ -130,9 +130,6 @@ struct BettingView: View {
                 }
             }
             .padding(.bottom)
-            HStack{
-                Text("Order ID: \(id)")
-            }
             HStack(spacing: 100){
                 Text("\(team_Name1)")
                     .foregroundColor(.lightPurple)
