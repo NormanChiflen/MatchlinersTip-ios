@@ -78,4 +78,38 @@ class UserProfileRepository: ObservableObject {
             }
         }
     }
+    func updateScore(userId: String ,NewScore: Double,completion: @escaping (_ Nscore: [Double] ,_ error: Error?) -> Void){
+        let userReference = db.collection("users").document(userId)
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let userDocument: DocumentSnapshot
+            do {
+                try userDocument = transaction.getDocument(userReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldscore = userDocument.data()?["score"] as? [Double] else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve score from snapshot \(userDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            var score = oldscore
+            score.append(NewScore)
+            transaction.updateData(["score": score], forDocument: userReference)
+            return score
+        }) { (object, error) in
+            if let error = error {
+                print("Error updating score: \(error)")
+            } else {
+                print("Score is updated \(object!)")
+            }
+        }
+    }
 }

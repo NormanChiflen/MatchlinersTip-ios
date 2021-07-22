@@ -22,59 +22,11 @@ class SessionStore: ObservableObject {
     @Published var LBets: OrderDetails?
     @Published var wonBets: [OrderDetails] = []
     @Published var lostBets: [OrderDetails] = []
-    @Published var gameResults: [GameResult] = []
+    @Published var mlbgameResults: [MLBGameResult] = []
     private var profileRepository = UserProfileRepository()
     private var orderRespository = OrderRepository()
     private var resultRespository = ResultRepository()
     var handle: AuthStateDidChangeListenerHandle?
-    
-    func PayOutFunction(userId: String) {
-        if(onGoingBets.count > 0){
-            onGoingBets.forEach {
-                child in
-                gameResults.forEach {
-                    game in
-                    if (child.time == game.date && child.team_Name1 == game.home_team && child.team_Name2 == game.away_team){
-                        if child.purchase == game.winner {
-                            //Update New Score
-                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
-                            let PrevScore = profile?.score[currentScoreIndex]
-                            let UpdateScore = PrevScore ?? 0.0 + child.ExpectedEarning
-                            profile?.score.append(UpdateScore)
-                            //Update Betting History
-                            self.orderRespository.WonOrder(userId: userId, order: child) { (betsWon, error) in
-                                if let error = error {
-                                  print("Error while fetching the user profile: \(error)")
-                                  return
-                                }
-                                self.WBets = betsWon
-                            }
-                            //Delete onGoing Bets
-                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
-                            
-                        }
-                        else {
-                            //Update New Score
-                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
-                            let PrevScore = profile?.score[currentScoreIndex]
-                            let UpdateScore = PrevScore ?? 0.0 - child.ExpectedEarning
-                            profile?.score.append(UpdateScore)
-                            //Update Betting History
-                            self.orderRespository.LostOrder(userId: userId, order: child) { (LostBets, error) in
-                                if let error = error {
-                                  print("Error while fetching the user profile: \(error)")
-                                  return
-                                }
-                                self.LBets = LostBets
-                            }
-                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     
     func listen() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
@@ -109,8 +61,8 @@ class SessionStore: ObservableObject {
                         print("Error finding finished games: \(error)")
                         return
                     }
-                    self.gameResults = gameResults
-                    print(gameResults)
+                    self.mlbgameResults = gameResults
+//                    print(self.mlbgameResults)
                 }
                 //Check payout base on OngoingBets and Results
                 self.PayOutFunction(userId: user.uid)
@@ -122,7 +74,7 @@ class SessionStore: ObservableObject {
                     }
                     self.lostBets = lbets!
                 }
-                self.orderRespository.fetchLostBets(userId: user.uid) { (wbets ,error) in
+                self.orderRespository.fetchWonBets(userId: user.uid) { (wbets ,error) in
                     if let error = error {
                         print("\(error)")
                         return
@@ -133,6 +85,66 @@ class SessionStore: ObservableObject {
                 self.session = nil
             }
         })
+    }
+    func PayOutFunction(userId: String) {
+        if(onGoingBets.count > 0){
+            onGoingBets.forEach {
+                child in
+                mlbgameResults.forEach {
+                    game in
+                    if (child.time == game.date && child.team_Name1 == game.home_team && child.team_Name2 == game.away_team){
+                        if child.purchase == game.winner {
+                            //Update New Score
+                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
+                            let PrevScore = profile?.score[currentScoreIndex]
+                            print(PrevScore)
+                            let UpdateScore = PrevScore ?? 0.0 + child.ExpectedEarning
+                            print(UpdateScore)
+                            self.profileRepository.updateScore(userId: userId, NewScore: UpdateScore) { (UpdatedScore, error) in
+                                if let error = error {
+                                    print("Error while updating score: \(error)")
+                                    return
+                                }
+                                self.profile?.score = UpdatedScore
+                            }
+                            //Update Betting History
+                            self.orderRespository.WonOrder(userId: userId, order: child) { (betsWon, error) in
+                                if let error = error {
+                                  print("Error while fetching the user profile: \(error)")
+                                  return
+                                }
+                                self.WBets = betsWon
+                            }
+                            //Delete onGoing Bets
+                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
+                            
+                        }
+                        else {
+                            //Update New Score
+                            let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
+                            let PrevScore = profile?.score[currentScoreIndex]
+                            let UpdateScore = PrevScore ?? 0.0 - child.ExpectedEarning
+                            self.profileRepository.updateScore(userId: userId,NewScore: UpdateScore) { (UpdatedScore, error) in
+                                if let error = error {
+                                    print("Error while updating score: \(error)")
+                                    return
+                                }
+                                self.profile?.score = UpdatedScore
+                            }
+                            //Update Betting History
+                            self.orderRespository.LostOrder(userId: userId, order: child) { (LostBets, error) in
+                                if let error = error {
+                                  print("Error while fetching the user profile: \(error)")
+                                  return
+                                }
+                                self.LBets = LostBets
+                            }
+                            self.orderRespository.deleteOrder(userId: userId, orderID: child.id)
+                        }
+                    }
+                }
+            }
+        }
     }
     func signUp(email: String, password: String, displayName: String ,State: String, age: Int, score: [Double], NFL: Bool, AFL: Bool, MLB: Bool, NBA: Bool, NHL: Bool, Euroleague: Bool, MMA: Bool, NRL: Bool, EPL: Bool, MLS: Bool, completion: @escaping (_ profile: UserProfile?,_ pref: preference? ,_ error: Error?) -> Void) {
       Auth.auth().createUser(withEmail: email, password: password) { (result, error) in

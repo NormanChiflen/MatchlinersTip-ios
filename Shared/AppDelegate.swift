@@ -11,8 +11,8 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UINavigationControllerDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "AppIcon")
         FirebaseApp.configure()
+        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "AppIcon")
         return true
         
     }
