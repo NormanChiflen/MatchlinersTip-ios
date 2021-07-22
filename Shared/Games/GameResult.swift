@@ -47,8 +47,9 @@ class ResultRepository: ObservableObject {
                     } else {
                         for document in querySnapshot!.documents {
                             let result = try? document.data(as: MLBGameResult.self)
-                            evaluateGames.append(result!)
-//                            evaluateGames.append(result!)
+                            if result != nil{
+                                evaluateGames.append(result!)
+                            }
                         }
                     }
 //            print(evaluateGames)

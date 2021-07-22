@@ -123,7 +123,9 @@ class SessionStore: ObservableObject {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
+                            print(PrevScore)
                             let UpdateScore = PrevScore ?? 0.0 - child.ExpectedEarning
+                            print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId,NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {
                                     print("Error while updating score: \(error)")

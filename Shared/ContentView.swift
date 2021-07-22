@@ -196,7 +196,7 @@ struct HomeTabView : View {
                     BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
                             let commenceTime = gamed.commenceTime
-                            let id = gamed.id
+                            let id = UUID().uuidString
                             let win1 = gamed.sites[0].odds.h2H[0]
                             let lose1  = -gamed.sites[0].odds.h2H[0]
                             let win2 = gamed.sites[0].odds.h2H[1]

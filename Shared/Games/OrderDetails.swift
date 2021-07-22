@@ -34,7 +34,7 @@ class OrderRepository: ObservableObject {
     }
     func WonOrder(userId: String,order: OrderDetails, completion: @escaping (_ order: OrderDetails?,_ error: Error?) -> Void) {
         do {
-            let _ = try db.collection("users").document(userId).collection("Bets Won").document(order.time).setData(from: order)
+            let _ = try db.collection("users").document(userId).collection("Bets Won").document(order.id).setData(from: order)
             completion(order, nil)
         }
         catch let error {
@@ -50,29 +50,33 @@ class OrderRepository: ObservableObject {
         } else {
             for document in querySnapshot!.documents {
                 let order = try? document.data(as: OrderDetails.self)
-                allBetsWon.append(order!)
+                if order != nil {
+                    allBetsWon.append(order!)
+                }
             }
         }
           completion(allBetsWon, err)
         }
 
 
-        db.collection("users").document(userId).collection("Bets Won").addSnapshotListener { querySnapshot, error in
-                var allBetsWon: [OrderDetails] = []
-            guard querySnapshot != nil else {
-                    print("Error fetching Bets Won: \(error!)")
-                    return
-                }
-                for document in querySnapshot!.documents {
-                    let order = try? document.data(as: OrderDetails.self)
-                    allBetsWon.append(order!)
-                }
-                completion(allBetsWon, error)
-            }
+//        db.collection("users").document(userId).collection("Bets Won").addSnapshotListener { querySnapshot, error in
+//                var allBetsWon: [OrderDetails] = []
+//            guard querySnapshot != nil else {
+//                    print("Error fetching Bets Won: \(error!)")
+//                    return
+//                }
+//                for document in querySnapshot!.documents {
+//                    let order = try? document.data(as: OrderDetails.self)
+//                    if order != nil{
+//                        allBetsWon.append(order!)
+//                    }
+//                }
+//                completion(allBetsWon, error)
+//            }
     }
     func LostOrder(userId: String,order: OrderDetails, completion: @escaping (_ order: OrderDetails?,_ error: Error?) -> Void) {
         do {
-            let _ = try db.collection("users").document(userId).collection("Bets Lost").document(order.time).setData(from: order)
+            let _ = try db.collection("users").document(userId).collection("Bets Lost").document(order.id).setData(from: order)
             completion(order, nil)
         }
         catch let error {
@@ -88,25 +92,33 @@ class OrderRepository: ObservableObject {
         } else {
             for document in querySnapshot!.documents {
                 let order = try? document.data(as: OrderDetails.self)
-                allBetsLost.append(order!)
+                if order != nil{
+                    allBetsLost.append(order!)
+                }
             }
         }
           completion(allBetsLost, err)
         }
 
 
-        db.collection("users").document(userId).collection("Bets Lost").addSnapshotListener { querySnapshot, error in
-                var allBetsLost: [OrderDetails] = []
-            guard querySnapshot != nil else {
-                    print("Error fetching onGoingBets: \(error!)")
-                    return
-                }
-                for document in querySnapshot!.documents {
-                    let order = try? document.data(as: OrderDetails.self)
-                    allBetsLost.append(order!)
-                }
-                completion(allBetsLost, error)
-            }
+//        db.collection("users").document(userId).collection("Bets Lost").addSnapshotListener { querySnapshot, error in
+//                var allBetsLost: [OrderDetails] = []
+//            guard querySnapshot != nil else {
+//                    print("Error fetching onGoingBets: \(error!)")
+//                    return
+//                }
+//            for document in querySnapshot!.documents {
+//                    let order = try? document.data(as: OrderDetails.self)
+//                    if order != nil {
+//                        allBetsLost.append(order!)
+//                    }
+//                }
+//                completion(allBetsLost, error)
+//            }
+//            guard let document = documentSnapshot else {
+//                print("Error fetching document: \(error!)")
+//                return
+//            }
     }
     func fetchOrder(userId: String, completion: @escaping ( _ OnGoingBets: [OrderDetails]?, _ error: Error?) -> Void) {
         db.collection("users").document(userId).collection("On Going Bet").getDocuments() { (querySnapshot, err) in

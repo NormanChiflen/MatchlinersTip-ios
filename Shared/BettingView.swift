@@ -115,9 +115,6 @@ struct BettingView: View {
 
     var body: some View {
         VStack {
-//            HStack{
-//                Text(TimeStamp)
-//            }
             HStack(spacing: 50){
                 VStack{
                     Text("Gain")
@@ -133,6 +130,9 @@ struct BettingView: View {
                 }
             }
             .padding(.bottom)
+            HStack{
+                Text("Order ID: \(id)")
+            }
             HStack(spacing: 100){
                 Text("\(team_Name1)")
                     .foregroundColor(.lightPurple)
