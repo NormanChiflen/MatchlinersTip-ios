@@ -106,9 +106,11 @@ struct BettingView: View {
             let epocTime = TimeInterval(commenceTime)
             let convertdate = Date(timeIntervalSince1970: epocTime)
             let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-            dateFormatter.locale = NSLocale.current
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm'Z'"
+//            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+//            dateFormatter.locale = NSLocale.current
+//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm'Z'"
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
             let strDate = dateFormatter.string(from: convertdate)
             return strDate
     }
@@ -174,7 +176,7 @@ struct BettingView: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds] ?? 0.0)
-                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, date: Date(), showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase)
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, Todate: date, date: TimeStamp, showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase)
                         }
                 .buttonStyle(largeButton() )
                 .padding()

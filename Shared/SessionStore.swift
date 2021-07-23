@@ -62,10 +62,12 @@ class SessionStore: ObservableObject {
                         return
                     }
                     self.mlbgameResults = gameResults
-//                    print(self.mlbgameResults)
+                    print(self.mlbgameResults)
+                    self.PayOutFunction(userId: user.uid)
                 }
                 //Check payout base on OngoingBets and Results
-                self.PayOutFunction(userId: user.uid)
+//                self.PayOutFunction(userId: user.uid)
+                print("Got here")
                 //Betting history update in listen handler
                 self.orderRespository.fetchLostBets(userId: user.uid) { (lbets ,error) in
                     if let error = error {
@@ -87,18 +89,22 @@ class SessionStore: ObservableObject {
         })
     }
     func PayOutFunction(userId: String) {
+//        print(onGoingBets)
         if(onGoingBets.count > 0){
             onGoingBets.forEach {
                 child in
+//                print(mlbgameResults)
                 mlbgameResults.forEach {
                     game in
-                    if (child.time == game.date && child.team_Name1 == game.home_team && child.team_Name2 == game.away_team){
+                    print(game)
+                    if (child.time == game.date && child.team_Name2 == game.home_team && child.team_Name1 == game.away_team){
                         if child.purchase == game.winner {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
+                            print("Got Here")
                             print(PrevScore)
-                            let UpdateScore = PrevScore ?? 0.0 + child.ExpectedEarning
+                            let UpdateScore = (PrevScore ?? 0.0) + (child.ExpectedEarning)
                             print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId, NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {
@@ -123,8 +129,9 @@ class SessionStore: ObservableObject {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
+                            print("Got Here")
                             print(PrevScore)
-                            let UpdateScore = PrevScore ?? 0.0 - child.ExpectedEarning
+                            let UpdateScore = (PrevScore ?? 0.0) - (child.ExpectedEarning)
                             print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId,NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {

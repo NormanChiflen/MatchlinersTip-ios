@@ -17,7 +17,8 @@ struct ConfirmOrder: View {
     @EnvironmentObject var session: SessionStore
     @State var isPressed: Bool = true
     @State var stringDate = ""
-    @State var date: Date
+    @State var Todate: Date
+    @State var date: String = ""
     @Binding var showSheet: Bool
     @State var orderDetail: OrderDetails?
     @State var userID: String = ""
@@ -42,8 +43,12 @@ struct ConfirmOrder: View {
                             .foregroundColor(.white)
                     }
                     .padding()
+//                    Section{
+//                        Text("\(stringDate)")
+//                            .foregroundColor(.white)
+//                    }
                     Section{
-                        Text("\(stringDate)")
+                        Text("Game Date:\(date)")
                             .foregroundColor(.white)
                     }
                     Section{
@@ -105,7 +110,7 @@ struct ConfirmOrder: View {
             .onAppear(perform: loadDate)
     }
     func loadDate() {
-        stringDate = dateFormatter.string(from: date)
+        stringDate = dateFormatter.string(from: Todate)
         
     }
     func placeOrder() {
