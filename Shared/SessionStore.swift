@@ -31,9 +31,9 @@ class SessionStore: ObservableObject {
     func listen() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
-                print("User displayName: \(String(describing: user.displayName))")
+//                print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
-                self.profileRepository.listenProfile(userId: user.uid) { (profile, error) in
+                self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
                   if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     return
@@ -52,8 +52,9 @@ class SessionStore: ObservableObject {
                     print("Error while fetching order: \(error)")
                     return
                   }
-
-                    self.onGoingBets = onGoingBets!
+                  self.onGoingBets = onGoingBets!
+                  //Testing for immediate payout
+                  self.PayOutFunction(userId: user.uid)
                 }
                 //Get games that are completed
                 self.resultRespository.findFinishedGames() { (gameResults , error) in
@@ -62,10 +63,18 @@ class SessionStore: ObservableObject {
                         return
                     }
                     self.mlbgameResults = gameResults
-                    //Payout base on OngoingBets and Results
 //                    self.PayOutFunction(userId: user.uid)
                 }
+                //Payout base on OngoingBets and Results
                 self.PayOutFunction(userId: user.uid)
+                
+                self.profileRepository.listenProfile(userId: user.uid) { (profile, error) in
+                  if let error = error {
+                    print("Error while fetching the user profile: \(error)")
+                    return
+                  }
+                  self.profile = profile
+                }
                 //Betting history update in listen handler
                 self.orderRespository.fetchLostBets(userId: user.uid) { (lbets ,error) in
                     if let error = error {
@@ -94,7 +103,7 @@ class SessionStore: ObservableObject {
 //                print(mlbgameResults)
                 mlbgameResults.forEach {
                     game in
-                    print(game)
+//                    print(game)
                     if (child.homeTeam == game.home_team){
                         if child.purchase == game.winner {
                             //Update New Score

@@ -39,13 +39,6 @@ struct LoggedInView : View {
     @EnvironmentObject var session: SessionStore
     @State private var selection = 0
     @State var searchText = ""
-    var base: Response {
-        var temp: Response!
-        apiBaseball().getOdds { (games) in
-            temp = games[0]
-        }
-        return temp
-    }
     //Home Screen//
     var body: some View{
         TabView(selection: $selection) {

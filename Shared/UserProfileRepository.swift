@@ -125,7 +125,7 @@ class UserProfileRepository: ObservableObject {
             }
             var score = oldscore
             score.append(NewScore)
-//            print(score)
+            print(score)
             transaction.updateData(["score": score], forDocument: userReference)
             return score
         }) { (object, error) in

@@ -38,7 +38,7 @@ struct ConfirmOrder: View {
             .overlay(
                 VStack{
                     Section{
-                        Text("Order Summary testing")
+                        Text("Order Summary")
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .font(.system(size: 30))
                             .foregroundColor(.white)
@@ -49,7 +49,7 @@ struct ConfirmOrder: View {
 //                            .foregroundColor(.white)
 //                    }
                     Section{
-                        Text("Game Date:\(date)")
+                        Text("Game Date: \(date)")
                             .foregroundColor(.white)
                     }
                     Section{
