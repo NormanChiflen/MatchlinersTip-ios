@@ -198,13 +198,14 @@ struct HomeTabView : View {
                             let commenceTime = gamed.commenceTime
                             let id = UUID().uuidString
                             let win1 = gamed.sites[0].odds.h2H[0]
-                            let lose1  = -gamed.sites[0].odds.h2H[0]
+                            let lose1  = gamed.sites[0].odds.h2H[0]
                             let win2 = gamed.sites[0].odds.h2H[1]
-                            let lose2 = -gamed.sites[0].odds.h2H[1]
+                            let lose2 = gamed.sites[0].odds.h2H[1]
                             let OddsAmount = [win1, lose2, win2, lose1]
                             let team_Name1 = gamed.teams[0]
                             let team_Name2 = gamed.teams[1]
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower, commenceTime: commenceTime)
+                            let home_team = gamed.homeTeam
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower, commenceTime: commenceTime, homeTeam: home_team)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))

@@ -46,6 +46,7 @@ struct BettingView: View {
     @State var id: String = ""
     @State var buyingPower: Double = 0
     @State var commenceTime: Int = 0
+    @State var homeTeam: String = ""
     
     var purchase: String {
         //pur referes to team that will win according to the option selected
@@ -176,7 +177,7 @@ struct BettingView: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds] ?? 0.0)
-                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, Todate: date, date: TimeStamp, showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase)
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, Todate: date, date: TimeStamp, showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase,homeTeam: homeTeam)
                         }
                 .buttonStyle(largeButton() )
                 .padding()

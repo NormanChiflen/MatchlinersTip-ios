@@ -56,15 +56,15 @@ struct UpComing: View {
                                 //Away
                                 Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
                                 Divider()
-                                Text("-\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
                                 Spacer()
                             }
                             VStack{
                                 Spacer()
                                 //Home
-                                Text("-\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
-                                Divider()
                                 Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                Divider()
+                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
                                 Spacer()
                             }
                                 Spacer()

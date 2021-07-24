@@ -63,9 +63,9 @@ class SessionStore: ObservableObject {
                     }
                     self.mlbgameResults = gameResults
                     print(self.mlbgameResults)
+                    //Payout base on OngoingBets and Results
                     self.PayOutFunction(userId: user.uid)
                 }
-                //Check payout base on OngoingBets and Results
 //                self.PayOutFunction(userId: user.uid)
                 print("Got here")
                 //Betting history update in listen handler
@@ -97,12 +97,11 @@ class SessionStore: ObservableObject {
                 mlbgameResults.forEach {
                     game in
                     print(game)
-                    if (child.time == game.date && child.team_Name2 == game.home_team && child.team_Name1 == game.away_team){
+                    if (child.time == game.date && child.homeTeam == game.home_team){
                         if child.purchase == game.winner {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
-                            print("Got Here")
                             print(PrevScore)
                             let UpdateScore = (PrevScore ?? 0.0) + (child.ExpectedEarning)
                             print(UpdateScore)
@@ -129,16 +128,15 @@ class SessionStore: ObservableObject {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
-                            print("Got Here")
                             print(PrevScore)
-                            let UpdateScore = (PrevScore ?? 0.0) - (child.ExpectedEarning)
+                            let UpdateScore = (PrevScore ?? 0.0) - (Double(child.value) ?? 0.0 )
                             print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId,NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {
                                     print("Error while updating score: \(error)")
                                     return
                                 }
-                                self.profile?.score = UpdatedScore
+//                                self.profile?.score = UpdatedScore
                             }
                             //Update Betting History
                             self.orderRespository.LostOrder(userId: userId, order: child) { (LostBets, error) in
@@ -254,8 +252,8 @@ class SessionStore: ObservableObject {
         Auth.auth().sendPasswordReset(withEmail: email)
     }
     
-    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, purchase: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
-        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value, purchase: purchase)
+    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, purchase: String, homeTeam: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
+        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value, purchase: purchase, homeTeam: homeTeam)
         self.orderRespository.createOrder(userId: userId, order: orderDetail){
             (order, error) in
               if let error = error {
