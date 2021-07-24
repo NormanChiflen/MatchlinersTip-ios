@@ -441,8 +441,8 @@ struct loginView : View {
                 self.error = error.localizedDescription
                 print("Error when signing in: \(error)")
             } else {
-                self.email = ""
-                self.password = ""
+//                self.email = ""
+//                self.password = ""
                 self.profile = profile
                 self.pref = pref
             }

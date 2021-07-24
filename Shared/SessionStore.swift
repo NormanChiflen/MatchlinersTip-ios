@@ -33,21 +33,21 @@ class SessionStore: ObservableObject {
             if let user = user {
                 print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
-                self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
+                self.profileRepository.listenProfile(userId: user.uid) { (profile, error) in
                   if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     return
                   }
                   self.profile = profile
                 }
-                self.profileRepository.fetchPref(userId: user.uid) { (pref, error) in
+                self.profileRepository.listenPref(userId: user.uid) { (pref, error) in
                   if let error = error {
                     print("Error while fetching the user profile: \(error)")
                     return
                   }
                   self.pref = pref
                 }
-                self.orderRespository.fetchOrder(userId: user.uid) { (onGoingBets, error) in
+                self.orderRespository.listenOrder(userId: user.uid) { (onGoingBets, error) in
                   if let error = error {
                     print("Error while fetching order: \(error)")
                     return
@@ -62,12 +62,10 @@ class SessionStore: ObservableObject {
                         return
                     }
                     self.mlbgameResults = gameResults
-                    print(self.mlbgameResults)
                     //Payout base on OngoingBets and Results
-                    self.PayOutFunction(userId: user.uid)
+//                    self.PayOutFunction(userId: user.uid)
                 }
-//                self.PayOutFunction(userId: user.uid)
-                print("Got here")
+                self.PayOutFunction(userId: user.uid)
                 //Betting history update in listen handler
                 self.orderRespository.fetchLostBets(userId: user.uid) { (lbets ,error) in
                     if let error = error {
@@ -97,20 +95,18 @@ class SessionStore: ObservableObject {
                 mlbgameResults.forEach {
                     game in
                     print(game)
-                    if (child.time == game.date && child.homeTeam == game.home_team){
+                    if (child.homeTeam == game.home_team){
                         if child.purchase == game.winner {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
-                            print(PrevScore)
                             let UpdateScore = (PrevScore ?? 0.0) + (child.ExpectedEarning)
-                            print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId, NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {
                                     print("Error while updating score: \(error)")
                                     return
                                 }
-                                self.profile?.score = UpdatedScore
+//                                self.profile?.score = UpdatedScore
                             }
                             //Update Betting History
                             self.orderRespository.WonOrder(userId: userId, order: child) { (betsWon, error) in
@@ -128,9 +124,7 @@ class SessionStore: ObservableObject {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
-                            print(PrevScore)
                             let UpdateScore = (PrevScore ?? 0.0) - (Double(child.value) ?? 0.0 )
-                            print(UpdateScore)
                             self.profileRepository.updateScore(userId: userId,NewScore: UpdateScore) { (UpdatedScore, error) in
                                 if let error = error {
                                     print("Error while updating score: \(error)")
@@ -195,7 +189,7 @@ class SessionStore: ObservableObject {
             return
           }
 
-          self.profile = profile
+//          self.profile = profile
           completion(profile, nil, nil)
         }
         self.profileRepository.fetchPref(userId: user.uid) { (pref, error) in
@@ -204,7 +198,7 @@ class SessionStore: ObservableObject {
                 completion(nil, nil, error)
                 return
             }
-            self.pref = pref
+//            self.pref = pref
             completion(self.profile, pref, nil)
         }
       }

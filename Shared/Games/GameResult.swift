@@ -40,20 +40,31 @@ class ResultRepository: ObservableObject {
     
     func findFinishedGames(completion: @escaping (_ result: [MLBGameResult],_ error: Error?) -> Void) {
             var evaluateGames: [MLBGameResult] = []
-//            let temp = MLBGameResult(away_score: "", away_team: "", date: "", full_name: "", home_score: "", home_team: "", innings: 0, short_name: "", status: "", winner: "")
-            db.collection("MLB").whereField("status", isEqualTo: "Final").getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in querySnapshot!.documents {
-                            let result = try? document.data(as: MLBGameResult.self)
-                            if result != nil{
-                                evaluateGames.append(result!)
-                            }
-                        }
+//            db.collection("MLB").whereField("status", isEqualTo: "Final").getDocuments() { (querySnapshot, err) in
+//                    if let err = err {
+//                        print("Error getting documents: \(err)")
+//                    } else {
+//                        for document in querySnapshot!.documents {
+//                            let result = try? document.data(as: MLBGameResult.self)
+//                            if result != nil{
+//                                evaluateGames.append(result!)
+//                            }
+//                        }
+//                    }
+//                completion(evaluateGames, nil)
+//            }
+            db.collection("MLB").whereField("status", isEqualTo: "Final").addSnapshotListener { querySnapshot, error in
+                guard querySnapshot != nil else{
+                    print("Error fetching mlbGames: \(error)")
+                    return
+                }
+                for document in querySnapshot!.documents {
+                    let result = try? document.data(as: MLBGameResult.self)
+                    if result != nil {
+                        evaluateGames.append(result!)
                     }
-//            print(evaluateGames)
-            completion(evaluateGames, nil)
-        }
+                }
+                completion(evaluateGames, nil)
+            }
     }
 }
