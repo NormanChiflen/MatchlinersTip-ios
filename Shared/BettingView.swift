@@ -77,7 +77,7 @@ struct BettingView: View {
                 BettingValue = BettingAmount / abs(OddSelection)
             }
             else{
-                BettingValue = BettingAmount * OddSelection
+                BettingValue = BettingAmount * OddSelection - BettingAmount
             }
         let Winnings = BettingValue
         return Winnings
@@ -93,7 +93,7 @@ struct BettingView: View {
             else{
                 BettingValue = BettingAmount * OddSelection
             }
-        let TotalGain = BettingValue + BettingAmount
+        let TotalGain = BettingValue
         return TotalGain
     }
     
