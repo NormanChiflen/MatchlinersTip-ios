@@ -23,6 +23,8 @@ class SessionStore: ObservableObject {
     @Published var wonBets: [OrderDetails] = []
     @Published var lostBets: [OrderDetails] = []
     @Published var mlbgameResults: [MLBGameResult] = []
+    @Published var GameMatch: [Match] = []
+    private var upcomingGameRepo = GameOddsRepo()
     private var profileRepository = UserProfileRepository()
     private var orderRespository = OrderRepository()
     private var resultRespository = ResultRepository()
@@ -31,7 +33,6 @@ class SessionStore: ObservableObject {
     func listen() {
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let user = user {
-//                print("User displayName: \(String(describing: user.displayName))")
                 self.session = User(uid: user.uid, email: user.email, displayName: user.displayName)
                 self.profileRepository.fetchProfile(userId: user.uid) { (profile, error) in
                   if let error = error {
@@ -46,6 +47,16 @@ class SessionStore: ObservableObject {
                     return
                   }
                   self.pref = pref
+                }
+                self.upcomingGameRepo.FindUpComingGames() {
+                    (gameMatch ,error) in
+                    if let error = error{
+                        print("\(error)")
+                        return
+                    }
+//                    print(gameMatch)
+                    self.GameMatch = gameMatch
+//                    print(self.GameMatch)
                 }
                 self.orderRespository.listenOrder(userId: user.uid) { (onGoingBets, error) in
                   if let error = error {
@@ -105,7 +116,7 @@ class SessionStore: ObservableObject {
                     game in
 //                    print(game)
                     if (child.homeTeam == game.home_team){
-                        if child.purchase == game.winner {
+                        if child.gameID == game.id {
                             //Update New Score
                             let currentScoreIndex = (profile?.score.count ?? 0 ) - 1
                             let PrevScore = profile?.score[currentScoreIndex]
@@ -255,8 +266,8 @@ class SessionStore: ObservableObject {
         Auth.auth().sendPasswordReset(withEmail: email)
     }
     
-    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, purchase: String, homeTeam: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
-        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value, purchase: purchase, homeTeam: homeTeam)
+    func submitOrder(id: String, userId: String,time: String, team_Name1: String, team_Name2: String, SelectedOdd: Double, ExpectedEarning: Double, value: String, purchase: String, homeTeam: String, gameID: String, completion: @escaping (_ order: OrderDetails?, _ error: Error?) -> Void){
+        let orderDetail = OrderDetails(id: id, time: time, team_Name1: team_Name1, team_Name2: team_Name2, SelectedOdd: SelectedOdd, ExpectedEarning: ExpectedEarning, value: value, purchase: purchase, homeTeam: homeTeam, gameID: gameID)
         self.orderRespository.createOrder(userId: userId, order: orderDetail){
             (order, error) in
               if let error = error {

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1619B287E328E022810F5D /* libPods-UnderDog Prototype (macOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA4B7CE6BE91D99BA74FA2 /* libPods-UnderDog Prototype (macOS).a */; };
 		295EF6F9264393530041C7F1 /* UpdatePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */; };
 		295EF6FA264393530041C7F1 /* UpdatePreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */; };
 		4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */; };
-		9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */; };
 		EB07A46B2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB07A46C2619634600A22529 /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A46A2619634600A22529 /* UserProfileRepository.swift */; };
 		EB090284262A7D5D00E7D7DA /* profileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090283262A7D5D00E7D7DA /* profileItem.swift */; };
@@ -19,6 +19,8 @@
 		EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09028A262A7F4600E7D7DA /* BettingView.swift */; };
 		EB090292262F88BA00E7D7DA /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* BottomSheetView.swift */; };
 		EB090293262F88BA00E7D7DA /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB090291262F88BA00E7D7DA /* BottomSheetView.swift */; };
+		EB19C5AC26AFC0B8005326DA /* GameOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB19C5AB26AFC0B8005326DA /* GameOdds.swift */; };
+		EB19C5AD26AFC0B8005326DA /* GameOdds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB19C5AB26AFC0B8005326DA /* GameOdds.swift */; };
 		EB47B8F2261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB47B8F3261559E00080725C /* odds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47B8F1261559E00080725C /* odds.swift */; };
 		EB822D3325EB1A5700018FB2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB822D3225EB1A5700018FB2 /* Tests_iOS.swift */; };
@@ -51,7 +53,7 @@
 		EBD44D7A26A7F6D800240AB1 /* betsWon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7826A7F6D800240AB1 /* betsWon.swift */; };
 		EBD44D8026A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
 		EBD44D8126A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
-		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
+		EBD50A8326015498005B740E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* SwiftPackageProductDependency */; };
 		EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
 		EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
 		EBD50AD1260831AD005B740E /* UpComing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* UpComing.swift */; };
@@ -90,13 +92,14 @@
 		295EF6F8264393530041C7F1 /* UpdatePreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferenceView.swift; sourceTree = "<group>"; };
 		325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6302DD1A453DFE528FA37AEE /* Pods-UnderDog Prototype (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		66EA4B7CE6BE91D99BA74FA2 /* libPods-UnderDog Prototype (macOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnderDog Prototype (macOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC14F6F076D2ABB664FB14E /* Pods-UnderDog Prototype (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (macOS).release.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (macOS)/Pods-UnderDog Prototype (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		C04B5221392C88FCF35A089E /* Pods-UnderDog Prototype (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderDog Prototype (iOS).debug.xcconfig"; path = "Target Support Files/Pods-UnderDog Prototype (iOS)/Pods-UnderDog Prototype (iOS).debug.xcconfig"; sourceTree = "<group>"; };
-		DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnderDog_Prototype__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB07A46A2619634600A22529 /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
 		EB090283262A7D5D00E7D7DA /* profileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileItem.swift; sourceTree = "<group>"; };
 		EB09028A262A7F4600E7D7DA /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
 		EB090291262F88BA00E7D7DA /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		EB19C5AB26AFC0B8005326DA /* GameOdds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOdds.swift; sourceTree = "<group>"; };
 		EB216E78263903F0005F8832 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB47B8F1261559E00080725C /* odds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odds.swift; sourceTree = "<group>"; };
 		EB822D1725EB1A5600018FB2 /* UnderDog_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderDog_PrototypeApp.swift; sourceTree = "<group>"; };
@@ -140,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBD50A8326015498005B740E /* iLineChart in Frameworks */,
+				EBD50A8326015498005B740E /* BuildFile in Frameworks */,
 				4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9259AD6AE1EFF61D67A83DEB /* Pods_UnderDog_Prototype__macOS_.framework in Frameworks */,
+				1A1619B287E328E022810F5D /* libPods-UnderDog Prototype (macOS).a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +178,7 @@
 			children = (
 				EB216E78263903F0005F8832 /* iOSDropDown.framework */,
 				325FA9FC8A02789697B65E6C /* Pods_UnderDog_Prototype__iOS_.framework */,
-				DDCB11E5848273D17C69729D /* Pods_UnderDog_Prototype__macOS_.framework */,
+				66EA4B7CE6BE91D99BA74FA2 /* libPods-UnderDog Prototype (macOS).a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				EBD50AC926082EF8005B740E /* OddsApi.swift */,
 				EBD50AD826083CD8005B740E /* Initial.swift */,
 				EB47B8F1261559E00080725C /* odds.swift */,
+				EB19C5AB26AFC0B8005326DA /* GameOdds.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -322,7 +326,7 @@
 			);
 			name = "UnderDog Prototype (iOS)";
 			packageProductDependencies = (
-				EBD50A8226015498005B740E /* iLineChart */,
+				EBD50A8226015498005B740E /* SwiftPackageProductDependency */,
 			);
 			productName = "UnderDog Prototype (iOS)";
 			productReference = EB822D1E25EB1A5700018FB2 /* UnderDog Prototype.app */;
@@ -417,7 +421,7 @@
 			);
 			mainGroup = EB822D1125EB1A5600018FB2;
 			packageReferences = (
-				EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */,
+				EBD50A8126015498005B740E /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = EB822D1F25EB1A5700018FB2 /* Products */;
 			projectDirPath = "";
@@ -539,6 +543,7 @@
 			files = (
 				EBD44D8026A7F6E400240AB1 /* betsLost.swift in Sources */,
 				EB09028B262A7F4600E7D7DA /* BettingView.swift in Sources */,
+				EB19C5AC26AFC0B8005326DA /* GameOdds.swift in Sources */,
 				EBBBA82B264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3E25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EB9B0CE9266056DC0093E620 /* SearchEventsView.swift in Sources */,
@@ -570,6 +575,7 @@
 			files = (
 				EBD44D8126A7F6E400240AB1 /* betsLost.swift in Sources */,
 				EB09028C262A7F4600E7D7DA /* BettingView.swift in Sources */,
+				EB19C5AD26AFC0B8005326DA /* GameOdds.swift in Sources */,
 				EBBBA82C264E235A0017A450 /* ConfirmOrder.swift in Sources */,
 				EBE6DB3F25FAF1D2007C2291 /* SceneDelegate.swift in Sources */,
 				EB9B0CEA266056DC0093E620 /* SearchEventsView.swift in Sources */,
@@ -974,7 +980,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */ = {
+		EBD50A8126015498005B740E /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AlexFine/iLineChart.git";
 			requirement = {
@@ -985,9 +991,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EBD50A8226015498005B740E /* iLineChart */ = {
+		EBD50A8226015498005B740E /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */;
+			package = EBD50A8126015498005B740E /* RemoteSwiftPackageReference */;
 			productName = iLineChart;
 		};
 /* End XCSwiftPackageProductDependency section */

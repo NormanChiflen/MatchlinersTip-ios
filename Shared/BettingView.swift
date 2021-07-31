@@ -45,8 +45,9 @@ struct BettingView: View {
     @Binding var bottomSheetShown: Bool
     @State var id: String = ""
     @State var buyingPower: Double = 0
-    @State var commenceTime: Int = 0
+    @State var commenceTime: String = ""
     @State var homeTeam: String = ""
+    @State var gameID: String = ""
     
     var purchase: String {
         //pur referes to team that will win according to the option selected
@@ -103,18 +104,6 @@ struct BettingView: View {
         [.one, .two, .three],
         [.decimal ,.zero, .clear],
     ]
-    var TimeStamp: String {
-            let epocTime = TimeInterval(commenceTime)
-            let convertdate = Date(timeIntervalSince1970: epocTime)
-            let dateFormatter = DateFormatter()
-//            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-//            dateFormatter.locale = NSLocale.current
-//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm'Z'"
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            let strDate = dateFormatter.string(from: convertdate)
-            return strDate
-    }
 
     var body: some View {
         VStack {
@@ -177,7 +166,7 @@ struct BettingView: View {
                 }
                 .sheet(isPresented: $showSheet) {
                     let SelectedOdd = Double(OddsAmount[Odds] ?? 0.0)
-                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, Todate: date, date: TimeStamp, showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase,homeTeam: homeTeam)
+                    ConfirmOrder(team_Name1:team_Name1, team_Name2:team_Name2, ExpectedEarning: ExpectedEarnings, TotalGain: TotalGain, value: value, SelectedOdd: SelectedOdd, Todate: date, date: commenceTime, showSheet: $showSheet, bottomSheetShown: $bottomSheetShown, id: id, purchase: purchase,homeTeam: homeTeam, gameID: gameID)
                         }
                 .buttonStyle(largeButton() )
                 .padding()
@@ -228,8 +217,4 @@ struct BettingView: View {
         func buttonHeight() -> CGFloat {
             return (UIScreen.main.bounds.width - (5*12)) / 4
         }
-        
-//    func executeOrder() {
-//        
-//    }
 }

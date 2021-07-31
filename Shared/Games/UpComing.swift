@@ -8,8 +8,8 @@ import Foundation
 import SwiftUI
 
 struct UpComing: View {
-    @State var games: [Datum] = []
-    @Binding var gamed : Datum
+    @State var games: [Match] = []
+    @Binding var gamed : Match
     @EnvironmentObject var session: SessionStore
     @Binding var bottomSheetShown : Bool
     @State var sportsTag = ["rugbyleague_nrl": "🏉",
@@ -34,12 +34,12 @@ struct UpComing: View {
                             Spacer()
                             
                             VStack{
-                                Text("Teams")
+                                Text("Teams \(sportsTag[game.sports_key]!)")
                                 Divider()
-                                Text(game.teams[0])
+                                Text(game.away_team)
                                     .font(.system(size: 15))
                                 Divider()
-                                Text(game.teams[1])
+                                Text(game.home_team)
                                     .font(.system(size: 15))
                                     Spacer()
                             }
@@ -54,17 +54,17 @@ struct UpComing: View {
                             VStack{
                                Spacer()
                                 //Away
-                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                Text("\(game.away_odd, specifier: "%.2f")")
                                 Divider()
-                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                Text("\(game.home_odd, specifier: "%.2f")")
                                 Spacer()
                             }
                             VStack{
                                 Spacer()
                                 //Home
-                                Text("\(game.sites[0].odds.h2H[1], specifier: "%.2f")")
+                                Text("\(game.home_odd, specifier: "%.2f")")
                                 Divider()
-                                Text("\(game.sites[0].odds.h2H[0], specifier: "%.2f")")
+                                Text("\(game.away_odd, specifier: "%.2f")")
                                 Spacer()
                             }
                                 Spacer()
@@ -87,117 +87,8 @@ struct UpComing: View {
                 }
             }
             .onAppear{
-                if session.pref?.NRL == true {
-                    OddsApi().getAURugbyOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.EPL == true {
-                    OddsApi().getUKSoccerOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NBA == true {
-                    OddsApi().getUSBasketBallOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-
-                    }
-                }
-                if session.pref?.Euroleague == true {
-                    OddsApi().getEUBasketBallOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MLB == true {
-                    OddsApi().getUSBaseballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MLS == true {
-                    OddsApi().getUSSoccerOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.MMA == true {
-                    OddsApi().getMMAOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NFL == true {
-                    OddsApi().getUSFootballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.AFL == true {
-                    OddsApi().getAUFootballOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
-                if session.pref?.NHL == true {
-                    OddsApi().getIceHockeyOdds{
-                        (games) in
-                        if self.games.isEmpty {
-                            self.games = games
-                        }
-                        else {
-                            self.games += games
-                        }
-                    }
-                }
+                games = session.GameMatch
+//                print(games)
             }
     }
 }

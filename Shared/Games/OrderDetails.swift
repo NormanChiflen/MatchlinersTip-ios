@@ -18,6 +18,7 @@ struct OrderDetails: Codable, Identifiable {
   var value: String = ""
   var purchase: String = ""
   var homeTeam: String = ""
+  var gameID: String = ""
 }
 
 class OrderRepository: ObservableObject {
@@ -140,6 +141,9 @@ class OrderRepository: ObservableObject {
                 }
                 for document in querySnapshot!.documents {
                     let order = try? document.data(as: OrderDetails.self)
+                    if(order == nil){
+                        return;
+                    }
                     OnGoingBets.append(order!)
                 }
                 completion(OnGoingBets, error)

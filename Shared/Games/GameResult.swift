@@ -33,6 +33,7 @@ struct MLBGameResult: Codable {
     var short_name: String = ""
     var status: String = ""
     var winner: String = ""
+    var id: String = ""
 }
 
 class ResultRepository: ObservableObject {
@@ -53,7 +54,7 @@ class ResultRepository: ObservableObject {
 //                    }
 //                completion(evaluateGames, nil)
 //            }
-            db.collection("MLB").whereField("status", isEqualTo: "Final").addSnapshotListener { querySnapshot, error in
+            db.collection("MLB_new").whereField("status", isEqualTo: "Final").addSnapshotListener { querySnapshot, error in
                 guard querySnapshot != nil else{
                     print("Error fetching mlbGames: \(error)")
                     return

@@ -496,7 +496,7 @@ struct LaunchView: View {
             // .position(x: 0, y: 50.0)
             Text("Creating the under dog story one bet at a time")
                 .foregroundColor(.gray)
-                .frame(width: 260, height: 100, alignment: .center)
+                .frame(width: 200, height: 100, alignment: .center)
                 .font(.custom("NotoSans-Medium", size: 20))
                 .multilineTextAlignment(.center)
               // .position(x: 0, y: 70)

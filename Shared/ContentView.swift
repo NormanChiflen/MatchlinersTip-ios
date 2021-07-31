@@ -69,16 +69,17 @@ struct LoggedInView : View {
 }
 
 struct HomeTabView : View {
-    @State var games: [Datum] = []
+
     @EnvironmentObject var session: SessionStore
-    @State var showTable = false
+    @State var showOnGoing = false
+    @State var showUpComing = false
     @Environment(\.colorScheme) var colorScheme
     @State private var bottomSheetShown = false
     @State private var Odds = 0
     @State var OddsAmount = []
     @State private var hidesheet = false
-    @State var gamed = Datum(id: "", sportKey: "", sportNice: "", teams: [], commenceTime: 0, homeTeam: "", sites: [], sitesCount: 0)
-
+    @State var gamed = Match(id: "", home_team: "", away_team: "", date: "", home_odd: 0.0, away_odd: 0.0, sports_key: "")
+    
     var ScoreHistory: [Double] {
         var history = [Double]()
         //Get Score array from firestore
@@ -96,9 +97,9 @@ struct HomeTabView : View {
         bp = bp - aggregate
         return bp
     }
-    func displayTable() {
+    func displayOnGoing() {
         withAnimation{
-            self.showTable.toggle()
+            self.showOnGoing.toggle()
         }
     }
     var body: some View {
@@ -151,11 +152,11 @@ struct HomeTabView : View {
                     Divider()
                     //Ongoing Bets
                     VStack{
-                        Button(action: displayTable, label: {
+                        Button(action: displayOnGoing, label: {
                             HStack(){
                                 Text("Ongoing Bets")
                                     .font(.custom("NotoSans-Medium", size: 25))
-                                if(self.showTable == false){
+                                if(self.showOnGoing == false){
                                 Text("▼")
                                 }else {
                                     Text("▲")
@@ -167,38 +168,41 @@ struct HomeTabView : View {
                             .offset(x: 98.0, y: 5.0)
                         })
                             .frame(width: .infinity, height: 50, alignment: .leading)
-                        if showTable == true {
+                        if showOnGoing == true {
                                 OnGoing()
                         }
                     }
                     .padding()
                     Spacer()
                     Divider()
-                    //Upcoming Bets
-                    Text("Upcoming Bets")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                                .offset(x: -5.0, y: 5.0)
-                                .font(.custom("NotoSans-Medium", size: 25))
-                        .padding()
-                    UpComing(games: games, gamed: $gamed, bottomSheetShown: $bottomSheetShown)
-                    //Show all games that matches with preference
-                }
+                    VStack{
+                        //Upcoming Bets
+                        Text("Upcoming Bets")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    .offset(x: -5.0, y: 5.0)
+                                    .font(.custom("NotoSans-Medium", size: 25))
+                            .padding()
+                        UpComing(gamed: $gamed, bottomSheetShown: $bottomSheetShown)
+                        //Show all games that matches with preference
+                        }
+                    }
             }
             if (bottomSheetShown != false) {
                 GeometryReader{ geometry in
                     BottomSheetView(isOpen: self.$bottomSheetShown, maxHeight: 830)  {
                         VStack {
-                            let commenceTime = gamed.commenceTime
+                            let commenceTime = gamed.date
                             let id = UUID().uuidString
-                            let win1 = gamed.sites[0].odds.h2H[0]
-                            let lose1  = gamed.sites[0].odds.h2H[0]
-                            let win2 = gamed.sites[0].odds.h2H[1]
-                            let lose2 = gamed.sites[0].odds.h2H[1]
+                            let win1 = gamed.away_odd
+                            let lose1  = gamed.away_odd
+                            let win2 = gamed.home_odd
+                            let lose2 = gamed.home_odd
                             let OddsAmount = [win1, lose2, win2, lose1]
-                            let team_Name1 = gamed.teams[0]
-                            let team_Name2 = gamed.teams[1]
-                            let home_team = gamed.homeTeam
-                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower, commenceTime: commenceTime, homeTeam: home_team)
+                            let team_Name1 = gamed.away_team
+                            let team_Name2 = gamed.home_team
+                            let home_team = gamed.home_team
+                            let gameID = gamed.id
+                            BettingView(OddsAmount: OddsAmount, team_Name1: team_Name1, team_Name2: team_Name2, bottomSheetShown: $bottomSheetShown, id: id, buyingPower:buyingPower, commenceTime: commenceTime, homeTeam: home_team, gameID: gameID)
                         }
                         .padding(geometry.safeAreaInsets)
                         .transition(.move(edge: .leading))
@@ -207,122 +211,9 @@ struct HomeTabView : View {
                 }
             }
         }
-        .onAppear{
-            if session.pref?.NRL == true {
-                OddsApi().getAURugbyOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.EPL == true {
-                OddsApi().getUKSoccerOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.NBA == true {
-                OddsApi().getUSBasketBallOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-
-                }
-            }
-            if session.pref?.Euroleague == true {
-                OddsApi().getEUBasketBallOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.MLB == true {
-                OddsApi().getUSBaseballOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.MLS == true {
-                OddsApi().getUSSoccerOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.MMA == true {
-                OddsApi().getMMAOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.NFL == true {
-                OddsApi().getUSFootballOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.AFL == true {
-                OddsApi().getAUFootballOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-            if session.pref?.NHL == true {
-                OddsApi().getIceHockeyOdds{
-                    (games) in
-                    if self.games.isEmpty {
-                        self.games = games
-                    }
-                    else {
-                        self.games += games
-                    }
-                }
-            }
-        }
-        
     }
 }
+
 
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore

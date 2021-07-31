@@ -12,7 +12,6 @@ target 'UnderDog Prototype (iOS)' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-  pod 'Alamofire', '~> 5.2'
   
   post_install do |installer|
    installer.pods_project.targets.each do |target|
@@ -26,7 +25,7 @@ end
 
 target 'UnderDog Prototype (macOS)' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+#  use_frameworks!
 
   # Pods for UnderDog Prototype (macOS)
 
