@@ -53,7 +53,7 @@
 		EBD44D7A26A7F6D800240AB1 /* betsWon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7826A7F6D800240AB1 /* betsWon.swift */; };
 		EBD44D8026A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
 		EBD44D8126A7F6E400240AB1 /* betsLost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD44D7F26A7F6E400240AB1 /* betsLost.swift */; };
-		EBD50A8326015498005B740E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* SwiftPackageProductDependency */; };
+		EBD50A8326015498005B740E /* iLineChart in Frameworks */ = {isa = PBXBuildFile; productRef = EBD50A8226015498005B740E /* iLineChart */; };
 		EBD50ACA26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
 		EBD50ACB26082EF8005B740E /* OddsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AC926082EF8005B740E /* OddsApi.swift */; };
 		EBD50AD1260831AD005B740E /* UpComing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD50AD0260831AD005B740E /* UpComing.swift */; };
@@ -106,7 +106,7 @@
 		EB822D1825EB1A5600018FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB822D1925EB1A5700018FB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB822D1E25EB1A5700018FB2 /* UnderDog Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UnderDog Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB822D2125EB1A5700018FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB822D2125EB1A5700018FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		EB822D2625EB1A5700018FB2 /* UnderDog Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UnderDog Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB822D2825EB1A5700018FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB822D2925EB1A5700018FB2 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBD50A8326015498005B740E /* BuildFile in Frameworks */,
+				EBD50A8326015498005B740E /* iLineChart in Frameworks */,
 				4FC33D0AD83DB0A96DFE7B3F /* Pods_UnderDog_Prototype__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +326,7 @@
 			);
 			name = "UnderDog Prototype (iOS)";
 			packageProductDependencies = (
-				EBD50A8226015498005B740E /* SwiftPackageProductDependency */,
+				EBD50A8226015498005B740E /* iLineChart */,
 			);
 			productName = "UnderDog Prototype (iOS)";
 			productReference = EB822D1E25EB1A5700018FB2 /* UnderDog Prototype.app */;
@@ -421,7 +421,7 @@
 			);
 			mainGroup = EB822D1125EB1A5600018FB2;
 			packageReferences = (
-				EBD50A8126015498005B740E /* RemoteSwiftPackageReference */,
+				EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */,
 			);
 			productRefGroup = EB822D1F25EB1A5700018FB2 /* Products */;
 			projectDirPath = "";
@@ -670,6 +670,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = arm64;
 				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -731,6 +732,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -741,6 +744,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -755,8 +759,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "UnderDog Prototype.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68Q4X586LJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = iOS/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -778,9 +785,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "UnderDog Prototype.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68Q4X586LJ;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = iOS/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -788,6 +800,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "godrednu.UnderDog-Prototype";
 				PRODUCT_NAME = "UnderDog Prototype";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -849,6 +862,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68Q4X586LJ;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -869,7 +884,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68Q4X586LJ;
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -879,6 +899,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "godrednu.Tests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -980,7 +1002,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EBD50A8126015498005B740E /* RemoteSwiftPackageReference */ = {
+		EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AlexFine/iLineChart.git";
 			requirement = {
@@ -991,9 +1013,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EBD50A8226015498005B740E /* SwiftPackageProductDependency */ = {
+		EBD50A8226015498005B740E /* iLineChart */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EBD50A8126015498005B740E /* RemoteSwiftPackageReference */;
+			package = EBD50A8126015498005B740E /* XCRemoteSwiftPackageReference "iLineChart" */;
 			productName = iLineChart;
 		};
 /* End XCSwiftPackageProductDependency section */

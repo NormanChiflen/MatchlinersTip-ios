@@ -23,17 +23,19 @@ struct NBAGameResult: Codable {
 }
 
 struct MLBGameResult: Codable {
-    var away_score: String = ""
+    var away_odd: Double = 0.0
+    var away_score: Int = 0
     var away_team: String = ""
     var date: String = ""
     var full_name: String = ""
-    var home_score: String = ""
+    var home_odd: Double = 0.0
+    var home_score: Int = 0
     var home_team: String = ""
+    var id: String = ""
     var innings: Int = 0
     var short_name: String = ""
     var status: String = ""
     var winner: String = ""
-    var id: String = ""
 }
 
 class ResultRepository: ObservableObject {
@@ -41,7 +43,8 @@ class ResultRepository: ObservableObject {
     
     func findFinishedGames(completion: @escaping (_ result: [MLBGameResult],_ error: Error?) -> Void) {
             var evaluateGames: [MLBGameResult] = []
-//            db.collection("MLB").whereField("status", isEqualTo: "Final").getDocuments() { (querySnapshot, err) in
+        
+//            db.collection("MLB_new").whereField("status", isEqualTo: "Final").getDocuments() { (querySnapshot, err) in
 //                    if let err = err {
 //                        print("Error getting documents: \(err)")
 //                    } else {
@@ -52,6 +55,7 @@ class ResultRepository: ObservableObject {
 //                            }
 //                        }
 //                    }
+//                print(evaluateGames)
 //                completion(evaluateGames, nil)
 //            }
             db.collection("MLB_new").whereField("status", isEqualTo: "Final").addSnapshotListener { querySnapshot, error in
@@ -61,10 +65,12 @@ class ResultRepository: ObservableObject {
                 }
                 for document in querySnapshot!.documents {
                     let result = try? document.data(as: MLBGameResult.self)
+                    
                     if result != nil {
                         evaluateGames.append(result!)
                     }
                 }
+//                print(evaluateGames)
                 completion(evaluateGames, nil)
             }
     }
